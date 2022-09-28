@@ -7,4 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class VestizarApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(VestizarApplication.class, args
+        SpringApplication.run(VestizarApplication.class, args);
+    }
+
+}

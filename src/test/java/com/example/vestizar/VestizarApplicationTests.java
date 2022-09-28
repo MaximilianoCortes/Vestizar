@@ -8,3 +8,6 @@ class VestizarApplicationTests {
 
     @Test
     void contextLoads() {
+    }
+
+}

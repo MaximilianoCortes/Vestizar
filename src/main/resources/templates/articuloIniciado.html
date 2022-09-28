@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Vestizar</title>
+    <link rel="stylesheet" href="css/styleArticulo.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+   
+</head>
+<body>
+
+    <header>
+
+        <div>
+            <a href="iniciadoSesion.html"><h3 id="logo">VESTIZAR</h3>  </a>
+           </div>
+    
+            <div>
+                <form>
+                    <input id="barra" class="ms-5"  type="text" placeholder="Busca art&iacute;culos, marcas o estilos!" name="busqueda">
+                </form>
+                <img id="lupabarra" src="img/lupa.png" >
+            </div>
+    
+            <div class="dropdown">
+                <a class="bottonMenu bottonDrop" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                 
+              <img id="imagenUsuarioIniciado" src="img/usuariov2.png">
+              <p id="nombreUsuarioIniciado">usuario01</p>
+  
+                </a>
+        
+                <ul class="dropdown-menu dropdown-menu-dark informaDrop" style="text-align: center; background-color: #1b1919; border-radius: 6%; " aria-labelledby="dropdownMenuLink">
+                    <li><p class="informaDrop0">Bienvenido, Usuario</p></li>
+                  <li><a class="dropdown-item informaDrop1" href="verMiPerfil.html">Ver mi perfil</a></li>
+                  <li><a class="dropdown-item informaDrop2" type="Button" data-bs-toggle="modal" data-bs-target="#exampleModal">Crear publicación</a></li>
+                  <li><a class="dropdown-item informaDrop3" href="misPublicaciones.html">Ver mis publicaciones</a></li>
+                  <li><a class="dropdown-item informaDrop4" href="articulo.html">Cerrar Sesion</a></li>
+                </ul>
+              </div>
+  
+              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class=" modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content" style="height: 1000px;" >
+                    <div class="modal-header" style="background-color: black;">
+                    <h5 class="modal-title tituloModal" id="exampleModalLabel">Crear publicación</h5>
+                    <button  type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                 </div>
+                    <div class="modal-body cuerpomodal">
+                        
+                        <div  style=" width: 400px;">
+                            <img class="imagenModalCrearPublicacion" height="300px" width="300px" style="border: 2px solid #373737 ; position: relative; left: 50px; top: 40px ; border-top-left-radius:5% ; border-top-right-radius:5% ;" src="img/creacion.png">                            <br><br>
+                            <button class="botonesCrearpubli botonant botona" type="button">Anterior</button>
+                            <button class="botonesCrearpubli botonsgt botona" type="button">Siguiente</button><br><br>
+                            <button class="botonesCrearpubli botonagre botonb" type="button" >Agregar imagen</button><br>
+                            <button class="botonesCrearpubli botonquit botonb" type="button">Quitar imagen</button>
+                        
+                        </div>
+    
+                    
+                        <form action="">
+                            <div style="width: 600px;">
+    
+                                <div >
+                                    <select class="form-select tipoProducto1" style="border-radius: 0%; background-color: white; height: 55px; border: none;"><br><br>
+                                        <option selected> Seleccione tipo de producto</option>
+                                        <option value="1">Polera</option>
+                                        <option value="2">Camisa</option>
+                                        <option value="3">Poleron</option>
+                                      </select>
+                                      <select class="form-select tipoProducto2 "  style="border-radius: 0%; background-color: white; height: 55px; border: none;"><br><br>
+                                        <option selected>Selecciona la talla</option>
+                                        <option value="1">S</option>
+                                        <option value="2">M</option>
+                                        <option value="3">L</option>
+                                      </select>
+                                      
+                                      <input class="informacioncrearpubli" type="text" name="color" id="color" placeholder="Color"><br>
+                                      <input class="informacioncrearpubli" type="text" name="marca" id="marca" placeholder="Marca"><br>
+                                      <input class="informacioncrearpubli" type="text" name="estilo" id="estilo" placeholder="Estilo"><br>
+                                      <input class="informacioncrearpubli" type="text" name="estado" id="estado" placeholder="Estado"><br>
+                                      <input class="informacioncrearpubli" type="text" name="precio" id="precio" placeholder="Precio"><br>
+                                      <textarea class="descripion" name="descripcion" id="descripcion" placeholder="Breve descripción o detalles del artículo"></textarea><br>
+    
+                                </div>
+                         
+                                  
+                        
+    
+    
+                            </div>
+                                      <button class="crearPubli" type="button" class="btn btn-primary">Publicar</button>
+                        </form>
+                    </div>
+    
+    
+                </div>
+                </div>
+             </div>
+    
+
+            <div id="categorias">
+                <a class="cat" href="busquedaIniciada.html" >Hombre</a>
+                <a class="cat" href="busquedaIniciada.html" >Mujer</a>
+                <a class="cat" href="busquedaIniciada.html" >Ni&ntilde;os</a>
+                <a class="cat" href="busquedaIniciada.html" >Bisuter&iacute;a</a>
+                <a class="cat" href="busquedaIniciada.html" >Bolsos</a>
+                <a class="cat" href="busquedaIniciada.html" >Maquillaje</a>
+                <a class="cat" id="cato" href="busquedaIniciada.html" >Ofertas</a>
+            </div>    
+        </header>
+
+        <section>   
+
+            <div class="informacion" >
+
+                <div class="imagenboton">
+                    <img class="imagenArticulo" src="img/deporte2.png"/>
+                    <button class="botonArticulo" id="ant">Anterior</button>
+                    <button class="botonArticulo" id="sgte">Siguiente</button>
+                </div>
+
+                <div >
+                    <p class="informacionProducto"> Tipo de Producto</p>
+                    <p class="informacionProducto"> Talla</p>
+                    <p class="informacionProducto"> Color</p>
+                    <p class="informacionProducto"> Marca</p>
+                    <p class="informacionProducto"> Estilo</p>
+                    <p class="informacionProducto"> Estado</p>
+                    <p class="informacionProducto"> Precio</p> 
+                </div>
+
+                <div >
+                    <img id="imagenUsuario" src="img/usuario.png" >
+                    <a href="perfilVendedorIniciado.html">
+                        <p id="nombreUsuario">usuario3842</p>
+                    </a>
+                    <p id="ubicacionUsuario">Temuco</p>
+                </div>
+
+                <div >
+                    <p class="informacionProducto2"> Falda</p>
+                    <p class="informacionProducto2"> M</p>
+                    <p class="informacionProducto2"> Negro</p>
+                    <p class="informacionProducto2"> Nike</p>
+                    <p class="informacionProducto2"> Deporte</p>
+                    <p class="informacionProducto2"> Buenas condiciones</p>
+                    <p class="informacionProducto2"> $15000</p>
+                    <p id="desc">Como nueva, usada solo una vez. </p>
+                    <button id="botonContacto">Contactar vendedor</button>
+                </div>
+          
+            </div>
+        
+        </section>
+  
+
+    <footer>  </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+</body>
+</html>

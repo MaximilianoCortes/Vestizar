@@ -1,0 +1,378 @@
+*{
+    font-family: 'Inter', sans-serif ;
+    font-size: 20px;
+}
+
+html, body{
+    height: 100%;
+    overflow: hidden;
+}
+
+h3::first-letter{
+    font-size: 30px;
+}
+
+form{
+    display: inline-block;
+}
+
+div {
+    display: inline-block;
+}
+
+div a{
+    color: black;
+    text-decoration: none;
+}
+
+article a{
+    position: relative;
+    left: 245px;
+}
+
+#logo {
+    font-family: 'Inter', sans-serif ;
+    font-size: 25px;
+    font-weight: bold;
+    display: inline-block;
+    position: relative;
+    left: 77px;
+    top: 22px;
+    bottom: 20;
+    width: 200px;
+    height: 50px;
+    text-align: center;
+}
+
+#barra{
+    width: 1000px;
+    height: 43px;
+    position: relative;
+    top: 20px;
+    bottom: 10px;
+    left: 100px;
+    padding: 12px 50px;
+    }
+
+#lupabarra{
+    width: 22px;
+    height: 20px;
+    position: relative;
+    top: 18px; 
+    right: 890px;
+}
+
+.boton{
+    display: inline-block;
+    width: 200px;
+    height: 40px;
+}
+
+.botoninicio{
+    display: inline-block;   
+    position: relative;
+    top:  20px;
+    bottom: 10px;
+    width: 150px;
+    height: 43px;
+    left: 160px;
+    margin-left: 20px;
+    border: 1px black solid;
+    text-align: center;
+    background-color: white;
+}
+
+#categorias{
+    display: block;
+}
+
+.cat{
+    display: inline-block;
+    color: black;
+    margin: 20px 95px;
+    position: relative;
+    top: 20px;
+    bottom: 20px;
+}
+#cato{
+    color: red;
+}
+
+#imagenUsuarioIniciado{
+    display: inline-block;   
+    position: relative;
+    top:  48px;
+    width: 43px;
+    height: 43px;
+    margin: none;
+    left: 100px;
+}
+
+#nombreUsuarioIniciado{
+    display: inline-block;   
+    position: relative;
+    top:  48px;
+    font-size: 22px;
+    left: 110px;
+    text-align: left;
+}
+
+.perfil{
+    display: inline-block;
+    position: relative;
+    width: 800px;
+    top: 20px;
+    margin: none;
+}
+
+#imagenPerfil{
+    position: relative;
+    width: 150px;
+    height: 150px;
+    left: 440px;
+    top: 80px;
+}
+
+.info{
+    position: relative;
+    font-size: 24px;
+    top: 80px;
+    left: 315px;
+    text-align: center;
+    width: 400px;
+}
+
+#nombreUsuario{
+    position: relative;
+    font-size: 24px;
+    top: 100px;
+    left: 315px;
+    width: 400px;
+    text-align: center;
+}
+
+#ubiUsuario{
+    font-size: 20px;
+    color: #676767;
+    position: relative;
+    top: 80px;
+    left: 315px;
+    width: 400px;
+    text-align: center;
+}
+
+#botonGuardar{
+    width: 264px;
+    height: 65px;
+    font-size: 24px;
+    color: white;
+    background-color: #373737;
+    border: none;
+    position: relative;
+    top: 110px;
+    left: 390px;
+}
+
+.imagen{
+    display: inline-block;
+    position: relative;
+    background-color: #373737;
+    margin: none;
+    left: 200px;
+    top: -401px;
+    width: 1000px;
+    height: 781px;
+}
+
+#cambiarImagenPerfil{
+    position: relative;
+    left: 320px;
+    top: 100px;
+}
+
+#botonCambiar{
+position: relative;
+top: 350px;
+left: 40px;
+height: 60px;
+width: 250px;
+background-color: white;
+border-radius: 10px;
+border: 1px solid white;
+color: black;
+font-size: 24px;
+}
+
+#botonBorrar{
+position: relative;
+top: 430px;
+left: -215px;
+height: 60px;
+width: 250px;
+color: white;
+background-color: #373737;
+border: 1px solid white;
+border-radius: 10px;
+font-size: 24px;
+}
+
+#cambiarImagenPerfil{
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+}
+
+.informaDrop{
+    position: relative;
+    width: 340px;
+    height: 355px;
+
+   
+}
+
+.informaDrop1{
+    margin-bottom: 30px;
+}
+
+.informaDrop2{
+margin-bottom: 30px;
+}
+
+.informaDrop3{
+margin-bottom: 30px;
+
+}
+
+.informaDrop4{
+margin-top: 0px;
+   
+}
+
+.bottonDrop{
+    position: relative;
+    left: 150px;
+    bottom: 30px ;
+}
+
+.informaDrop0{
+    margin-top: 17px;
+    margin-bottom: 30px;;
+}
+
+
+.cuerpomodal{
+display: flex;
+
+
+}
+
+.informacioncrearpubli{
+
+    margin-bottom: 10px;
+    border: none;
+
+}
+
+.tipoProducto{
+margin-top: 15px;
+
+
+
+}
+
+.tipoProducto2{
+margin-top: 10px;
+ margin-bottom:10px;
+    
+}
+
+.botonesCrearpubli{
+    position: relative;
+    top: 10px;
+}
+
+.botona{
+    
+    border:  none;
+position: relative;
+left: 35px;
+width: 150px;
+
+}
+
+.botonant{
+    background-color: white;
+    position: relative;
+    left: 50px;
+    border: 1px grey solid;
+    height: 50px;
+    border-bottom-left-radius: 5% ;
+}
+.botonsgt{
+    background-color: #373737;
+    color: white;
+    position: relative;
+    left: 44px;
+    height: 50px;
+    border: 1px grey solid;
+    border-bottom-right-radius:5% ;
+    
+}
+
+.tituloModal{
+    position: relative;
+    left: 45%;
+    color: white;
+}
+
+
+.botonagre{
+    height: 50px;
+
+ 
+    background-color: #373737;
+    color: white;
+    border-radius: 5%;
+}
+
+
+.botonquit{
+    height: 50px;
+    
+    background-color: white;
+    border-radius: 5%;
+    
+}
+
+.botonb{
+    border: 1px grey solid;
+left: 95px;
+width: 200px;
+
+
+}
+
+.informacioncrearpubli{
+width: 700px;
+height: 55px;
+padding: 1px 15px;
+
+}
+
+.descripion{
+    border: none;
+    width: 700px;
+}
+
+.crearPubli{
+position: relative;
+right: 450px;
+background-color: black;
+border: none;
+color: white;
+border: 1px black solid; ;
+border-radius: 5%;
+height: 60px;
+width: 200px;
+padding: 1px 15px;
+}
