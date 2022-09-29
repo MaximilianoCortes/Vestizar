@@ -38,7 +38,7 @@ article a{
     position: relative;
     left: 77px;
     top: 22px;
-    bottom: 20;
+    bottom: 20px;
     width: 200px;
     height: 50px;
     text-align: center;
@@ -104,7 +104,7 @@ article a{
     top:  48px;
     width: 43px;
     height: 43px;
-    margin: none;
+    margin: unset;
     left: 100px;
 }
 
@@ -122,7 +122,7 @@ article a{
     position: relative;
     width: 800px;
     top: 20px;
-    margin: none;
+    margin: unset;
 }
 
 #imagenPerfil{
@@ -177,7 +177,7 @@ article a{
     display: inline-block;
     position: relative;
     background-color: #373737;
-    margin: none;
+    margin: unset;
     left: 200px;
     top: -401px;
     width: 1000px;

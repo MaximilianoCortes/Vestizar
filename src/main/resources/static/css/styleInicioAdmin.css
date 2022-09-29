@@ -12,34 +12,45 @@ h3::first-letter{
     font-size: 30px;
 }
 
-a{
+a {
     position: relative;
-    left: 245px;
+
+}
+
+section{
+    position: relative;
+    left: 250px;
 }
 
 #logo {
     font-family: 'Inter', sans-serif ;
     font-size: 25px;
+    color: black;
     font-weight: bold;
     display: inline-block;
     position: relative;
-    left: 77px;
     top: 22px;
-    bottom: 20;
+    bottom: 20px;
     width: 200px;
     height: 50px;
     text-align: center;
+    left: 77px;
 }
 
-#nombreAdmin{
-    font-size: 22px;
-    display: inline-block;   
+.informaDrop{
     position: relative;
-    top:  -35px;
-    font-size: 22px;
-    left: 900px;
-    text-align: left;
+    height: 60px;
 }
+
+
+
+.bottonDrop{
+    position: relative;
+    left: 44.5%;
+    bottom: 70px ;
+
+}
+
 
 .post{
     display: inline-block;
@@ -55,11 +66,21 @@ a{
    
 }
 
+#nombreAdmin{
+    position: relative;
+    left: 55px;
+    top: 40px   ;
+    border: none;
+    background-color: white ;
+
+}
+
 .precioBusqueda{
     display: inline-block;
     text-align: left;
     position: relative;
     width: 250px;
     top: 200px;
-    left: 80px;
+    right: 160px;
+
 }
