@@ -270,40 +270,38 @@ font-size: 17px;
         
     }
 
-
-
-
-
-
-
-
-
 .informaDrop{
     position: relative;
     width: 340px;
-    height: 355px;
+    height: 420px;
 
    
 }
 
 .informaDrop1{
-    margin-bottom: 30px;
+
+    padding: 20px;
 }
 
 .informaDrop2{
-margin-bottom: 30px;
+    padding: 20px;
 }
 
 .informaDrop3{
-margin-bottom: 30px;
+    padding: 20px;
 
 }
 
 .informaDrop4{
-margin-top: 0px;
-   
+    padding: 20px;
+   border-bottom-left-radius: 20px;
+    border-bottom-right-radius:20px;
 }
 
+.informaDrop5{
+    padding: 20px;
+
+}
 .bottonDrop{
     position: relative;
     left: 150px;
@@ -312,7 +310,8 @@ margin-top: 0px;
 
 .informaDrop0{
     margin-top: 17px;
-    margin-bottom: 30px;;
+    margin-bottom: 10px;;
+    color: grey;
 }
 
 

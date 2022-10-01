@@ -266,45 +266,52 @@ article a{
         border: none;
         width: 700px;
     }
-    
 
 
-    .informaDrop{
-        position: relative;
-        width: 340px;
-        height: 355px;
-    
-       
-    }
-    
-    .informaDrop1{
-        margin-bottom: 30px;
-    }
-    
-    .informaDrop2{
-    margin-bottom: 30px;
-    }
-    
-    .informaDrop3{
-    margin-bottom: 30px;
-    
-    }
-    
-    .informaDrop4{
-    margin-top: 0px;
-       
-    }
-    
-    .bottonDrop{
-        position: relative;
-        left: 150px;
-        bottom: 30px ;
-    }
-    
-    .informaDrop0{
-        margin-top: 17px;
-        margin-bottom: 30px;;
-    }
+
+.informaDrop{
+    position: relative;
+    width: 340px;
+    height: 420px;
+
+
+}
+
+.informaDrop1{
+
+    padding: 20px;
+}
+
+.informaDrop2{
+    padding: 20px;
+}
+
+.informaDrop3{
+    padding: 20px;
+
+}
+
+.informaDrop4{
+    padding: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius:20px;
+}
+
+.informaDrop5{
+    padding: 20px;
+
+}
+.bottonDrop{
+    position: relative;
+    left: 150px;
+    bottom: 30px ;
+}
+
+.informaDrop0{
+    margin-top: 17px;
+    margin-bottom: 10px;;
+    color: grey;
+}
 
 
     

@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Vestizar</title>
-    <link rel="stylesheet" href="../static/css/styleMisPublicaciones.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/styleMisPublicaciones.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
@@ -31,22 +31,23 @@
               <img id="imagenUsuarioIniciado" src="../static/img/usuariov2.png">
               <p id="nombreUsuarioIniciado">usuario01</p>
                 </a>
-        
+
                 <ul class="dropdown-menu dropdown-menu-dark informaDrop" style="text-align: center; background-color: #1b1919; border-radius: 6%; " aria-labelledby="dropdownMenuLink">
                     <li><p class="informaDrop0">Bienvenido, Usuario</p></li>
-                  <li><a class="dropdown-item informaDrop1" href="verMiPerfil.html">Ver mi perfil</a></li>
-                  <li><a class="dropdown-item informaDrop2" type="Button" data-bs-toggle="modal" data-bs-target="#exampleModal">Crear publicación</a></li>
-                  <li><a class="dropdown-item informaDrop3" href="misPublicaciones.html">Ver mis publicaciones</a></li>
-                  <li><a class="dropdown-item informaDrop4" href="index.html">Cerrar Sesion</a></li>
+                    <li><a class="dropdown-item informaDrop1" href="verMiPerfil.html">Ver mi perfil</a></li>
+                    <li><a class="dropdown-item informaDrop2" type="Button" data-bs-toggle="modal" data-bs-target="#exampleModal">Crear publicación</a></li>
+                    <li><a class="dropdown-item informaDrop3" href="misPublicaciones.html">Ver mis publicaciones</a></li>
+                    <li><a class="dropdown-item informaDrop5" href="">Chats</a></li>
+                    <li><a class="dropdown-item informaDrop4" href="index.html">Cerrar Sesion</a></li>
                 </ul>
-              </div>
+            </div>
 
 
               <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class=" modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content" style="height: 1000px;" >
                     <div class="modal-header" style="background-color: black;">
-                    <h5 class="modal-title tituloModal" id="exampleModalLabel">Crear publicación</h5>
+                    <h5 class="modal-title tituloModal" class="exampleModalLabel">Crear publicación</h5>
                     <button  type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                  </div>
                     <div class="modal-body cuerpomodal">
@@ -78,12 +79,12 @@
                                         <option value="3">L</option>
                                       </select>
                                       
-                                      <input class="informacioncrearpubli" type="text" name="color" id="color" placeholder="Color"><br>
-                                      <input class="informacioncrearpubli" type="text" name="marca" id="marca" placeholder="Marca"><br>
-                                      <input class="informacioncrearpubli" type="text" name="estilo" id="estilo" placeholder="Estilo"><br>
-                                      <input class="informacioncrearpubli" type="text" name="estado" id="estado" placeholder="Estado"><br>
-                                      <input class="informacioncrearpubli" type="text" name="precio" id="precio" placeholder="Precio"><br>
-                                      <textarea class="descripion" name="descripcion" id="descripcion" placeholder="Breve descripción o detalles del artículo"></textarea><br>
+                                      <input class="informacioncrearpubli" type="text" name="color" class="color" placeholder="Color"><br>
+                                      <input class="informacioncrearpubli" type="text" name="marca" class="marca" placeholder="Marca"><br>
+                                      <input class="informacioncrearpubli" type="text" name="estilo" class="estilo" placeholder="Estilo"><br>
+                                      <input class="informacioncrearpubli" type="text" name="estado" class="estado" placeholder="Estado"><br>
+                                      <input class="informacioncrearpubli" type="text" name="precio" class="precio" placeholder="Precio"><br>
+                                      <textarea class="descripion" name="descripcion" class="descripcion" placeholder="Breve descripción o detalles del artículo"></textarea><br>
     
                                 </div>
                          
@@ -138,7 +139,7 @@
             <div class=" modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content" style="height: 1000px;">
                 <div class="modal-header" style="background-color: black;">
-                <h5 class="modal-title tituloModal" id="exampleModalLabel">Editar publicación</h5>
+                <h5 class="modal-title tituloModal" class="exampleModalLabel">Editar publicación</h5>
                 <button  type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
              </div>
                 <div class="modal-body cuerpomodal">
@@ -170,12 +171,12 @@
                                     <option value="3">L</option>
                                   </select>
                                   
-                                  <input class="informacioncrearpubli" type="text" name="color" id="color" value="Café" placeholder="Color"><br>
-                                  <input class="informacioncrearpubli" type="text" name="marca" id="marca" value="Desconocida" placeholder="Marca"><br>
-                                  <input class="informacioncrearpubli" type="text" name="estilo" id="estilo" placeholder="Estilo" value="Grunge"><br>
-                                  <input class="informacioncrearpubli" type="text" name="estado" id="estado" placeholder="Estado" value="Semi-Nuevo"><br>
-                                  <input class="informacioncrearpubli" type="text" name="precio" id="precio" placeholder="Precio" value="$5000"><br>
-                                  <textarea class="descripion" name="descripcion" id="descripcion" placeholder="Breve descripción o detalles del artículo">Semi nuevo, usado solo un par de veces</textarea><br>
+                                  <input class="informacioncrearpubli" type="text" name="color" class="color" value="Café" placeholder="Color"><br>
+                                  <input class="informacioncrearpubli" type="text" name="marca" class="marca" value="Desconocida" placeholder="Marca"><br>
+                                  <input class="informacioncrearpubli" type="text" name="estilo" class="estilo" placeholder="Estilo" value="Grunge"><br>
+                                  <input class="informacioncrearpubli" type="text" name="estado" class="estado" placeholder="Estado" value="Semi-Nuevo"><br>
+                                  <input class="informacioncrearpubli" type="text" name="precio" class="precio" placeholder="Precio" value="$5000"><br>
+                                  <textarea class="descripion" name="descripcion" class="descripcion" placeholder="Breve descripción o detalles del artículo">Semi nuevo, usado solo un par de veces</textarea><br>
 
                             </div>
                         </div>
@@ -212,7 +213,7 @@
             <div class=" modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content" style="height: 1000px;">
                 <div class="modal-header" style="background-color: black;">
-                <h5 class="modal-title tituloModal" id="exampleModalLabel">Editar publicación</h5>
+                <h5 class="modal-title tituloModal" class="exampleModalLabel">Editar publicación</h5>
                 <button  type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
              </div>
                 <div class="modal-body cuerpomodal">
@@ -245,12 +246,12 @@
                                    
                                   </select>
                                   
-                                  <input class="informacioncrearpubli" type="text" name="color" id="color" value="Gris" placeholder="Color"><br>
-                                  <input class="informacioncrearpubli" type="text" name="marca" id="marca" value="Desconocida" placeholder="Marca"><br>
-                                  <input class="informacioncrearpubli" type="text" name="estilo" id="estilo" placeholder="Estilo" value="Deporte"><br>
-                                  <input class="informacioncrearpubli" type="text" name="estado" id="estado" placeholder="Estado" value="Usado"><br>
-                                  <input class="informacioncrearpubli" type="text" name="precio" id="precio" placeholder="Precio" value="$15000"><br>
-                                  <textarea class="descripion" name="descripcion" id="descripcion" placeholder="Breve descripción o detalles del artículo">Usado por 3 meses aprox, tiene un datalle en la esplada</textarea><br>
+                                  <input class="informacioncrearpubli" type="text" name="color" class="color" value="Gris" placeholder="Color"><br>
+                                  <input class="informacioncrearpubli" type="text" name="marca" class="marca" value="Desconocida" placeholder="Marca"><br>
+                                  <input class="informacioncrearpubli" type="text" name="estilo" class="estilo" placeholder="Estilo" value="Deporte"><br>
+                                  <input class="informacioncrearpubli" type="text" name="estado" class="estado" placeholder="Estado" value="Usado"><br>
+                                  <input class="informacioncrearpubli" type="text" name="precio" class="precio" placeholder="Precio" value="$15000"><br>
+                                  <textarea class="descripion" name="descripcion" class="descripcion" placeholder="Breve descripción o detalles del artículo">Usado por 3 meses aprox, tiene un datalle en la esplada</textarea><br>
                             </div>
                         
                         </div>

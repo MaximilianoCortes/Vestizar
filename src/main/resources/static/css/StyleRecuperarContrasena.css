@@ -1,0 +1,39 @@
+*{
+    font-family: 'Inter', sans-serif ;
+    font-size: 24px;
+}
+
+body{
+    background-color: #dfdfdf ;
+}
+
+section{
+    height: 100vh;
+
+
+}
+
+.contenedorRecupera{
+    position: relative;
+   background-color: #fafafa;
+    text-align: center;
+    box-shadow: #7d7d7d 0px 0px 5px;
+    border-radius: 10px;
+    top: 100px;
+    height: 400px;
+    width: 600px;
+
+
+}
+
+.botonRecuperar{
+
+    background-color: #202020;
+    color: white;
+    border: none ;
+    height: 50px;
+}
+.datoemail{
+    border: 1px solid grey;
+    background: none;
+}
