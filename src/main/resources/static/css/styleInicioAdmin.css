@@ -39,9 +39,18 @@ section{
 
 .informaDrop{
     position: relative;
-    height: 60px;
+    height: 150px;
 }
 
+.informaDrop1{
+    padding: 20px;
+}
+
+.informaDrop2{
+    padding: 20px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius:15px;
+}
 
 
 .bottonDrop{

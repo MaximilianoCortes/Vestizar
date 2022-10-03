@@ -200,7 +200,7 @@ article a{
 .informaDrop{
     position: relative;
     width: 340px;
-    height: 420px;
+    height: 490px;
 
 
 }
@@ -210,25 +210,13 @@ article a{
     padding: 20px;
 }
 
+
 .informaDrop2{
-    padding: 20px;
-}
-
-.informaDrop3{
-    padding: 20px;
-
-}
-
-.informaDrop4{
     padding: 20px;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius:20px;
 }
 
-.informaDrop5{
-    padding: 20px;
-
-}
 .bottonDrop{
     position: relative;
     left: 150px;
@@ -367,7 +355,7 @@ padding: 1px 15px;
     top:  48px;
     width: 43px;
     height: 43px;
-    margin: none;
+    margin: unset;
     left: 100px;
 }
 
