@@ -274,7 +274,7 @@ div a{
 .informaDrop{
     position: relative;
     width: 340px;
-    height: 475px;
+    height: 420px;
 
 
 }
@@ -284,13 +284,25 @@ div a{
     padding: 20px;
 }
 
-
 .informaDrop2{
+    padding: 20px;
+}
+
+.informaDrop3{
+    padding: 20px;
+
+}
+
+.informaDrop4{
     padding: 20px;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius:20px;
 }
 
+.informaDrop5{
+    padding: 20px;
+
+}
 .bottonDrop{
     position: relative;
     left: 150px;

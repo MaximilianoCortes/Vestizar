@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -17,21 +17,24 @@
 
             <div class="registro" >
 
-               
-               
+
+
                 <div class="container"  >
 
                     <div class="cont">
-                        <form action="">
+
+                        <form th:action="@{/guardarUsuario}" th:object="${usuario}"  method="post">
                         
                             <p class="registrate1">Registrate</p>
-                        <input id="nombre" type="text" name="nombre" placeholder="Nombre">
 
-                        <input id="apellido" type="text" name="apellido" placeholder="Apellido">
+
+                        <input id="nombre" type="text" th:field="*{nombre}"  name="nombre" placeholder="Nombre">
+
+                        <input id="apellido" type="text" th:field="*{apellido}" name="apellido" placeholder="Apellido">
 
                     
-                        <br><br><input class="infoRegistro" type="email" name="correo" placeholder="Correo electrónico">
-                        <br><br><input class="infoRegistro" type="tel" name="numero" placeholder="+569XXXXXXXX">
+                        <br><br><input class="infoRegistro" th:field="*{correo}" type="email" name="correo" placeholder="Correo electrónico">
+                        <br><br><input class="infoRegistro" type="tel" th:field="*{celular}"  name="numero" placeholder="+569XXXXXXXX">
                         <div>
                             <select class="form-select opcionesciudad" style="width: 760px; border-radius: 0%; background-color: #d9d9d9;">
                                 <option selected>Selecciona tu ciudad</option>
@@ -46,10 +49,10 @@
                         <div class="registrate3">
                             <p class="registrate2">Crea tu usuario</p>
                             <input  class="infoRegistro2" type="text" name="nombreUsuario" placeholder="Usuario">
-                            <br><br><input id="contra"type="password" name="contraseña" placeholder="Contraseña">
+                            <br><br><input id="contra"type="password" th:field="*{contrasena}" name="contraseña" placeholder="Contraseña", required>
                             <input id="contra2" type="password" name="confirmarContraseña" placeholder="Repite tu contraseña">
                     
-                            <br><br> <a href="iniciadoSesion.html"><button  type="button" id="botonReg">Registrarse</button></a>
+                            <br><br><button  type="submit" id="botonReg">Registrarse</button>
 
                         </div>
                         </form>

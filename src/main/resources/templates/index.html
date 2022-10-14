@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -28,7 +28,7 @@
             
            
             <div>
-                <a href="registro.html">
+                <a th:href="@{/crearUsuario}">
                 <button type="button" class="botoninicio">Registrarse</button>
                 </a> 
                 <button type="button" class="botoninicio" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@Inicio">Iniciar sesi&oacute;n</button>   
