@@ -46,10 +46,14 @@ public class Producto {
     @Column(name = "precio",nullable = false)
     private double precio ;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_vendedor")
+    private Usuario vendedor;
+
     public Producto(){
     }
 
-    public Producto(Long idPoroducto, int aprobado, String tipoProducto, String imagen1, String imagen2, String imagen3, String imagen4, String estado, String talla, String descripcion, String color, String marca, double precio) {
+    public Producto(Long idPoroducto, int aprobado, String tipoProducto, String imagen1, String imagen2, String imagen3, String imagen4, String estado, String talla, String descripcion, String color, String marca, double precio, Usuario vendedor) {
         this.idPoroducto = idPoroducto;
         this.aprobado = aprobado;
         this.tipoProducto = tipoProducto;
@@ -63,7 +67,9 @@ public class Producto {
         this.color = color;
         this.marca = marca;
         this.precio = precio;
+        this.vendedor = vendedor;
     }
+
 
     public Long getIdPoroducto() {
         return idPoroducto;
@@ -167,5 +173,13 @@ public class Producto {
 
     public void setPrecio(double precio) {
         this.precio = precio;
+    }
+
+    public Usuario getVendedor() {
+        return vendedor;
+    }
+
+    public void setVendedor(Usuario vendedor) {
+        this.vendedor = vendedor;
     }
 }

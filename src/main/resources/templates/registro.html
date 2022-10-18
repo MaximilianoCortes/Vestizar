@@ -36,11 +36,12 @@
                         <br><br><input class="infoRegistro" th:field="*{correo}" type="email" name="correo" placeholder="Correo electrónico">
                         <br><br><input class="infoRegistro" type="tel" th:field="*{celular}"  name="numero" placeholder="+569XXXXXXXX">
                         <div>
-                            <select class="form-select opcionesciudad" style="width: 760px; border-radius: 0%; background-color: #d9d9d9;">
-                                <option selected>Selecciona tu ciudad</option>
-                                <option value="1">Villarrica</option>
-                                <option value="2">Temuco</option>
-                                <option value="3">Puerto Varas</option>
+                            <select  class="form-select opcionesciudad" style="width: 760px; border-radius: 0%; background-color: #d9d9d9;">
+                                <option  selected>Selecciona tu ciudad</option>
+                                <option th:each="ciudades:${ciudad}" th:field="*{ciudad}" value="1" th:text=" ${ciudades.nombre}" ></option>
+
+
+
                               </select>
                         </div>
                    
@@ -48,7 +49,7 @@
 
                         <div class="registrate3">
                             <p class="registrate2">Crea tu usuario</p>
-                            <input  class="infoRegistro2" type="text" name="nombreUsuario" placeholder="Usuario">
+                            <input  class="infoRegistro2" type="text" th:field="*{nombreUsuario}" name="nombreUsuario" placeholder="Usuario">
                             <br><br><input id="contra"type="password" th:field="*{contrasena}" name="contraseña" placeholder="Contraseña", required>
                             <input id="contra2" type="password" name="confirmarContraseña" placeholder="Repite tu contraseña">
                     

@@ -9,12 +9,26 @@ public class Conversacion {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idConversacion;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_producto")
+    private Producto producto;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_comprador")
+    private Usuario comprador;
 
-    public Conversacion(){}
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_Vendedor")
+    private Usuario vendedor;
 
-    public Conversacion(Long idConversacion) {
+    public Conversacion() {
+    }
+
+    public Conversacion(Long idConversacion, Producto producto, Usuario comprador, Usuario vendedor) {
         this.idConversacion = idConversacion;
+        this.producto = producto;
+        this.comprador = comprador;
+        this.vendedor = vendedor;
     }
 
     public Long getIdConversacion() {
@@ -23,5 +37,29 @@ public class Conversacion {
 
     public void setIdConversacion(Long idConversacion) {
         this.idConversacion = idConversacion;
+    }
+
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
+    }
+
+    public Usuario getComprador() {
+        return comprador;
+    }
+
+    public void setComprador(Usuario comprador) {
+        this.comprador = comprador;
+    }
+
+    public Usuario getVendedor() {
+        return vendedor;
+    }
+
+    public void setVendedor(Usuario vendedor) {
+        this.vendedor = vendedor;
     }
 }

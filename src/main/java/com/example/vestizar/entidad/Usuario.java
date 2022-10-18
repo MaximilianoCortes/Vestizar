@@ -30,13 +30,19 @@ public class Usuario {
     @Column(name = "foto_perfil")
     private String fotoPerfil;
 
+    @Column(name = "nombre_usuario")
+    private String nombreUsuario;
 
-    public Usuario(){
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_Ciudad")
+    private Ciudad ciudad;
 
+
+    public Usuario() {
     }
 
-    public Usuario(Long id, String nombre, String apellido, String correo, String contrasena, String celular, int rol, String fotoPerfil) {
-        this.idUsuario = id;
+    public Usuario(Long idUsuario, String nombre, String apellido, String correo, String contrasena, String celular, int rol, String fotoPerfil, String nombreUsuario, Ciudad ciudad) {
+        this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.apellido = apellido;
         this.correo = correo;
@@ -44,6 +50,17 @@ public class Usuario {
         this.celular = celular;
         this.rol = rol;
         this.fotoPerfil = fotoPerfil;
+        this.nombreUsuario = nombreUsuario;
+        this.ciudad=ciudad;
+
+    }
+
+    public Ciudad getCiudad() {
+        return ciudad;
+    }
+
+    public void setCiudad(Ciudad ciudad) {
+        this.ciudad = ciudad;
     }
 
     public Long getId() {
@@ -108,5 +125,13 @@ public class Usuario {
 
     public void setFotoPerfil(String fotoPerfil) {
         this.fotoPerfil = fotoPerfil;
+    }
+
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
+
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
     }
 }
