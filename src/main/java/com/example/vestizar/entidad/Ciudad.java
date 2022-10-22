@@ -1,7 +1,8 @@
 package com.example.vestizar.entidad;
-
 import javax.persistence.*;
+import java.util.List;
 
+//Borraaaaaaaaaaaaaaaaaaaaaaaaaaaar
 @Entity
 @Table(name = "ciudades")
 public class Ciudad {
@@ -12,11 +13,13 @@ public class Ciudad {
     @Column(name = "nombre",nullable = false)
     private String nombre;
 
+   /* @JoinColumn(name = "id_usuario")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Usuario usuario;*/
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "id_region")
     private Region region;
-
 
     public Ciudad() {
     }

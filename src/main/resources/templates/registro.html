@@ -36,16 +36,13 @@
                         <br><br><input class="infoRegistro" th:field="*{correo}" type="email" name="correo" placeholder="Correo electrónico">
                         <br><br><input class="infoRegistro" type="tel" th:field="*{celular}"  name="numero" placeholder="+569XXXXXXXX">
                         <div>
-                            <select  class="form-select opcionesciudad" style="width: 760px; border-radius: 0%; background-color: #d9d9d9;">
-                                <option  selected>Selecciona tu ciudad</option>
-                                <option th:each="ciudades:${ciudad}" th:field="*{ciudad}" value="1" th:text=" ${ciudades.nombre}" ></option>
-
-
-
-                              </select>
+                            <select th:field="*{ciudad}" class="form-select opcionesciudad" style="width: 760px; border-radius: 0%; background-color: #d9d9d9;">
+                                <option value="" selected disabled> Selecciona tu ciudad </option>
+                                <option  th:each="ciudades:${ciudad}" th:value="${ciudades}" th:text="${ciudades.nombre}"></option>
+                            </select>
                         </div>
-                   
-                    
+
+
 
                         <div class="registrate3">
                             <p class="registrate2">Crea tu usuario</p>

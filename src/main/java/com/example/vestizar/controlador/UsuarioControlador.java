@@ -1,7 +1,6 @@
 package com.example.vestizar.controlador;
 
-import com.example.vestizar.entidad.Ciudad;
-import com.example.vestizar.entidad.Producto;
+import com.example.vestizar.Enums.tipoCiudad;
 import com.example.vestizar.entidad.Usuario;
 import com.example.vestizar.servicio.CiudadServicio;
 import com.example.vestizar.servicio.UsuarioServicio;
@@ -24,10 +23,9 @@ public class UsuarioControlador {
 
 
     @GetMapping("/crearUsuario")
-    public String ingresoAFormUsuario(Model modelo, Model modelo1){
+    public String ingresoAFormUsuario(Model modelo){
     modelo.addAttribute("usuario",new Usuario());
-    List<Ciudad> ciudades=servicioCiudad.listarCiudad();
-    modelo1.addAttribute("ciudad", ciudades);
+    modelo.addAttribute("ciudad", tipoCiudad.values());
     return "registro";
     }
 

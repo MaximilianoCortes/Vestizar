@@ -2,6 +2,7 @@ package com.example.vestizar.entidad;
 
 import javax.persistence.*;
 
+//Borraaaaaaaaaaar
 @Entity
 @Table(name = "regiones")
 public class Region {

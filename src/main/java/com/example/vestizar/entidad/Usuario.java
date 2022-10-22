@@ -1,5 +1,7 @@
 package com.example.vestizar.entidad;
 
+import com.example.vestizar.Enums.tipoCiudad;
+
 import javax.persistence.*;
 
 @Entity
@@ -33,15 +35,16 @@ public class Usuario {
     @Column(name = "nombre_usuario")
     private String nombreUsuario;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_Ciudad")
-    private Ciudad ciudad;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "ciudad")
+    private  tipoCiudad ciudad;
+
 
 
     public Usuario() {
     }
 
-    public Usuario(Long idUsuario, String nombre, String apellido, String correo, String contrasena, String celular, int rol, String fotoPerfil, String nombreUsuario, Ciudad ciudad) {
+    public Usuario(Long idUsuario, String nombre, String apellido, String correo, String contrasena, String celular, int rol, String fotoPerfil, String nombreUsuario, tipoCiudad ciudad) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -55,11 +58,11 @@ public class Usuario {
 
     }
 
-    public Ciudad getCiudad() {
+    public tipoCiudad  getCiudad() {
         return ciudad;
     }
 
-    public void setCiudad(Ciudad ciudad) {
+    public void setCiudad( tipoCiudad ciudad) {
         this.ciudad = ciudad;
     }
 
