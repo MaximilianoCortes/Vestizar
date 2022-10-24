@@ -1,4 +1,4 @@
-package com.example.vestizar.entidad;
+package com.example.vestizar.aplicacion.entidad;
 
 import javax.persistence.*;
 import java.util.Date;
