@@ -1,6 +1,6 @@
-package com.example.vestizar.entidad;
+package com.example.vestizar.aplicacion.entidad;
 
-import com.example.vestizar.Enums.tipoCiudad;
+import com.example.vestizar.aplicacion.Enums.tipoCiudad;
 
 import javax.persistence.*;
 

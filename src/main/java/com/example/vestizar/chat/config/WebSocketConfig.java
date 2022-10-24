@@ -36,7 +36,9 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     //registra un endpoint ws (websocket), es usado para que los clientes se conecten al servidor stomp (simple text orientated messaging protocol) y habilita opcion
     // de conexion con sockjs en caso que websocket no este disponible
 
-    @Override
+/* Este metodo lo queda desactivado debido a que fue creado cuando se planteo usar mongoDB como base de datos en vez de mysql
+
+@Override
     public boolean configureMessageConverters(List<MessageConverter> messageConverters) {
         DefaultContentTypeResolver resolver = new DefaultContentTypeResolver();
         resolver.setDefaultMimeType(MimeTypeUtils.APPLICATION_JSON);
@@ -47,4 +49,6 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
         return false;
     }
     //este metodo convierte los mensajes a JSON
+
+ */
 }

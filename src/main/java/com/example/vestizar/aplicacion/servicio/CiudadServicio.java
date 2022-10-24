@@ -1,7 +1,7 @@
-package com.example.vestizar.servicio;
+package com.example.vestizar.aplicacion.servicio;
 
-import com.example.vestizar.entidad.Ciudad;
-import com.example.vestizar.servicio.repositorio.CiudadRepositorio;
+import com.example.vestizar.aplicacion.entidad.Ciudad;
+import com.example.vestizar.aplicacion.servicio.repositorio.CiudadRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
