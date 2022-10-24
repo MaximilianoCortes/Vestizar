@@ -1,4 +1,4 @@
-package com.example.vestizar.controlador;
+package com.example.vestizar.chat.controlador;
 
 
 import com.example.vestizar.chat.modelos.MensajeChat;
