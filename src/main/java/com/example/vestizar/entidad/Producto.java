@@ -15,8 +15,10 @@ public class Producto {
     @Column(name = "tipo_producto",nullable = false)
     private String tipoProducto;
 
+    @Column(name = "estilo",nullable = false)
+    private String estilo;
 
-    @Column(name = "imagen1",nullable = false)
+    @Column(name = "imagen1")
     private String imagen1;
 
     @Column(name = "imagen2")
@@ -46,8 +48,8 @@ public class Producto {
     @Column(name = "precio",nullable = false)
     private double precio ;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_vendedor")
+    @ManyToOne(targetEntity = Usuario.class,fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "FK_vendedor")
     private Usuario vendedor;
 
     public Producto(){
@@ -70,6 +72,13 @@ public class Producto {
         this.vendedor = vendedor;
     }
 
+    public String getEstilo() {
+        return estilo;
+    }
+
+    public void setEstilo(String estilo) {
+        this.estilo = estilo;
+    }
 
     public Long getIdPoroducto() {
         return idPoroducto;

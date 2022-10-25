@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -65,39 +65,35 @@
                     
                     </div>
 
-                
-                    <form action="">
+
+                    <form  th:action="@{guardarProducto}" th:object="${producto}" method="post">
                         <div style="width: 600px;">
 
                             <div >
-                                <select class="form-select tipoProducto1" style="border-radius: 0%; background-color: white; height: 55px; border: none;"><br><br>
-                                    <option selected> Seleccione tipo de producto</option>
-                                    <option value="1">Polera</option>
-                                    <option value="2">Camisa</option>
-                                    <option value="3">Poleron</option>
-                                  </select>
-                                  <select class="form-select tipoProducto2 "  style="border-radius: 0%; background-color: white; height: 55px; border: none;"><br><br>
-                                    <option selected>Selecciona la talla</option>
-                                    <option value="1">S</option>
-                                    <option value="2">M</option>
-                                    <option value="3">L</option>
-                                  </select>
-                                  
-                                  <input class="informacioncrearpubli" type="text" name="color" id="color" placeholder="Color"><br>
-                                  <input class="informacioncrearpubli" type="text" name="marca" id="marca" placeholder="Marca"><br>
-                                  <input class="informacioncrearpubli" type="text" name="estilo" id="estilo" placeholder="Estilo"><br>
-                                  <input class="informacioncrearpubli" type="text" name="estado" id="estado" placeholder="Estado"><br>
-                                  <input class="informacioncrearpubli" type="text" name="precio" id="precio" placeholder="Precio"><br>
-                                  <textarea class="descripion" name="descripcion" id="descripcion" placeholder="Breve descripción o detalles del artículo"></textarea><br>
+                                <select th:field="*{tipoProducto}" class="form-select tipoProducto1" style="border-radius: 0%; background-color: white; height: 55px; border: none;"><br><br>
+                                    <option value="" selected> Seleccione tipo de producto</option>
+                                    <option th:each="tiposProducto:${tipoProducto}" th:value="${tiposProducto}" th:text="${tiposProducto.nombre}" ></option>
+
+                                </select>
+
+
+                                <select th:field="*{talla}" class="form-select tipoProducto2 "  style="border-radius: 0%; background-color: white; height: 55px; border: none;"><br><br>
+                                    <option value="" selected>Selecciona la talla</option>
+                                    <option th:each="tallaProducto:${talla}" th:value="${tallaProducto}" th:text="${tallaProducto.nombre}" ></option>
+
+                                </select>
+
+                                <input th:field="*{color}" class="informacioncrearpubli" type="text" name="color" id="color" placeholder="Color"><br>
+                                <input th:field="*{marca}" class="informacioncrearpubli" type="text" name="marca" id="marca" placeholder="Marca"><br>
+                                <input  th:field="*{estilo}" class="informacioncrearpubli" type="text" name="estilo" id="estilo" placeholder="Estilo"><br>
+                                <input th:field="*{estado}" class="informacioncrearpubli" type="text" name="estado" id="estado" placeholder="Estado"><br>
+                                <input th:field="*{precio}" class="informacioncrearpubli" type="text" name="precio" id="precio" placeholder="Precio"><br>
+                                <textarea th:field="*{descripcion}" class="descripion" name="descripcion" id="descripcion" placeholder="Breve descripción o detalles del artículo"></textarea><br>
 
                             </div>
-                     
-                              
-                    
-
-
+                            <button class="crearPubli btn btn-primary" type="submit">Publicar</button>
                         </div>
-                                  <button class="crearPubli" type="button" class="btn btn-primary">Publicar</button>
+
                     </form>
                 </div>
 

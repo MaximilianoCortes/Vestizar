@@ -10,4 +10,7 @@ public class AppControlador {
     public String inicio(){
         return "index";
     }
+
+
 }
+
