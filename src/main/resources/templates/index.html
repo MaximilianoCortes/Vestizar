@@ -23,9 +23,9 @@
                 <form>
                     <input id="barra" class="ms-5"  type="text" placeholder="Busca art&iacute;culos, marcas o estilos!" name="busqueda">
                 </form>
-                <img id="lupabarra" src="../static/img/lupa.png" >
+                <img id="lupabarra" th:src="@{/img/lupa.png}" >
             </div>
-    
+
             
            
             <div>
@@ -98,21 +98,22 @@
             <section>
                 <article class="post">
                     <a th:href="@{/busqueda}">
-                        <img th:src="@{img/grunge2.png}" class="imagenPag" />
+                        <img src="../static/img/grunge2.png" class="imagenPag" />
                     </a>
                     <p class="populares">Grunge</p>
                 </article>
                 
                 <article class="post">
                     <a th:href="@{/busqueda}">
-                        <img th:src="@{img/Vintage.png}" class="imagenPag" />
+                        <img  src="../static/img/Vintage.png" class="imagenPag" />
                     </a>
+
                     <p class="populares">Vintage</p> 
                 </article>
                 
                 <article class="post">
                     <a th:href="@{/busqueda}">
-                        <img th:src="@{img/formal6.png}" class="imagenPag" />
+                        <img src="../static/img/formal6.png" class="imagenPag" />
 
                     </a>
                     <p class="populares">Formal</p>
@@ -120,7 +121,7 @@
                 
                 <article class="post">
                     <a th:href="@{/busqueda}">
-                        <img th:src="@{img/deporte3.png}" class="imagenPag" />
+                        <img src="../static/img/deporte3.png" class="imagenPag" />
 
                     </a>
                     <p class="populares">Deporte</p>

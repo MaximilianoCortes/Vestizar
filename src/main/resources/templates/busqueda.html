@@ -23,7 +23,7 @@
                 <form>
                     <input id="barra" class="ms-5"  type="text" placeholder="Busca art&iacute;culos, marcas o estilos!" name="busqueda">
                 </form>
-                <img id="lupabarra" src="../static/img/lupa.png" >
+                <img id="lupabarra" th:src="@{img/lupa.png}">
             </div>
 
             <div>
@@ -77,13 +77,13 @@
 
 
             <div id="categorias">
-                <a class="cat" href="busqueda.html" >Hombre</a>
-                <a class="cat" href="busqueda.html" >Mujer</a>
-                <a class="cat" href="busqueda.html" >Ni&ntilde;os</a>
-                <a class="cat" href="busqueda.html" >Bisuter&iacute;a</a>
-                <a class="cat" href="busqueda.html" >Bolsos</a>
-                <a class="cat" href="busqueda.html" >Maquillaje</a>
-                <a class="cat" id="cato" href="busqueda.html" >Ofertas</a>
+                <a class="cat" th:href="@{/busqueda}" >Hombre</a>
+                <a class="cat" th:href="@{/busqueda}" >Mujer</a>
+                <a class="cat" th:href="@{/busqueda}" >Ni&ntilde;os</a>
+                <a class="cat" th:href="@{/busqueda}" >Bisuter&iacute;a</a>
+                <a class="cat" th:href="@{/busqueda}" >Bolsos</a>
+                <a class="cat" th:href="@{/busqueda}" >Maquillaje</a>
+                <a class="cat" id="cato" th:href="@{/busqueda}" >Ofertas</a>
             </div>    
         </header>
 

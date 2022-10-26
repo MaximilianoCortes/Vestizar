@@ -23,15 +23,14 @@
                 <form>
                     <input id="barra" class="ms-5"  type="text" placeholder="Busca art&iacute;culos, marcas o estilos!" name="busqueda">
                 </form>
-                <img id="lupabarra" src="../static/img/lupa.png" >
+                <img id="lupabarra" th:src="@{/img/lupa.png}" >
             </div>
     
             <div class="dropdown">
                 <a class="bottonMenu bottonDrop" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                  
-              <img id="imagenUsuarioIniciado" src="../static/img/usuariov2.png">
+              <img id="imagenUsuarioIniciado" th:src="@{img/usuariov2.png}">
               <p id="nombreUsuarioIniciado">usuario01</p>
-
                 </a>
 
                 <ul class="dropdown-menu dropdown-menu-dark informaDrop" style="text-align: center; background-color: #1b1919; border-radius: 6%; " aria-labelledby="dropdownMenuLink">
@@ -105,19 +104,19 @@
 
 
             <div id="categorias">
-                <a class="cat" href="busquedaIniciada.html" >Hombre</a>
-                <a class="cat" href="busquedaIniciada.html" >Mujer</a>
-                <a class="cat" href="busquedaIniciada.html" >Ni&ntilde;os</a>
-                <a class="cat" href="busquedaIniciada.html" >Bisuter&iacute;a</a>
-                <a class="cat" href="busquedaIniciada.html" >Bolsos</a>
-                <a class="cat" href="busquedaIniciada.html" >Maquillaje</a>
-                <a class="cat" id="cato" href="busquedaIniciada.html" >Ofertas</a>
+                <a class="cat" th:href="@{/busqueda}" >Hombre</a>
+                <a class="cat" th:href="@{/busqueda}" >Mujer</a>
+                <a class="cat" th:href="@{/busqueda}" >Ni&ntilde;os</a>
+                <a class="cat" th:href="@{/busqueda}" >Bisuter&iacute;a</a>
+                <a class="cat" th:href="@{/busqueda}" >Bolsos</a>
+                <a class="cat" th:href="@{/busqueda}" >Maquillaje</a>
+                <a class="cat" id="cato" th:href="@{/busqueda}" >Ofertas</a>
             </div>
             
         </header>
             
             <section>
-                 <img id="portada" src="../static/img/portada.png" >
+                 <img id="portada" th:src="@{img/portada.png}" >
             </section>
 
             <section>
