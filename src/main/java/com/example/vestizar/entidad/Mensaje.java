@@ -16,11 +16,11 @@ public class Mensaje {
     @Column(name = "mensaje", nullable = false)
     private String mensaje;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_remitente")
     private Usuario remitente;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_conversacion")
     private Conversacion conversacion;
 

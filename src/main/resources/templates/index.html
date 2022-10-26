@@ -54,14 +54,14 @@
                         <div>
 
                             <p id="registroContrasena">¿Olvidaste tu contraseña?
-                                <a href="RecuperarContrasena.html">
+                                <a >
                                     <button type="button" style="color: green; border: none; background-color: #dadada">Recuperala</button>
                                 </a>
 
                             </p>
 
                             <p id="tituloRegistro">¿No tienes una cuenta?
-                                <a id="linkRegistro" href="registro.html" >Reg&iacute;strate</a>
+                                <a id="linkRegistro" th:href="@{/crearUsuario}" >Reg&iacute;strate</a>
                             </p>
 
 
@@ -76,13 +76,13 @@
               </div>
 
             <div id="categorias">
-                <a class="cat" href="busqueda.html" >Hombre</a>
-                <a class="cat" href="busqueda.html" >Mujer</a>
-                <a class="cat" href="busqueda.html" >Ni&ntilde;os</a>
-                <a class="cat" href="busqueda.html" >Bisuter&iacute;a</a>
-                <a class="cat" href="busqueda.html" >Bolsos</a>
-                <a class="cat" href="busqueda.html" >Maquillaje</a>
-                <a class="cat" id="cato" href="busqueda.html" >Ofertas</a>
+                <a class="cat" th:href="@{/busqueda}" >Hombre</a>
+                <a class="cat" th:href="@{/busqueda}" >Mujer</a>
+                <a class="cat" th:href="@{/busqueda}" >Ni&ntilde;os</a>
+                <a class="cat" th:href="@{/busqueda}" >Bisuter&iacute;a</a>
+                <a class="cat" th:href="@{/busqueda}" >Bolsos</a>
+                <a class="cat" th:href="@{/busqueda}" >Maquillaje</a>
+                <a class="cat" id="cato" th:href="@{/busqueda}" >Ofertas</a>
             </div>
             
         </header>
@@ -97,29 +97,31 @@
 
             <section>
                 <article class="post">
-                    <a  href="busqueda.html">
-                        <img src="../static/img/grunge2.png" class="imagenPag" />
+                    <a th:href="@{/busqueda}">
+                        <img th:src="@{img/grunge2.png}" class="imagenPag" />
                     </a>
                     <p class="populares">Grunge</p>
                 </article>
                 
                 <article class="post">
-                    <a href="busqueda.html">
-                        <img src="../static/img/Vintage.png" class="imagenPag" />
+                    <a th:href="@{/busqueda}">
+                        <img th:src="@{img/Vintage.png}" class="imagenPag" />
                     </a>
                     <p class="populares">Vintage</p> 
                 </article>
                 
                 <article class="post">
-                    <a href="busqueda.html">
-                        <img src="../static/img/formal6.png" class="imagenPag" />
+                    <a th:href="@{/busqueda}">
+                        <img th:src="@{img/formal6.png}" class="imagenPag" />
+
                     </a>
                     <p class="populares">Formal</p>
                 </article>
                 
                 <article class="post">
-                    <a href="busqueda.html">
-                        <img src="../static/img/deporte3.png" class="imagenPag" />
+                    <a th:href="@{/busqueda}">
+                        <img th:src="@{img/deporte3.png}" class="imagenPag" />
+
                     </a>
                     <p class="populares">Deporte</p>
                 </article>

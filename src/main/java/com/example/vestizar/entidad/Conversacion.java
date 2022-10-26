@@ -9,15 +9,15 @@ public class Conversacion {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idConversacion;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_producto")
     private Producto producto;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_comprador")
     private Usuario comprador;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_Vendedor")
     private Usuario vendedor;
 
