@@ -8,7 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
 
 @Controller
 public class ProductoControlador {
@@ -27,7 +30,22 @@ public class ProductoControlador {
     @PostMapping("/guardarProducto")
     public  String guardarProducto(Producto producto){
         servicio.crearNuevoProducto(producto);
-        return "iniciadoSesion";
+        return "redirect:/iniciado";
+    }
+
+
+    @GetMapping("/busqueda")
+    public String busqueda(Model model){
+        List<Producto> productos=servicio.listar();
+        model.addAttribute("producto",productos);
+        return "busqueda";
+    }
+
+    @GetMapping("/verProducto/{id}")
+    public String mostrarProducto(@PathVariable Long id, Model modelo){
+        modelo.addAttribute("producto",servicio.obtenerProductoPorId(id));
+        return "articulo";
+
     }
 
 

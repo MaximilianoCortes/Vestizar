@@ -15,8 +15,6 @@ public class UsuarioControlador {
     @Autowired
     UsuarioServicio servicio;
 
-
-
     @GetMapping("/crearUsuario")
     public String ingresoAFormUsuario(Model modelo){
     modelo.addAttribute("usuario",new Usuario());
