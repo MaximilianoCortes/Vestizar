@@ -53,41 +53,42 @@
                 <button  type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
              </div>
                 <div class="modal-body cuerpomodal">
-                    
+
+                    <form  action="/guardarProducto" method="post" enctype="multipart/form-data">
+
                     <div  style=" width: 400px;">
-                        <img class="imagenModalCrearPublicacion" height="300px" width="300px" style="border: 2px solid #373737 ; position: relative; left: 50px; top: 40px ; border-top-left-radius:5% ; border-top-right-radius:5% ;" src="../static/img/creacion.png">
+                        <img src=".." class="imagenModalCrearPublicacion" height="300px" width="300px" style="border: 2px solid #373737 ; position: relative; left: 50px; top: 40px ; border-top-left-radius:5% ; border-top-right-radius:5% ;" >
                         <br><br>
                         <button class="botonesCrearpubli botonant botona" type="button">Anterior</button>
                         <button class="botonesCrearpubli botonsgt botona" type="button">Siguiente</button><br><br>
-                        <button class="botonesCrearpubli botonagre botonb" type="" >Agregar imagen</button><br>
+                        <input class="botonesCrearpubli botonagre botonb" name="file" type="file" id="imagen" placeholder="Subir Imagen" ></input><br>
                         <button class="botonesCrearpubli botonquit botonb" type="button">Quitar imagen</button>
                     
                     </div>
 
 
-                    <form  th:action="@{guardarProducto}" th:object="${producto}" method="post">
+
                         <div style="width: 600px;">
 
                             <div >
-                                <select th:field="*{tipoProducto}" class="form-select tipoProducto1" style="border-radius: 0%; background-color: white; height: 55px; border: none;"><br><br>
+                                <select class="form-select tipoProducto1" name="tipoProducto" style="border-radius: 0%; background-color: white; height: 55px; border: none;"><br><br>
                                     <option value="" selected> Seleccione tipo de producto</option>
                                     <option th:each="tiposProducto:${tipoProducto}" th:value="${tiposProducto}" th:text="${tiposProducto.nombre}" ></option>
-
                                 </select>
 
 
-                                <select th:field="*{talla}" class="form-select tipoProducto2 "  style="border-radius: 0%; background-color: white; height: 55px; border: none;"><br><br>
+                                <select  name="talla" class="form-select tipoProducto2 "  style="border-radius: 0%; background-color: white; height: 55px; border: none;"><br><br>
                                     <option value="" selected>Selecciona la talla</option>
                                     <option th:each="tallaProducto:${talla}" th:value="${tallaProducto}" th:text="${tallaProducto.nombre}" ></option>
 
                                 </select>
 
-                                <input th:field="*{color}" class="informacioncrearpubli" type="text" name="color" id="color" placeholder="Color"><br>
-                                <input th:field="*{marca}" class="informacioncrearpubli" type="text" name="marca" id="marca" placeholder="Marca"><br>
-                                <input  th:field="*{estilo}" class="informacioncrearpubli" type="text" name="estilo" id="estilo" placeholder="Estilo"><br>
-                                <input th:field="*{estado}" class="informacioncrearpubli" type="text" name="estado" id="estado" placeholder="Estado"><br>
-                                <input th:field="*{precio}" class="informacioncrearpubli" type="text" name="precio" id="precio" placeholder="Precio"><br>
-                                <textarea th:field="*{descripcion}" class="descripion" name="descripcion" id="descripcion" placeholder="Breve descripción o detalles del artículo"></textarea><br>
+                                <input  class="informacioncrearpubli" type="text" name="color" id="color" placeholder="Color"><br>
+                                <input  class="informacioncrearpubli" type="text" name="marca" id="marca" placeholder="Marca"><br>
+                                <input  class="informacioncrearpubli" type="text" name="estilo" id="estilo" placeholder="Estilo"><br>
+                                <input  class="informacioncrearpubli" type="text" name="estado" id="estado" placeholder="Estado"><br>
+                                <input  class="informacioncrearpubli" type="text" name="precio" id="precio" placeholder="Precio"><br>
+                                <textarea  class="descripion" name="descripcion" id="descripcion" placeholder="Breve descripción o detalles del artículo"></textarea><br>
 
                             </div>
                             <button class="crearPubli btn btn-primary" type="submit">Publicar</button>

@@ -93,7 +93,7 @@
             <div class="informacion" >
 
                 <div class="imagenboton">
-                    <img class="imagenArticulo" src="../static/img/deporte2.png"/>
+                    <img class="imagenArticulo" th:src="@{'/img/'+${producto.imagen1}}"/>
                     <button class="botonArticulo" id="ant">Anterior</button>
                     <button class="botonArticulo" id="sgte">Siguiente</button>
                 </div>
@@ -108,8 +108,8 @@
                     <p class="informacionProducto"> Precio</p>
                 </div>
 
-                <div >
-                    <img id="imagenUsuario" src="../static/img/usuario.png" >
+                <div th:object="${producto}">
+                    <img id="imagenUsuario" src="/img/usuario.png">
                     <a href="perfilVendedor.html">
                         <p id="nombreUsuario">usuario3842</p>
                     </a>

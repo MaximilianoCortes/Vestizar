@@ -54,17 +54,11 @@
                           <p id="registroContrasena">¿Olvidaste tu contraseña?
                               <a href="RecuperarContrasena.html">
                                   <button type="button" style="color: green; border: none; background-color: #dadada">Recuperala</button>
-
                               </a>
-
                           </p>
-
-
                           <p id="tituloRegistro">¿No tienes una cuenta? 
                               <a id="linkRegistro" href="registro.html" >Reg&iacute;strate</a>
                           </p>
-
-
                       </div>
                       <a href="busquedaIniciada.html">
                           <button type="button" id="botonInicioSesion" >Iniciar sesi&oacute;n</button>
@@ -92,7 +86,7 @@
         <section>
           <article th:each="productos:${producto}"  class="post">
             <a th:href="@{/verProducto/{id}(id=${productos.idPoroducto})}">
-                <img  class="imagenBusqueda" src="../static/img/deporte2.png">
+                <img class="imagenBusqueda" th:src="@{'/img/'+ ${productos.imagen1}}">
             </a>
             <p class="precioBusqueda"th:text="${productos.precio}"></p>
           </article>
