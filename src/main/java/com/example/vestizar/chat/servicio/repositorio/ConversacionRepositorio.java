@@ -6,5 +6,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import java.util.Optional;
 
 public interface ConversacionRepositorio extends MongoRepository<Conversacion, String> {
-    Optional<Conversacion> buscarPorIdRemitenteYReceptor(String idRemitente, String recipientId);
+    Optional<Conversacion> findById_RemitenteAndId_Receptor(String idRemitente, String recipientId);
 }

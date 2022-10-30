@@ -22,7 +22,7 @@ public class ChatControlador {
     @Autowired private ConversacionServicio conversacionServicio;
 
     @MessageMapping("/chat")
-    public void processMessage(@Payload MensajeChat mensajeChat) {
+    public void procesarMensajes(@Payload MensajeChat mensajeChat) {
         var idConversacion = conversacionServicio
                 .getIdConversacion(mensajeChat.getId_remitente(), mensajeChat.getId_receptor(), true);
         mensajeChat.setId_conversacion(idConversacion.get());

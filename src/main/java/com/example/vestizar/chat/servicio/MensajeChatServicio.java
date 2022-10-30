@@ -27,7 +27,7 @@ public class MensajeChatServicio {
     }
 
     public long contarNuevosMensajes(String idRemitente, String IdReceptor) {
-        return mensajeRepositorio.contarPorIdRemitenteReceptorYEstado(
+        return mensajeRepositorio.countById_remitenteAndId_receptorAndEstado(
                 idRemitente, IdReceptor, EstadoMensaje.RECIBIDO);
     }
 
@@ -35,7 +35,7 @@ public class MensajeChatServicio {
         var idConversacion = conversacionServicio.getIdConversacion(idRemitente, idReceptor, false);
 
         var mensajes =
-                idConversacion.map(cId -> mensajeRepositorio.encontrarPorIdConversacion(cId)).orElse(new ArrayList<>());
+                idConversacion.map(cId -> mensajeRepositorio.findById_conversacion(cId)).orElse(new ArrayList<>());
 
         if(mensajes.size() > 0) {
             ActualizarEstado(idRemitente, idReceptor, EstadoMensaje.ENVIADO);
@@ -52,7 +52,7 @@ public class MensajeChatServicio {
                     return mensajeRepositorio.save(chatMessage);
                 })
                 .orElseThrow(() ->
-                        new ResourceNotFoundException("can't find message (" + id + ")"));
+                        new ResourceNotFoundException("se no puede encontrar el mensaje (" + id + ")"));
     }
 
     public void ActualizarEstado(String idRemitente, String idReceptor, EstadoMensaje estado) {

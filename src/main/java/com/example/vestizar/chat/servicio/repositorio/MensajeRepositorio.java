@@ -11,8 +11,8 @@ import java.util.List;
 public interface MensajeRepositorio
         extends MongoRepository<MensajeChat, String> {
 
-    long contarPorIdRemitenteReceptorYEstado(
+    long countById_remitenteAndId_receptorAndEstado(
             String idRemitente, String IdReceptor, EstadoMensaje estado);
 
-    List<MensajeChat> encontrarPorIdConversacion(String idConversacion);
+    List<MensajeChat> findById_conversacion(String idConversacion);
 }

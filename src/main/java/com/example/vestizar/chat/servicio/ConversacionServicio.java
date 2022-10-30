@@ -16,7 +16,7 @@ public class ConversacionServicio {
             String idRemitente, String idReceptor, boolean crearSiNoExiste) {
 
         return conversacionRepositorio
-                .buscarPorIdRemitenteYReceptor(idRemitente, idReceptor)
+                .findById_RemitenteAndId_Receptor(idRemitente, idReceptor)
                 .map(Conversacion::getId_Conversacion)
                 .or(() -> {
                     if(!crearSiNoExiste) {
