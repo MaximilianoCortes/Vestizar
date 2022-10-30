@@ -44,11 +44,11 @@
                     </div>
                     <p id="tituloBienvenido2">Ingresa tus datos para continuar</p>
                     <div class="modal-body">
-                      <form>
-                         <input class="datosInicioSesión" type="text" name="usuario" placeholder="Ingresa tu usuario"/>
-                         <br><br>
-                         <input class="datosInicioSesión"  type="password" name="contraseña" placeholder="Ingresa tu contraseña"> <br><br><br><br><br>
-                      </form>
+                        <form th:action="@{/iniciar-sesion}" method="post">
+                            <div><label> Nombre de Usuario : <input type="text" name="username"/> </label></div>
+                            <div><label> Contraseña: <input type="password" name="password"/> </label></div>
+                            <div><input type="submit" value="Iniciar Sesión"/></div>
+                        </form>
                     </div>
                     <div >  
                         <div>

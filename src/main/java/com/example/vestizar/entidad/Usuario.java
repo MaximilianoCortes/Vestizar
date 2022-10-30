@@ -26,8 +26,8 @@ public class Usuario {
     @Column(name = "celular", nullable = false,unique = true)
     private String celular;
 
-    @Column(name = "rol", nullable = false)
-    private int rol;
+    @Column(name = "roles")
+    private String roles;
 
     @Column(name = "foto_perfil")
     private String fotoPerfil;
@@ -44,14 +44,20 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(Long idUsuario, String nombre, String apellido, String correo, String contrasena, String celular, int rol, String fotoPerfil, String nombreUsuario, tipoCiudad ciudad) {
+    public Usuario(String nombreUsuario, String contrasena, String roles) {
+        this.nombreUsuario = nombreUsuario;
+        this.contrasena = contrasena;
+        this.roles = roles;
+    }
+
+    public Usuario(Long idUsuario, String nombre, String apellido, String correo, String contrasena, String celular, String roles, String fotoPerfil, String nombreUsuario, tipoCiudad ciudad) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.apellido = apellido;
         this.correo = correo;
         this.contrasena = contrasena;
         this.celular = celular;
-        this.rol = rol;
+        this.roles = roles;
         this.fotoPerfil = fotoPerfil;
         this.nombreUsuario = nombreUsuario;
         this.ciudad=ciudad;
@@ -114,12 +120,12 @@ public class Usuario {
         this.celular = celular;
     }
 
-    public int getRol() {
-        return rol;
+    public String getRoles() {
+        return roles;
     }
 
-    public void setRol(int rol) {
-        this.rol = rol;
+    public void setRoles(String rol) {
+        this.roles = roles;
     }
 
     public String getFotoPerfil() {

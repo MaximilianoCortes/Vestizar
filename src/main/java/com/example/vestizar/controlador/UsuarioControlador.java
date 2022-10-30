@@ -8,10 +8,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
+import javax.validation.Valid;
 import java.util.Optional;
 
 @Controller
+@SessionAttributes("usuario")
 public class UsuarioControlador {
 
     @Autowired
@@ -24,11 +28,17 @@ public class UsuarioControlador {
     return "registro";
     }
 
-    @PostMapping("/guardarUsuario")
-    public String guardarUsuario(Usuario usuario){
-        servicio.crearNuevoUsuario(usuario);
-        return "redirect:/";
 
+    @PostMapping("/guardarUsuario")
+    public String guardarUsuario(@Valid Usuario usuario, SessionStatus status) {
+
+        usuario.setContrasena(servicio.cifrarContrasena(usuario.getContrasena()));
+
+        usuario.setRoles("ROLE_USER");
+
+        servicio.crearNuevoUsuario(usuario);
+        status.setComplete();
+        return "iniciadoSesion";
     }
 
 
