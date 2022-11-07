@@ -24,7 +24,7 @@ public class SecurityConfig {
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .authorizeRequests(consulta -> consulta
-                        .mvcMatchers("/", "/index", "/crearUsuario","/registro","/guardarUsuario").permitAll()
+                        .mvcMatchers("/css/**","/img/**","/", "/index","/registro","/crearUsuario","/guardarUsuario","/iniciadoSesion").permitAll()
                         .anyRequest().authenticated())
                 .userDetailsService(jpaUserDetailsService)
                 .headers(headers -> headers.frameOptions().sameOrigin())
