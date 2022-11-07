@@ -18,14 +18,14 @@
     <header>
 
         <div>
-            <a href="index.html"><h3 id="logo">VESTIZAR</h3>  </a>
+            <a th:href="@{/}"><h3 id="logo">VESTIZAR</h3>  </a>
            </div>
     
             <div>
                 <form>
                     <input id="barra" class="ms-5"  type="text" placeholder="Busca art&iacute;culos, marcas o estilos!" name="busqueda">
                 </form>
-                <img id="lupabarra" src="../static/img/lupa.png" >
+                <img id="lupabarra" th:src="@{/img/lupa.png}" >
             </div>
     
             <div>
@@ -77,15 +77,14 @@
               </div>
 
 
-            <div id="categorias">
-                <a class="cat" th:href="@{/busqueda}" >Hombre</a>
-                <a class="cat" th:href="@{/busqueda}" >Mujer</a>
-                <a class="cat" th:href="@{/busqueda}" >Ni&ntilde;os</a>
-                <a class="cat" th:href="@{/busqueda}" >Bisuter&iacute;a</a>
-                <a class="cat" th:href="@{/busqueda}" >Bolsos</a>
-                <a class="cat" th:href="@{/busqueda}" >Maquillaje</a>
-                <a class="cat" id="cato" th:href="@{/busqueda}" >Ofertas</a>
-            </div>    
+        <div id="categorias">
+            <a class="cat" th:href="@{/busqueda/categoria/hombre}" >Hombre</a>
+            <a class="cat" th:href="@{/busqueda/categoria/mujer}" >Mujer</a>
+            <a class="cat" th:href="@{/busqueda/categoria/nino}" >Ni&ntilde;os</a>
+            <a class="cat" th:href="@{/busqueda}" >General</a>
+            <a class="cat" id="cato" th:href="@{/busqueda}" >Ofertas</a>
+        </div>
+
         </header>
 
         <section>   
@@ -93,7 +92,7 @@
             <div class="informacion" >
 
                 <div class="imagenboton">
-                    <img class="imagenArticulo" th:src="@{'/img/'+${producto.imagen1}}"/>
+                    <img class="imagenArticulo" th:src="@{'/imgPagina/'+${producto.imagen1}}"/>
                     <button class="botonArticulo" id="ant">Anterior</button>
                     <button class="botonArticulo" id="sgte">Siguiente</button>
                 </div>
@@ -101,9 +100,7 @@
                 <div >
                     <p class="informacionProducto"> Tipo de Producto</p>
                     <p class="informacionProducto"> Talla</p>
-                    <p class="informacionProducto"> Color</p>
                     <p class="informacionProducto"> Marca</p>
-                    <p class="informacionProducto"> Estilo</p>
                     <p class="informacionProducto"> Estado</p>
                     <p class="informacionProducto"> Precio</p>
                 </div>
@@ -119,9 +116,7 @@
                 <div th:object="${producto}">
                     <p class="informacionProducto2" th:text="${producto.tipoProducto}" ></p>
                     <p class="informacionProducto2" th:text="${producto.talla}"></p>
-                    <p class="informacionProducto2" th:text="${producto.color}"></p>
                     <p class="informacionProducto2" th:text="${producto.marca}"></p>
-                    <p class="informacionProducto2" th:text="${producto.estilo}"></p>
                     <p class="informacionProducto2" th:text="${producto.estado}"></p>
                     <p class="informacionProducto2" th:text="${producto.precio}"></p>
                     <p id="desc" th:text="${producto.descripcion}"></p>

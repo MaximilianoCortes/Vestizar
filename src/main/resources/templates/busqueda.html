@@ -16,7 +16,7 @@
    <header>
 
     <div>
-      <a href="index.html"><h3 id="logo">VESTIZAR</h3>  </a>
+      <a th:href="@{/}"><h3 id="logo">VESTIZAR</h3>  </a>
      </div>
     
             <div>
@@ -70,15 +70,14 @@
 
 
 
-            <div id="categorias">
-                <a class="cat" th:href="@{/busqueda}" >Hombre</a>
-                <a class="cat" th:href="@{/busqueda}" >Mujer</a>
-                <a class="cat" th:href="@{/busqueda}" >Ni&ntilde;os</a>
-                <a class="cat" th:href="@{/busqueda}" >Bisuter&iacute;a</a>
-                <a class="cat" th:href="@{/busqueda}" >Bolsos</a>
-                <a class="cat" th:href="@{/busqueda}" >Maquillaje</a>
-                <a class="cat" id="cato" th:href="@{/busqueda}" >Ofertas</a>
-            </div>    
+       <div id="categorias">
+           <a class="cat" th:href="@{/busqueda/categoria/hombre}" >Hombre</a>
+           <a class="cat" th:href="@{/busqueda/categoria/mujer}" >Mujer</a>
+           <a class="cat" th:href="@{/busqueda/categoria/nino}" >Ni&ntilde;os</a>
+           <a class="cat" th:href="@{/busqueda}" >General</a>
+           <a class="cat" id="cato" th:href="@{/busqueda}" >Ofertas</a>
+       </div>
+
         </header>
 
         
@@ -86,7 +85,7 @@
         <section>
           <article th:each="productos:${producto}"  class="post">
             <a th:href="@{/verProducto/{id}(id=${productos.idPoroducto})}">
-                <img class="imagenBusqueda" th:src="@{'/img/'+ ${productos.imagen1}}">
+                <img class="imagenBusqueda" th:src="@{'/imgPagina/'+ ${productos.imagen1}}">
             </a>
             <p class="precioBusqueda"th:text="${productos.precio}"></p>
           </article>

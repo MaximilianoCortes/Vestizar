@@ -15,8 +15,9 @@ public class Producto {
     @Column(name = "tipo_producto",nullable = false)
     private String tipoProducto;
 
-    @Column(name = "estilo",nullable = false)
-    private String estilo;
+    @Column(name = "categoria",nullable = false)
+    private  String categoria;
+
 
     @Column(name = "imagen1")
     private String imagen1;
@@ -39,9 +40,6 @@ public class Producto {
     @Column(name = "descripción")
     private String descripcion;
 
-    @Column(name = "color",nullable = false)
-    private String color;
-
     @Column(name = "marca",nullable = false)
     private String marca;
 
@@ -55,10 +53,11 @@ public class Producto {
     public Producto(){
     }
 
-    public Producto(Long idPoroducto, int aprobado, String tipoProducto, String imagen1, String imagen2, String imagen3, String imagen4, String estado, String talla, String descripcion, String color, String marca, double precio, Usuario vendedor) {
+    public Producto(Long idPoroducto, int aprobado, String tipoProducto,String categoria, String imagen1, String imagen2, String imagen3, String imagen4, String estado, String talla, String descripcion, String marca, double precio, Usuario vendedor) {
         this.idPoroducto = idPoroducto;
         this.aprobado = aprobado;
         this.tipoProducto = tipoProducto;
+        this.categoria=categoria;
         this.imagen1 = imagen1;
         this.imagen2 = imagen2;
         this.imagen3 = imagen3;
@@ -66,18 +65,9 @@ public class Producto {
         this.estado = estado;
         this.talla = talla;
         this.descripcion = descripcion;
-        this.color = color;
         this.marca = marca;
         this.precio = precio;
         this.vendedor = vendedor;
-    }
-
-    public String getEstilo() {
-        return estilo;
-    }
-
-    public void setEstilo(String estilo) {
-        this.estilo = estilo;
     }
 
     public Long getIdPoroducto() {
@@ -128,6 +118,14 @@ public class Producto {
         this.imagen3 = imagen3;
     }
 
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
     public String getImagen4() {
         return imagen4;
     }
@@ -160,13 +158,6 @@ public class Producto {
         this.descripcion = descripcion;
     }
 
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
 
     public String getMarca() {
         return marca;

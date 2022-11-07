@@ -39,8 +39,8 @@
                     <li><a class="dropdown-item informaDrop1" type="Button" data-bs-toggle="modal" data-bs-target="#exampleModal">Crear publicación</a></li>
                     <li><a class="dropdown-item informaDrop1" href="misPublicaciones.html">Ver mis publicaciones</a></li>
                     <li><a class="dropdown-item informaDrop1" href="contactos.html">Chats</a></li>
-                    <li><a class="dropdown-item informaDrop1" href="inicioAdmin.html">Administrador</a></li>
-                    <li><a class="dropdown-item informaDrop2" href="index.html">Cerrar Sesion</a></li>
+                    <li><a class="dropdown-item informaDrop1" th:href="@{/inicioAdmin}">Administrador</a></li>
+                    <li><a class="dropdown-item informaDrop2" th:href="@{/}">Cerrar Sesion</a></li>
                 </ul>
             </div>
   
@@ -76,6 +76,11 @@
                                     <option th:each="tiposProducto:${tipoProducto}" th:value="${tiposProducto}" th:text="${tiposProducto.nombre}" ></option>
                                 </select>
 
+                                <select class="form-select tipoProducto1" name="categoria" style="border-radius: 0%; background-color: white; height: 55px; border: none;"><br><br>
+                                    <option value="" selected> Seleccione la categoria del producto</option>
+                                    <option th:each="categorias:${categoria}" th:value="${categorias}" th:text="${categorias.nombre}" ></option>
+                                </select>
+
 
                                 <select  name="talla" class="form-select tipoProducto2 "  style="border-radius: 0%; background-color: white; height: 55px; border: none;"><br><br>
                                     <option value="" selected>Selecciona la talla</option>
@@ -83,10 +88,13 @@
 
                                 </select>
 
-                                <input  class="informacioncrearpubli" type="text" name="color" id="color" placeholder="Color"><br>
+                                <select  name="estado" class="form-select tipoProducto2 "  style="border-radius: 0%; background-color: white; height: 55px; border: none;"><br><br>
+                                    <option value="" selected>Selecciona el estado</option>
+                                    <option th:each="estados:${estado}" th:value="${estados}" th:text="${estados.nombre}" ></option>
+
+                                </select>
+
                                 <input  class="informacioncrearpubli" type="text" name="marca" id="marca" placeholder="Marca"><br>
-                                <input  class="informacioncrearpubli" type="text" name="estilo" id="estilo" placeholder="Estilo"><br>
-                                <input  class="informacioncrearpubli" type="text" name="estado" id="estado" placeholder="Estado"><br>
                                 <input  class="informacioncrearpubli" type="text" name="precio" id="precio" placeholder="Precio"><br>
                                 <textarea  class="descripion" name="descripcion" id="descripcion" placeholder="Breve descripción o detalles del artículo"></textarea><br>
 
@@ -104,15 +112,13 @@
 
 
 
-            <div id="categorias">
-                <a class="cat" th:href="@{/busqueda}" >Hombre</a>
-                <a class="cat" th:href="@{/busqueda}" >Mujer</a>
-                <a class="cat" th:href="@{/busqueda}" >Ni&ntilde;os</a>
-                <a class="cat" th:href="@{/busqueda}" >Bisuter&iacute;a</a>
-                <a class="cat" th:href="@{/busqueda}" >Bolsos</a>
-                <a class="cat" th:href="@{/busqueda}" >Maquillaje</a>
-                <a class="cat" id="cato" th:href="@{/busqueda}" >Ofertas</a>
-            </div>
+        <div id="categorias">
+            <a class="cat" th:href="@{/busqueda/categoria/hombre}" >Hombre</a>
+            <a class="cat" th:href="@{/busqueda/categoria/mujer}" >Mujer</a>
+            <a class="cat" th:href="@{/busqueda/categoria/nino}" >Ni&ntilde;os</a>
+            <a class="cat" th:href="@{/busqueda}" >General</a>
+            <a class="cat" id="cato" th:href="@{/busqueda}" >Ofertas</a>
+        </div>
             
         </header>
             
@@ -126,31 +132,31 @@
 
             <section>
                 <article class="post">
-                    <a  href="busquedaIniciada.html">
+                    <a  th:href="@{busqueda/porTipo/polera}">
                         <img src="../static/img/grunge7.png" class="imagenPag" />
                     </a>
-                    <p class="populares">Grunge</p>
+                    <p class="populares">Poleras</p>
                 </article>
 
                 <article class="post">
-                    <a href="busquedaIniciada.html">
+                    <a th:href="@{busqueda/porTipo/pantalon}">
                         <img src="../static/img/vintage2.png" class="imagenPag" />
                     </a>
-                    <p class="populares">Vintage</p>
+                    <p class="populares">Pantalones</p>
                 </article>
 
                 <article class="post">
-                    <a href="busquedaIniciada.html">
-                        <img src="../static/img/formal1.png" class="imagenPag" />
+                    <a th:href="@{busqueda/porTipo/poleron}">
+                        <img src="" class="imagenPag" />
                     </a>
-                    <p class="populares">Formal</p>
+                    <p class="populares">Polerones</p>
                 </article>
 
                 <article class="post">
-                    <a href="busquedaIniciada.html">
-                        <img src="../static/img/deporte1.png" class="imagenPag" />
+                    <a th:href="@{busqueda/porTipo/camisa}">
+                        <img src="" class="imagenPag" />
                     </a>
-                    <p class="populares">Deporte</p>
+                    <p class="populares">Camisas</p>
                 </article>
             </section>
 

@@ -4,15 +4,12 @@ import com.example.vestizar.entidad.Producto;
 import com.example.vestizar.repositorio.ProductoRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.persistence.Column;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Base64;
 import java.util.List;
 
 @Service
@@ -23,12 +20,12 @@ public class ProductoServicio {
     ProductoRepositorio repositorio;
 
 
-    public void crearNuevoProducto(MultipartFile file, String tipoProducto, String estilo,String estado,String talla,String descripcion, String color,String marca,double precio){
+    public void crearNuevoProducto(MultipartFile file, String tipoProducto,String categoria,String estado,String talla,String descripcion, String marca,double precio){
 
         Producto p=new Producto();
 
         if(!file.isEmpty()){
-            Path directorioImagenes= Paths.get("src//main//resources//static/img");
+            Path directorioImagenes= Paths.get("src//main//resources//static/imgPagina");
             String rutaAbsoluta=directorioImagenes.toFile().getAbsolutePath();
 
             try {
@@ -45,20 +42,17 @@ public class ProductoServicio {
 
 
         p.setTipoProducto(tipoProducto);
-        p.setEstilo(estilo);
-
+        p.setCategoria(categoria);
 
         p.setEstado(estado);
         p.setTalla(talla);
         p.setDescripcion(descripcion);
-        p.setColor(color);
         p.setMarca(marca);
         p.setPrecio(precio);
 
         repositorio.save(p);
 
     }
-
 
 
     public List<Producto> listar(){
@@ -68,6 +62,26 @@ public class ProductoServicio {
 
     public Producto obtenerProductoPorId(Long id){
         return repositorio.findById(id).get();
+    }
+
+    public void aprobar(Producto producto){
+        repositorio.save(producto);
+    }
+
+    public List<Producto> obtenerProductoPorAprobado(int aprobado){
+        return repositorio.findAllByAprobado(aprobado);
+    }
+
+    public List<Producto> obteneProductoPorTipoProducto(int aprobado,String tipo){
+
+        return repositorio.findAllByAprobadoAndAndTipoProducto(aprobado,tipo);
+
+    }
+
+    public List<Producto> obteneProductoPorCategoriaYTipoProducto(int aprobado,String categoria, String tipo){
+
+        return repositorio.findAllByAprobadoAndCategoriaAndTipoProducto(aprobado,categoria,tipo);
+
     }
 
 

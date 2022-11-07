@@ -93,7 +93,7 @@ article a{
 .cat{
     display: inline-block;
     color: black;
-    margin: 20px 95px;
+    margin: 20px 150px;
     position: relative;
     top: 20px;
     bottom: 20px;
@@ -115,6 +115,9 @@ article a{
     border-radius: 10px;
 }
 
+
+
+
 .precioBusqueda{
     display: inline-block;
     text-align: left;
@@ -124,7 +127,23 @@ article a{
     left: 80px;
 }
 
+.precioBusquedaCategoria{
+    display: inline-block;
+    text-align: left;
+    position: relative;
+    width: 250px;
+    top: 200px;
+    left: 165px;
+}
 
+.imagenBusquedaCategoria{
+    width: 250px;
+    height: 300px;
+    position: relative;
+    top: 25px;
+    margin: 40px -90px;
+    border-radius: 50%;
+}
 
 
 
