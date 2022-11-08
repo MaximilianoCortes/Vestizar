@@ -7,11 +7,22 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+/**
+ * The type Conversacion servicio.
+ */
 @Service
 public class ConversacionServicio {
 
     @Autowired private ConversacionRepositorio conversacionRepositorio;
 
+    /**
+     * Gets id conversacion.
+     *
+     * @param idRemitente     the id remitente
+     * @param idReceptor      the id receptor
+     * @param crearSiNoExiste the crear si no existe
+     * @return the id conversacion
+     */
     public Optional<String> getIdConversacion(
             Long idRemitente, Long idReceptor, boolean crearSiNoExiste) {
 
