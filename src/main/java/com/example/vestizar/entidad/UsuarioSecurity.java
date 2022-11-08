@@ -25,6 +25,11 @@ public class UsuarioSecurity implements UserDetails {
         return usuario.getContrasena();
     }
 
+    /**
+     * Las autorizaciones se atribuyen a partir de un mapeado de estos leyendo el string del atributo roles del usuario
+     * el cual esta separado por ",". Se crean objetos de la clase SimpleGrantedAuthority por cada rol identificado y se convierte en un listado.
+     * @return Retorna la lista de autorizaciones/permisos del usuario.
+     */
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Arrays.stream(usuario

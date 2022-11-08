@@ -23,13 +23,22 @@ public class UsuarioServicio {
         return repositorio.findById(id);
     }
 
+    /**
+     * Se guardan los datos del usuario creado en el front end en el repositorio correspondiente para registrarlo en la base de datos.
+     * @param u Usuario creado en el front end
+     */
     public void crearNuevoUsuario(Usuario u) {
         repositorio.save(u);
     }
 
-    public String cifrarContrasena(String clave) {
+    /**
+     * La contrasena se cifra a partir de la clase importada BCryptPasswordEncoder.
+     * @param contrasena Contrasena a cifrar.
+     * @return Contrasena cifrada
+     */
+    public String cifrarContrasena(String contrasena) {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-        return bCryptPasswordEncoder.encode(clave);
+        return bCryptPasswordEncoder.encode(contrasena);
     }
 
 

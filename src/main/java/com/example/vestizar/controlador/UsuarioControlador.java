@@ -26,6 +26,11 @@ public class UsuarioControlador {
         return "iniciadoSesion";
     }
 
+    /**
+     * Al modelo de mapping se le agregan los atributos del objeto/entidad usuario y los values del enum tipoCiudad conseguidos de la pagina web.
+     * @param modelo Modelo de mapping al que se le agregaran los atributos a partir de los datos de la pagina.
+     * @return Retorna la referencia html de registro que corresponde al metodo del controlador.
+     */
     @GetMapping("/crearUsuario")
     public String ingresoAFormUsuario(Model modelo){
     modelo.addAttribute("usuario",new Usuario());
@@ -34,6 +39,13 @@ public class UsuarioControlador {
     }
 
 
+    /**
+     * Al usuario ingresado por parametro se le cifrara la contrasena, se le asignara el rol ROLE_USER de usuario normal y a partir del metodo de servicio se guardara
+     * en la base de datos a partir del repositorio correspondiente. Su status cambia a ser completo.
+     * @param usuario Usuario validado el cual se guardara en la base de datos,
+     * @param status Estado de sesion del usuario.
+     * @return Retorna la referencia html de iniciadoSesion que corresponde al metodo del controlador.
+     */
     @PostMapping("/guardarUsuario")
     public String guardarUsuario(@Valid Usuario usuario, SessionStatus status) {
 

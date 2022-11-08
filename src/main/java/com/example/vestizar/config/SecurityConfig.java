@@ -20,6 +20,12 @@ public class SecurityConfig {
         this.jpaUserDetailsService = jpaUserDetailsService;
     }
 
+    /**
+     * Configuracion de autorizaciones para la pagina web como permitir el acceso a ciertos archivos/directorios correspondientes al MVC del proyecto
+     * @param http Protocolo http de la pagina web
+     * @return Retorna la build de la configuracion realizada en el protoco http de la pagina.
+     * @throws Exception Arroja un error para poder manejarlo en otro contexto
+     */
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
@@ -36,6 +42,10 @@ public class SecurityConfig {
                 .build();
     }
 
+    /**
+     * Codificador de contrasena
+     * @return Retorna una instancia de codificador para poder usar en otros contextos
+     */
     @Bean
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
