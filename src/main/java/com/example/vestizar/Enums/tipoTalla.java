@@ -5,7 +5,8 @@ public enum tipoTalla {
     S("S"),
     M("M"),
     XS("XS"),
-    XL("XL");
+    XL("XL"),
+    XXL("XXL");
 
     private final String nombre;
 

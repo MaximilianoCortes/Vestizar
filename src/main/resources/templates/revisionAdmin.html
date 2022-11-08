@@ -47,7 +47,6 @@
                     <p class="informacionProducto"> Precio</p>
                 </div>
 
-
                 <div >
                     <img id="imagenUsuario" src="../static/img/usuario.png" >
                     <p id="nombreUsuario">usuario444</p>
@@ -61,7 +60,9 @@
                     <p class="informacionProducto2" th:text="${producto.estado}"></p>
                     <p class="informacionProducto2" th:text="${producto.precio}"></p>
                     <p id="desc" th:text="${producto.descripcion}"></p>
-                    <button id="botonRechazar" type="button">Rechazar</button>
+
+                    <button id="botonRechazar" type="button" th:href="@{/rechazar/{id}(id=${producto.idPoroducto})}">Rechazar</button>
+
                     <button id="botonAceptar" type="submit">Aceptar</button>
 
                 </div>
