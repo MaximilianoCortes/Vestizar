@@ -16,7 +16,7 @@
     <body>
     <header>
             <div>
-             <a href="iniciadoSesion.html"><h3 id="logo">VESTIZAR</h3>  </a>
+                <a th:href="@{/iniciado}"><h3 id="logo">VESTIZAR</h3>  </a>
             </div>
     
             <div>
@@ -38,7 +38,7 @@
                     <li><a class="dropdown-item informaDrop1" href="verMiPerfil.html">Ver mi perfil</a></li>
                     <li><a class="dropdown-item informaDrop1" type="Button" data-bs-toggle="modal" data-bs-target="#exampleModal">Crear publicación</a></li>
                     <li><a class="dropdown-item informaDrop1" href="misPublicaciones.html">Ver mis publicaciones</a></li>
-                    <li><a class="dropdown-item informaDrop1" href="contactos.html">Chats</a></li>
+                    <li><a class="dropdown-item informaDrop1" th:href="@{/inicioChat}">Chats</a></li>
                     <li><a class="dropdown-item informaDrop1" th:href="@{/inicioAdmin}">Administrador</a></li>
                     <li><a class="dropdown-item informaDrop2" th:href="@{/}">Cerrar Sesion</a></li>
                 </ul>
@@ -130,35 +130,38 @@
                 <p id="tituloPopulares">B&uacute;squedas Populares</p>
             </section>
 
-            <section>
-                <article class="post">
-                    <a  th:href="@{busqueda/porTipo/polera}">
-                        <img src="../static/img/grunge7.png" class="imagenPag" />
-                    </a>
-                    <p class="populares">Poleras</p>
-                </article>
+    <section>
+        <article class="post">
+            <a th:href="@{/busqueda/porTipo/polera}">
+                <img th:src="@{/img/polera.png}" class="imagenPag" />
+            </a>
+            <p class="populares">Poleras</p>
+        </article>
 
-                <article class="post">
-                    <a th:href="@{busqueda/porTipo/pantalon}">
-                        <img src="../static/img/vintage2.png" class="imagenPag" />
-                    </a>
-                    <p class="populares">Pantalones</p>
-                </article>
+        <article class="post">
+            <a th:href="@{/busqueda/porTipo/pantalon}">
+                <img  th:src="@{/img/pantalon.png}" class="imagenPag" />
+            </a>
 
-                <article class="post">
-                    <a th:href="@{busqueda/porTipo/poleron}">
-                        <img src="" class="imagenPag" />
-                    </a>
-                    <p class="populares">Polerones</p>
-                </article>
+            <p class="populares">Pantalones</p>
+        </article>
 
-                <article class="post">
-                    <a th:href="@{busqueda/porTipo/camisa}">
-                        <img src="" class="imagenPag" />
-                    </a>
-                    <p class="populares">Camisas</p>
-                </article>
-            </section>
+        <article class="post">
+            <a th:href="@{/busqueda/porTipo/poleron}">
+                <img th:src="@{/img/poleron.png}" class="imagenPag" />
+
+            </a>
+            <p class="populares">Polerones</p>
+        </article>
+
+        <article class="post">
+            <a th:href="@{/busqueda/porTipo/camisa}">
+                <img th:src="@{/img/camisa.png}" class="imagenPag" />
+
+            </a>
+            <p class="populares">Camisas</p>
+        </article>
+    </section>
 
 
 

@@ -4,8 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <link rel="stylesheet" href="../static/css/chat.css">
-    <link rel="stylesheet" href="../static/css/styleChat.css">
+    <link rel="stylesheet" th:href="@{/css/chat.css}">
+    <link rel="stylesheet" th:href="@{/css/styleChat.css}">
+
     <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 	<script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -17,7 +18,7 @@
 <header>
 
     <div>
-        <a href="iniciadoSesion.html"><h3 id="logo">VESTIZAR</h3>  </a>
+        <a th:href="@{/}"><h3 id="logo">VESTIZAR</h3>  </a>
     </div>
 
     <div>
@@ -38,10 +39,11 @@
         <ul class="dropdown-menu dropdown-menu-dark informaDrop" style="text-align: center; background-color: #1b1919; border-radius: 6%; " aria-labelledby="dropdownMenuLink">
             <li><p class="informaDrop0">Bienvenido, Usuario</p></li>
             <li><a class="dropdown-item informaDrop1" href="verMiPerfil.html">Ver mi perfil</a></li>
-            <li><a class="dropdown-item informaDrop2" type="Button" data-bs-toggle="modal" data-bs-target="#exampleModal">Crear publicación</a></li>
-            <li><a class="dropdown-item informaDrop3" href="misPublicaciones.html">Ver mis publicaciones</a></li>
-            <li><a class="dropdown-item informaDrop5" href="private-chat.html">Chats</a></li>
-            <li><a class="dropdown-item informaDrop4" href="index.html">Cerrar Sesion</a></li>
+            <li><a class="dropdown-item informaDrop1" type="Button" data-bs-toggle="modal" data-bs-target="#exampleModal">Crear publicación</a></li>
+            <li><a class="dropdown-item informaDrop1" href="misPublicaciones.html">Ver mis publicaciones</a></li>
+            <li><a class="dropdown-item informaDrop1" th:href="@{/inicioChat}">Chats</a></li>
+            <li><a class="dropdown-item informaDrop1" th:href="@{/inicioAdmin}">Administrador</a></li>
+            <li><a class="dropdown-item informaDrop2" th:href="@{/}">Cerrar Sesion</a></li>
         </ul>
     </div>
 

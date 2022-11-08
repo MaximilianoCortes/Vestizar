@@ -16,7 +16,7 @@
     <body>
     <header>
         <div>
-            <a href="inicioAdmin.html"><h3 id="logo">VESTIZAR</h3></a>
+            <a th:href="@{/}"><h3 id="logo">VESTIZAR</h3>  </a>
 
            </div>
    
@@ -41,6 +41,7 @@
 
                 <div >
                     <p class="informacionProducto"> Tipo de Producto</p>
+                    <p class="informacionProducto"> Categoria</p>
                     <p class="informacionProducto"> Talla</p>
                     <p class="informacionProducto"> Marca</p>
                     <p class="informacionProducto"> Estilo</p>
@@ -55,6 +56,7 @@
 
                 <div>
                     <p class="informacionProducto2" th:text="${producto.tipoProducto}" ></p>
+                    <p class="informacionProducto2" th:text="${producto.categoria}"</p>
                     <p class="informacionProducto2" th:text="${producto.talla}"></p>
                     <p class="informacionProducto2" th:text="${producto.marca}"></p>
                     <p class="informacionProducto2" th:text="${producto.estado}"></p>

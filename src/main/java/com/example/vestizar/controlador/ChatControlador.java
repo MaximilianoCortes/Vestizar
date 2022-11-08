@@ -3,6 +3,7 @@ package com.example.vestizar.controlador;
 
 import com.example.vestizar.entidad.MensajeChat;
 import com.example.vestizar.entidad.NotificacionChat;
+import com.example.vestizar.entidad.Producto;
 import com.example.vestizar.servicio.ConversacionServicio;
 import com.example.vestizar.servicio.MensajeChatServicio;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +12,11 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -25,6 +28,11 @@ public class ChatControlador {
     @Autowired private SimpMessagingTemplate messagingTemplate;
     @Autowired private MensajeChatServicio mensajeChatServicio;
     @Autowired private ConversacionServicio conversacionServicio;
+
+    @GetMapping("/inicioChat")
+    public String inicioChat() {
+        return "contactos";
+    }
 
     /**
      * obtiene la id de la conversacion que es el equivalente a las id de los 2 usuarios en formato xxyy siendo x la id del remitente e y la del receptor
@@ -63,6 +71,7 @@ public class ChatControlador {
         return ResponseEntity
                 .ok(mensajeChatServicio.contarNuevosMensajes(idRemitente, idReceptor));
     }
+
 
     /**
      * Encontrar mensajes chat response entity.
