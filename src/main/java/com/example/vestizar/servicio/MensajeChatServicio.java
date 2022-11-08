@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * The type Mensaje chat servicio.
+ * servicio mensaje chat
  */
 @Service
 public class MensajeChatServicio {
@@ -20,10 +20,10 @@ public class MensajeChatServicio {
 
 
     /**
-     * Save mensaje chat.
+     * guarda el mensaje enviado en la base de datos mediante el repositorio
      *
-     * @param mensajeChat the mensaje chat
-     * @return the mensaje chat
+     * @param mensajeChat objeto mensaje
+     * @return el mensaje guardado
      */
     public MensajeChat save(MensajeChat mensajeChat) {
         mensajeRepositorio.save(mensajeChat);
@@ -31,11 +31,11 @@ public class MensajeChatServicio {
     }
 
     /**
-     * Contar nuevos mensajes long.
+     * cuenta los mensajes que coincidan con las id entregadas y devuelve la cantidad encontrada
      *
-     * @param idRemitente the id remitente
-     * @param IdReceptor  the id receptor
-     * @return the long
+     * @param idRemitente id remitente
+     * @param IdReceptor  id receptor
+     * @return cantidad de mensajes encontrados
      */
     public long contarNuevosMensajes(Long idRemitente, Long IdReceptor) {
         return mensajeRepositorio.countByRemitenteAndReceptor(
@@ -43,11 +43,11 @@ public class MensajeChatServicio {
     }
 
     /**
-     * Encontrar mensajes chat list.
+     * encuentra en la base de datos los mensajes que coincidan con las id entregadas y devuelve una lista con estos mensajes
      *
-     * @param idRemitente the id remitente
-     * @param idReceptor  the id receptor
-     * @return the list
+     * @param idRemitente id remitente
+     * @param idReceptor  id receptor
+     * @return lista con los mensajes encontrados
      */
     public List<MensajeChat> encontrarMensajesChat(Long idRemitente, Long idReceptor) {
         Optional<String> idConversacion = conversacionServicio.getIdConversacion(idRemitente, idReceptor, false);
@@ -59,10 +59,10 @@ public class MensajeChatServicio {
     }
 
     /**
-     * Encontrar por id mensaje chat.
+     * Encuentra en la base de datos los mensajes que coincidan con la id entregada y los devuelve..
      *
-     * @param id the id
-     * @return the mensaje chat
+     * @param id id del mensaje
+     * @return el mensaje encontrado
      */
     public MensajeChat encontrarPorId(Long id) {
         return mensajeRepositorio

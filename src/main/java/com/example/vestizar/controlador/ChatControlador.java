@@ -57,11 +57,11 @@ public class ChatControlador {
     }
 
     /**
-     * Contar nuevos mensajes response entity.
+     * cuenta los mensajes que hay entre el remitente y el receptor.
      *
-     * @param idRemitente the id remitente
-     * @param idReceptor  the id receptor
-     * @return the response entity
+     * @param idRemitente id del remitente
+     * @param idReceptor  id del receptor
+     * @return mappea el numero de mensajes encontrados
      */
     @GetMapping("/mensajes/{idRemitente}/{idReceptor}/count")
     public ResponseEntity<Long> contarNuevosMensajes(
@@ -74,11 +74,11 @@ public class ChatControlador {
 
 
     /**
-     * Encontrar mensajes chat response entity.
+     * Encuentra todos los mensajes entre el remitente y el receptor
      *
-     * @param idRemitente the id remitente
-     * @param idReceptor  the id receptor
-     * @return the response entity
+     * @param idRemitente id del remitente
+     * @param idReceptor  id del receptor
+     * @return los mensajes encontrados
      */
     @GetMapping("/mensajes/{idRemitente}/{idReceptor}")
     public ResponseEntity<?> encontrarMensajesChat(@PathVariable Long idRemitente,
@@ -88,10 +88,10 @@ public class ChatControlador {
     }
 
     /**
-     * Encontrar mensaje response entity.
+     * busca un mensaje por su id generada
      *
-     * @param id the id
-     * @return the response entity
+     * @param id id del mensaje
+     * @return el mensaje encontrado con la misma id
      */
     @GetMapping("/mensajes/{id}")
     public ResponseEntity<?> encontrarMensaje ( @PathVariable Long id) {

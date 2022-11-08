@@ -7,16 +7,16 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 /**
- * The interface Conversacion repositorio.
+ * interface Conversacion repositorio.
  */
 @Repository
 public interface ConversacionRepositorio extends JpaRepository<Conversacion, String> {
     /**
-     * Find by remitente and receptor optional.
+     * query a la base de datos para encontrar una conversacion por las id del remitente y del receptor
      *
-     * @param idRemitente the id remitente
-     * @param recipientId the recipient id
-     * @return the optional
+     * @param idRemitente id remitente
+     * @param idReceptor  id del receptor
+     * @return la conversacion
      */
-    Optional<Conversacion> findByRemitenteAndReceptor(Long idRemitente, Long recipientId);
+    Optional<Conversacion> findByRemitenteAndReceptor(Long idRemitente,Long idReceptor);
 }

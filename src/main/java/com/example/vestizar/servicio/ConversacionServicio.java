@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 /**
- * The type Conversacion servicio.
+ * servicio de conversacion
  */
 @Service
 public class ConversacionServicio {
@@ -16,12 +16,12 @@ public class ConversacionServicio {
     @Autowired private ConversacionRepositorio conversacionRepositorio;
 
     /**
-     * Gets id conversacion.
+     * genera una id de conversacion en caso de que no exista, juntando la id del remitente y del receptor
      *
-     * @param idRemitente     the id remitente
-     * @param idReceptor      the id receptor
-     * @param crearSiNoExiste the crear si no existe
-     * @return the id conversacion
+     * @param idRemitente     id del remitente
+     * @param idReceptor      id del receptor
+     * @param crearSiNoExiste booleano, indica si es necesario crear id de conversacion
+     * @return id de la conversacion
      */
     public Optional<String> getIdConversacion(
             Long idRemitente, Long idReceptor, boolean crearSiNoExiste) {

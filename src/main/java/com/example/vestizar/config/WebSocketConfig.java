@@ -14,7 +14,7 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 import java.util.List;
 
 /**
- * The type Web socket config.
+ * configuracion del websocket, override para habilitar la conexion websocket
  */
 @Configuration
 @EnableWebSocketMessageBroker

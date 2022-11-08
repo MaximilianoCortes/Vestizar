@@ -9,27 +9,27 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
- * The interface Mensaje repositorio.
+ * interface Mensaje repositorio.
  */
 @Repository
 public interface MensajeRepositorio
         extends JpaRepository<MensajeChat, Long> {
 
     /**
-     * Count by remitente and receptor long.
+     * cuenta el numero de filas almacenadas en la base de datos con mensajes que tengna la id del remitente y del receptor
      *
-     * @param idRemitente the id remitente
-     * @param IdReceptor  the id receptor
-     * @return the long
+     * @param idRemitente id remitente
+     * @param IdReceptor  id receptor
+     * @return numero de mensajes encontrados
      */
     long countByRemitenteAndReceptor(
             Long idRemitente, Long IdReceptor);
 
     /**
-     * Find by conversacion list.
+     * busca todos los mensajes en la base de datos que coincidan con la id de la conversacion
      *
-     * @param idConversacion the id conversacion
-     * @return the list
+     * @param idConversacion id de la conversacion
+     * @return lista de los mensajes encontrados
      */
     List<MensajeChat> findByConversacion(String idConversacion);
 }
