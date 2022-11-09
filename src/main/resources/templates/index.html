@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Vestizar</title>
-    <link rel="stylesheet" href="../static/css/style.css">
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,15 +16,15 @@
     <body>
     <header>
             <div>
-            <a href="index.html"><h3 id="logo">VESTIZAR</h3>  </a>
+            <a th:href="@{/}"><h3 id="logo">VESTIZAR</h3>  </a>
            </div>
             <div>
                 <form>
                     <input id="barra" class="ms-5"  type="text" placeholder="Busca art&iacute;culos, marcas o estilos!" name="busqueda">
                 </form>
-                <img id="lupabarra" src="../static/img/lupa.png" >
+                <img id="lupabarra" th:src="@{/img/lupa.png}" >
             </div>
-    
+
             
            
             <div>
@@ -42,52 +42,58 @@
                       <button type="button" class="btn-close equis " data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <p id="tituloBienvenido2">Ingresa tus datos para continuar</p>
+
+                      <form th:action="@{iniciar-sesion}">
                     <div class="modal-body">
-                      <form>
+
+
+
+
                          <input class="datosInicioSesión" type="text" name="usuario" placeholder="Ingresa tu usuario"/>
                          <br><br>
                          <input class="datosInicioSesión"  type="password" name="contraseña" placeholder="Ingresa tu contraseña"> <br><br><br><br><br>
-                      </form>
+
                     </div>
                     <div >  
                         <div>
 
                             <p id="registroContrasena">¿Olvidaste tu contraseña?
-                                <a href="RecuperarContrasena.html">
+                                <a >
                                     <button type="button" style="color: green; border: none; background-color: #dadada">Recuperala</button>
                                 </a>
 
                             </p>
 
                             <p id="tituloRegistro">¿No tienes una cuenta?
-                                <a id="linkRegistro" href="registro.html" >Reg&iacute;strate</a>
+                                <a id="linkRegistro" th:href="@{/crearUsuario}" >Reg&iacute;strate</a>
                             </p>
 
 
 
                         </div>
                         <a href="iniciadoSesion.html">
-                            <button type="button" id="botonInicioSesion" >Iniciar sesi&oacute;n</button>
+                            <button type="submit" id="botonInicioSesion" >Iniciar sesi&oacute;n</button>
                         </a>
+
                     </div>
+
+                      </form>
                   </div>
                 </div>
               </div>
 
             <div id="categorias">
-                <a class="cat" href="busqueda.html" >Hombre</a>
-                <a class="cat" href="busqueda.html" >Mujer</a>
-                <a class="cat" href="busqueda.html" >Ni&ntilde;os</a>
-                <a class="cat" href="busqueda.html" >Bisuter&iacute;a</a>
-                <a class="cat" href="busqueda.html" >Bolsos</a>
-                <a class="cat" href="busqueda.html" >Maquillaje</a>
-                <a class="cat" id="cato" href="busqueda.html" >Ofertas</a>
+                <a class="cat" th:href="@{/busqueda/categoria/hombre}" >Hombre</a>
+                <a class="cat" th:href="@{/busqueda/categoria/mujer}" >Mujer</a>
+                <a class="cat" th:href="@{/busqueda/categoria/nino}" >Ni&ntilde;os</a>
+                <a class="cat" th:href="@{/busqueda}" >General</a>
+                <a class="cat" id="cato" th:href="@{/busqueda}">Ofertas</a>
             </div>
             
         </header>
             
             <section>
-                 <img id="portada" src="../static/img/portada.png" >
+                <img id="portada" th:src="@{img/portada.png}"/>
             </section>
             
             <section>
@@ -96,31 +102,34 @@
 
             <section>
                 <article class="post">
-                    <a  href="busqueda.html">
-                        <img src="../static/img/grunge2.png" class="imagenPag" />
+                    <a th:href="@{/busqueda/porTipo/polera}">
+                        <img th:src="@{/img/polera.png}" class="imagenPag" />
                     </a>
-                    <p class="populares">Grunge</p>
+                    <p class="populares">Poleras</p>
                 </article>
                 
                 <article class="post">
-                    <a href="busqueda.html">
-                        <img src="../static/img/Vintage.png" class="imagenPag" />
+                    <a th:href="@{/busqueda/porTipo/pantalon}">
+                        <img  th:src="@{/img/pantalon.png}" class="imagenPag" />
                     </a>
-                    <p class="populares">Vintage</p> 
+
+                    <p class="populares">Pantalones</p>
                 </article>
                 
                 <article class="post">
-                    <a href="busqueda.html">
-                        <img src="../static/img/formal6.png" class="imagenPag" />
+                    <a th:href="@{/busqueda/porTipo/poleron}">
+                        <img th:src="@{/img/poleron.png}" class="imagenPag" />
+
                     </a>
-                    <p class="populares">Formal</p>
+                    <p class="populares">Polerones</p>
                 </article>
                 
                 <article class="post">
-                    <a href="busqueda.html">
-                        <img src="../static/img/deporte3.png" class="imagenPag" />
+                    <a th:href="@{/busqueda/porTipo/camisa}">
+                        <img th:src="@{/img/camisa.png}" class="imagenPag" />
+
                     </a>
-                    <p class="populares">Deporte</p>
+                    <p class="populares">Camisas</p>
                 </article>
             </section>
                 

@@ -15,8 +15,11 @@ public class Producto {
     @Column(name = "tipo_producto",nullable = false)
     private String tipoProducto;
 
+    @Column(name = "categoria",nullable = false)
+    private  String categoria;
 
-    @Column(name = "imagen1",nullable = false)
+
+    @Column(name = "imagen1")
     private String imagen1;
 
     @Column(name = "imagen2")
@@ -37,26 +40,24 @@ public class Producto {
     @Column(name = "descripción")
     private String descripcion;
 
-    @Column(name = "color",nullable = false)
-    private String color;
-
     @Column(name = "marca",nullable = false)
     private String marca;
 
     @Column(name = "precio",nullable = false)
     private double precio ;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_vendedor")
+    @ManyToOne(targetEntity = Usuario.class,fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "FK_vendedor")
     private Usuario vendedor;
 
     public Producto(){
     }
 
-    public Producto(Long idPoroducto, int aprobado, String tipoProducto, String imagen1, String imagen2, String imagen3, String imagen4, String estado, String talla, String descripcion, String color, String marca, double precio, Usuario vendedor) {
+    public Producto(Long idPoroducto, int aprobado, String tipoProducto,String categoria, String imagen1, String imagen2, String imagen3, String imagen4, String estado, String talla, String descripcion, String marca, double precio, Usuario vendedor) {
         this.idPoroducto = idPoroducto;
         this.aprobado = aprobado;
         this.tipoProducto = tipoProducto;
+        this.categoria=categoria;
         this.imagen1 = imagen1;
         this.imagen2 = imagen2;
         this.imagen3 = imagen3;
@@ -64,12 +65,10 @@ public class Producto {
         this.estado = estado;
         this.talla = talla;
         this.descripcion = descripcion;
-        this.color = color;
         this.marca = marca;
         this.precio = precio;
         this.vendedor = vendedor;
     }
-
 
     public Long getIdPoroducto() {
         return idPoroducto;
@@ -119,6 +118,14 @@ public class Producto {
         this.imagen3 = imagen3;
     }
 
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
     public String getImagen4() {
         return imagen4;
     }
@@ -151,13 +158,6 @@ public class Producto {
         this.descripcion = descripcion;
     }
 
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
 
     public String getMarca() {
         return marca;

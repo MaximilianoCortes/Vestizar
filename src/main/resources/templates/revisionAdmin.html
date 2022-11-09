@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Vestizar</title>
-    <link rel="stylesheet" href="../static/css/styleRevisionAdmin.css">
+    <link rel="stylesheet" th:href="@{/css/styleRevisionAdmin.css}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,7 +16,7 @@
     <body>
     <header>
         <div>
-            <a href="inicioAdmin.html"><h3 id="logo">VESTIZAR</h3></a>
+            <a th:href="@{/}"><h3 id="logo">VESTIZAR</h3>  </a>
 
            </div>
    
@@ -25,51 +25,57 @@
             </div>
         </header>
 
+
+    <form th:action="@{/aprobar/{id}(id=${producto.idPoroducto})}">
+
         <section class="revision">
 
             <div class="informacion" >
 
 
                 <div class="imagenboton">
-                    <img class="imagenArticulo" src="../static/img/vintage6.png"/>
-                    <button class="botonArticulo" id="ant">Anterior</button>
-                    <button class="botonArticulo" id="sgte">Siguiente</button>
+                    <img class="imagenArticulo" th:src="@{'/imgPagina/'+ ${producto.imagen1}}"/>
+                    <button class="botonArticulo" type="button" id="ant">Anterior</button>
+                    <button class="botonArticulo" type="button" id="sgte">Siguiente</button>
                 </div>
 
                 <div >
                     <p class="informacionProducto"> Tipo de Producto</p>
+                    <p class="informacionProducto"> Categoria</p>
                     <p class="informacionProducto"> Talla</p>
-                    <p class="informacionProducto"> Color</p>
                     <p class="informacionProducto"> Marca</p>
                     <p class="informacionProducto"> Estilo</p>
-                    <p class="informacionProducto"> Estado</p>
-                    <p class="informacionProducto"> Precio</p> 
+                    <p class="informacionProducto"> Precio</p>
                 </div>
-
 
                 <div >
                     <img id="imagenUsuario" src="../static/img/usuario.png" >
-                        <p id="nombreUsuario">usuario444</p>
+                    <p id="nombreUsuario">usuario444</p>
                     <p id="ubicacionUsuario">Temuco</p>
                 </div>
 
                 <div>
-                    <p class="informacionProducto2"> Polera</p>
-                    <p class="informacionProducto2"> L</p>
-                    <p class="informacionProducto2"> Cafe</p>
-                    <p class="informacionProducto2"> Desconocida</p>
-                    <p class="informacionProducto2"> Vintage, Casual</p>
-                    <p class="informacionProducto2"> Buenas condiciones</p>
-                    <p class="informacionProducto2"> $111111111111</p>
-                    <p id="desc">Consulte precio por interno </p>
-                    <button id="botonRechazar">Rechazar</button>
-                    <button id="botonAceptar">Aceptar</button>
+                    <p class="informacionProducto2" th:text="${producto.tipoProducto}" ></p>
+                    <p class="informacionProducto2" th:text="${producto.categoria}"</p>
+                    <p class="informacionProducto2" th:text="${producto.talla}"></p>
+                    <p class="informacionProducto2" th:text="${producto.marca}"></p>
+                    <p class="informacionProducto2" th:text="${producto.estado}"></p>
+                    <p class="informacionProducto2" th:text="${producto.precio}"></p>
+                    <p id="desc" th:text="${producto.descripcion}"></p>
+
+                    <button id="botonRechazar" type="button" th:href="@{/rechazar/{id}(id=${producto.idPoroducto})}">Rechazar</button>
+
+                    <button id="botonAceptar" type="submit">Aceptar</button>
 
                 </div>
-          
+
             </div>
-        
+
         </section>
+
+
+    </form>
+
 
 
 

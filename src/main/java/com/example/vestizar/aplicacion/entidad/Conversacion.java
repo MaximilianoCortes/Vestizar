@@ -1,65 +1,64 @@
 package com.example.vestizar.aplicacion.entidad;
 
+
+
 import javax.persistence.*;
 
+
+
 @Entity
-@Table(name = "conversaciones")
+@Table(name = "conversacion")
 public class Conversacion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idConversacion;
-
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_producto")
-    private Producto producto;
-
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_comprador")
-    private Usuario comprador;
-
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_Vendedor")
-    private Usuario vendedor;
+    @Column(name = "id", nullable = false)
+    private Long id;
+    @Column(name = "nombre_conversacion", nullable = false)
+    private String nombre_Conversacion;
+    @Column(name = "remitente", nullable = false)
+    private Long remitente;
+    @Column(name = "receptor", nullable = false)
+    private Long receptor;
 
     public Conversacion() {
     }
 
-    public Conversacion(Long idConversacion, Producto producto, Usuario comprador, Usuario vendedor) {
-        this.idConversacion = idConversacion;
-        this.producto = producto;
-        this.comprador = comprador;
-        this.vendedor = vendedor;
+    public Conversacion(Long id, String id_Conversacion, Long id_Remitente, Long id_Receptor) {
+        this.id = id;
+        this.nombre_Conversacion = id_Conversacion;
+        this.remitente = id_Remitente;
+        this.receptor = id_Receptor;
     }
 
-    public Long getIdConversacion() {
-        return idConversacion;
+    public Long getId() {
+        return id;
     }
 
-    public void setIdConversacion(Long idConversacion) {
-        this.idConversacion = idConversacion;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public Producto getProducto() {
-        return producto;
+    public String getNombre_Conversacion() {
+        return nombre_Conversacion;
     }
 
-    public void setProducto(Producto producto) {
-        this.producto = producto;
+    public void setNombre_Conversacion(String id_Conversacion) {
+        this.nombre_Conversacion = id_Conversacion;
     }
 
-    public Usuario getComprador() {
-        return comprador;
+    public Long getRemitente() {
+        return remitente;
     }
 
-    public void setComprador(Usuario comprador) {
-        this.comprador = comprador;
+    public void setRemitente(Long id_Remitente) {
+        this.remitente = id_Remitente;
     }
 
-    public Usuario getVendedor() {
-        return vendedor;
+    public Long getReceptor() {
+        return receptor;
     }
 
-    public void setVendedor(Usuario vendedor) {
-        this.vendedor = vendedor;
+    public void setReceptor(Long id_Receptor) {
+        this.receptor = id_Receptor;
     }
 }

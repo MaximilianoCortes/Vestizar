@@ -4,8 +4,8 @@ public enum tipoCiudad {
 
     TEMUCO("Temuco"),
     VILLARRICA("Villarrica"),
-    SANTIAGO("Santiago");
-
+    SANTIAGO("Santiago"),
+    VALDIVIA("Valdivia");
     private final String nombre;
 
     tipoCiudad(String nombre){

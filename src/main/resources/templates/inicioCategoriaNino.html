@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Vestizar</title>
+  <link th:href="@{/css/styleBusqueda.css}" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+</head>
+<body>
+<header>
+
+  <div>
+    <a th:href="@{/}"><h3 id="logo">VESTIZAR</h3>  </a>
+  </div>
+
+  <div>
+    <form>
+      <input id="barra" class="ms-5"  type="text" placeholder="Busca art&iacute;culos, marcas o estilos!" name="busqueda">
+    </form>
+    <img id="lupabarra" th:src="@{img/lupa.png}">
+  </div>
+
+  <div>
+    <a href="registro.html">
+      <button type="button" class="botoninicio">Registrarse</button>
+    </a>
+    <button type="button" class="botoninicio" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@Inicio">Iniciar sesi&oacute;n</button>
+  </div>
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" >
+      <div class="modal-content" style="background-color: #dadada ;">
+        <div>
+          <p class="modal-title tituloBienvenido" style="display: block;" id="exampleModalLabel">¡Bienvenido!</p>
+          <button type="button" class="btn-close equis " data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <p id="tituloBienvenido2">Ingresa tus datos para continuar</p>
+        <div class="modal-body">
+          <form>
+            <input class="datosInicioSesión" type="text" name="usuario" placeholder="Ingresa tu usuario"/>
+            <br><br>
+            <input class="datosInicioSesión"  type="password" name="contraseña" placeholder="Ingresa tu contraseña"> <br><br><br><br><br>
+          </form>
+        </div>
+        <div >
+          <div>
+
+            <p id="registroContrasena">¿Olvidaste tu contraseña?
+              <a href="RecuperarContrasena.html">
+                <button type="button" style="color: green; border: none; background-color: #dadada">Recuperala</button>
+              </a>
+            </p>
+            <p id="tituloRegistro">¿No tienes una cuenta?
+              <a id="linkRegistro" href="registro.html" >Reg&iacute;strate</a>
+            </p>
+          </div>
+          <a href="busquedaIniciada.html">
+            <button type="button" id="botonInicioSesion" >Iniciar sesi&oacute;n</button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div id="categorias">
+    <a class="cat" th:href="@{/busqueda/categoria/hombre}" >Hombre</a>
+    <a class="cat" th:href="@{/busqueda/categoria/mujer}" >Mujer</a>
+    <a class="cat" th:href="@{/busqueda/categoria/nino}" >Ni&ntilde;os</a>
+    <a class="cat" th:href="@{/busqueda}" >General</a>
+    <a class="cat" id="cato" th:href="@{/busqueda}" >Ofertas</a>
+  </div>
+</header>
+
+
+
+<section>
+  <article class="post">
+  <a th:href="@{/busqueda/categoria/hombre/porTipo/polera}">
+    <img th:src="@{/img/polera.png}" class="imagenBusquedaCategoria" />
+  </a>
+  <p class="precioBusquedaCategoria">Poleras</p>
+</article>
+
+  <article class="post">
+    <a th:href="@{/busqueda/categoria/hombre/porTipo/poleron}">
+      <img th:src="@{/img/poleron.png}" class="imagenBusquedaCategoria" />
+    </a>
+    <p class="precioBusquedaCategoria">Polerones</p>
+  </article>
+  <article class="post">
+    <a th:href="@{/busqueda/categoria/hombre/porTipo/camisa}">
+      <img th:src="@{/img/camisa.png}" class="imagenBusquedaCategoria" />
+    </a>
+    <p class="precioBusquedaCategoria">Camisas</p>
+  </article>
+  <article class="post">
+    <a th:href="@{/busqueda/categoria/hombre/porTipo/pantalon}">
+      <img th:src="@{/img/pantalon.png}" class="imagenBusquedaCategoria" />
+    </a>
+    <p class="precioBusquedaCategoria">Pantalones</p>
+  </article>
+  <article class="post">
+    <a th:href="@{/busqueda/categoria/hombre/porTipo/zapato}">
+      <img th:src="@{/img/zapatos.png}" class="imagenBusquedaCategoria" />
+    </a>
+    <p class="precioBusquedaCategoria">Zapatos</p>
+  </article>
+  <article class="post">
+    <a th:href="@{/busqueda/categoria/hombre/porTipo/chaqueta}">
+      <img th:src="@{/img/chaqueta.png}" class="imagenBusquedaCategoria" />
+    </a>
+    <p class="precioBusquedaCategoria">Chaqueta</p>
+
+</section>
+
+<footer>  </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+</body>
+</html>
