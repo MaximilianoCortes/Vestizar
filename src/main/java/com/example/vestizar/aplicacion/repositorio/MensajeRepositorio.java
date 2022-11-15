@@ -1,8 +1,8 @@
-package com.example.vestizar.repositorio;
+package com.example.vestizar.aplicacion.repositorio;
 
 
 
-import com.example.vestizar.entidad.MensajeChat;
+import com.example.vestizar.aplicacion.entidad.MensajeChat;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

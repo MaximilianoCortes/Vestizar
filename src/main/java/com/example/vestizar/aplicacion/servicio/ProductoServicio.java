@@ -1,7 +1,7 @@
-package com.example.vestizar.servicio;
+package com.example.vestizar.aplicacion.servicio;
 
-import com.example.vestizar.entidad.Producto;
-import com.example.vestizar.repositorio.ProductoRepositorio;
+import com.example.vestizar.aplicacion.entidad.Producto;
+import com.example.vestizar.aplicacion.repositorio.ProductoRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;

@@ -1,8 +1,8 @@
-package com.example.vestizar.controlador;
+package com.example.vestizar.aplicacion.controlador;
 
-import com.example.vestizar.Enums.tipoCiudad;
-import com.example.vestizar.entidad.Usuario;
-import com.example.vestizar.servicio.UsuarioServicio;
+import com.example.vestizar.aplicacion.Enums.tipoCiudad;
+import com.example.vestizar.aplicacion.entidad.Usuario;
+import com.example.vestizar.aplicacion.servicio.UsuarioServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

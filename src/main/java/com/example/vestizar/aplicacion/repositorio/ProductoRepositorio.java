@@ -1,11 +1,10 @@
-package com.example.vestizar.aplicacion.servicio.repositorio;
+package com.example.vestizar.aplicacion.repositorio;
 
 import com.example.vestizar.aplicacion.entidad.Producto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Repositorio de Producto

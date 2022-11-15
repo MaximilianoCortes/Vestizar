@@ -1,9 +1,9 @@
-package com.example.vestizar.servicio;
+package com.example.vestizar.aplicacion.servicio;
 
 
 import com.example.vestizar.ResourceNotFoundException;
-import com.example.vestizar.entidad.MensajeChat;
-import com.example.vestizar.repositorio.MensajeRepositorio;
+import com.example.vestizar.aplicacion.entidad.MensajeChat;
+import com.example.vestizar.aplicacion.repositorio.MensajeRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.example.vestizar.Enums;
+package com.example.vestizar.aplicacion.Enums;
 
 public enum tipoCategoria {
 

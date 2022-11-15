@@ -1,11 +1,11 @@
-package com.example.vestizar.controlador;
+package com.example.vestizar.aplicacion.controlador;
 
 
-import com.example.vestizar.entidad.MensajeChat;
-import com.example.vestizar.entidad.NotificacionChat;
-import com.example.vestizar.entidad.Producto;
-import com.example.vestizar.servicio.ConversacionServicio;
-import com.example.vestizar.servicio.MensajeChatServicio;
+import com.example.vestizar.aplicacion.entidad.MensajeChat;
+import com.example.vestizar.aplicacion.entidad.NotificacionChat;
+import com.example.vestizar.aplicacion.entidad.Producto;
+import com.example.vestizar.aplicacion.servicio.ConversacionServicio;
+import com.example.vestizar.aplicacion.servicio.MensajeChatServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.MessageMapping;

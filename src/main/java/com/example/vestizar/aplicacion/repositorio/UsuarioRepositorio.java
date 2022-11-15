@@ -1,4 +1,4 @@
-package com.example.vestizar.aplicacion.servicio.repositorio;
+package com.example.vestizar.aplicacion.repositorio;
 
 import com.example.vestizar.aplicacion.entidad.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;

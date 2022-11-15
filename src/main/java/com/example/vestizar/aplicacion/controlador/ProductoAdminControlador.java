@@ -1,7 +1,7 @@
-package com.example.vestizar.controlador;
+package com.example.vestizar.aplicacion.controlador;
 
-import com.example.vestizar.entidad.Producto;
-import com.example.vestizar.servicio.ProductoServicio;
+import com.example.vestizar.aplicacion.entidad.Producto;
+import com.example.vestizar.aplicacion.servicio.ProductoServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
