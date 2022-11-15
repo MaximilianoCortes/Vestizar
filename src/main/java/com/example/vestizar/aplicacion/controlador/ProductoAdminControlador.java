@@ -83,7 +83,12 @@ public class ProductoAdminControlador {
     servicio.eliminarProducto(id);
         return "redirect:/inicioAdmin";
 
+
     }
+
+
+
+
 
 
 }
