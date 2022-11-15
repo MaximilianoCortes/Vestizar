@@ -157,10 +157,13 @@ article{
     background-color: white;
     position: relative;
     color: black;
-    width: 200px;
+   padding-left: 46px ;
+    padding-right:46px ;
+    padding-top: 5px;
+    padding-bottom:5px ;
     height: 60px;
     left: 50px;
-    top: 250px;
+    top: 244px;
     font-size: 24px;
     border: 1px solid black;
 }
