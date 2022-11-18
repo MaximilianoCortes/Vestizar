@@ -3,6 +3,8 @@ package com.example.vestizar.aplicacion.entidad;
 import com.example.vestizar.aplicacion.Enums.tipoCiudad;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "usuarios")
@@ -17,17 +19,22 @@ public class Usuario {
     @Column(name = "apellido", nullable = false)
     private String apellido;
 
-    @Column(name = "correo", nullable = false,unique = true)
-    private String correo;
+    @Column(name = "email", nullable = false,unique = true)
+    private String email;
 
-    @Column(name = "contraseña", nullable = false)
+    @Column(name = "contrasena", nullable = false)
     private String contrasena;
 
     @Column(name = "celular", nullable = false,unique = true)
     private String celular;
 
-    @Column(name = "rol", nullable = false)
-    private int rol;
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = { @JoinColumn(name = "user_id", referencedColumnName = "idUsuario") },
+            inverseJoinColumns = { @JoinColumn(name = "role_id", referencedColumnName = "id") }
+    )
+    private List<Role> roles = new ArrayList<>();
 
     @Column(name = "foto_perfil")
     private String fotoPerfil;
@@ -44,18 +51,17 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(Long idUsuario, String nombre, String apellido, String correo, String contrasena, String celular, int rol, String fotoPerfil, String nombreUsuario, tipoCiudad ciudad) {
+    public Usuario(Long idUsuario, String nombre, String apellido, String correo, String contrasena, String celular, List<Role> roles, String fotoPerfil, String nombreUsuario, tipoCiudad ciudad) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.apellido = apellido;
-        this.correo = correo;
+        this.email = correo;
         this.contrasena = contrasena;
         this.celular = celular;
-        this.rol = rol;
+        this.roles = roles;
         this.fotoPerfil = fotoPerfil;
         this.nombreUsuario = nombreUsuario;
-        this.ciudad=ciudad;
-
+        this.ciudad = ciudad;
     }
 
     public tipoCiudad  getCiudad() {
@@ -90,12 +96,12 @@ public class Usuario {
         this.apellido = apellido;
     }
 
-    public String getCorreo() {
-        return correo;
+    public String getEmail() {
+        return email;
     }
 
-    public void setCorreo(String correo) {
-        this.correo = correo;
+    public void setEmail(String correo) {
+        this.email = correo;
     }
 
     public String getContrasena() {
@@ -114,12 +120,12 @@ public class Usuario {
         this.celular = celular;
     }
 
-    public int getRol() {
-        return rol;
+    public List<Role> getRoles() {
+        return roles;
     }
 
-    public void setRol(int rol) {
-        this.rol = rol;
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
     }
 
     public String getFotoPerfil() {
