@@ -81,33 +81,32 @@ public class ProductoServicioTest {
     @Test
     public void guardarProducto(){
 
-        for (Producto productoGuardar: productos) {
-            productoServicio.guardarProducto(productoGuardar);
-        }
-        for (Producto productoEncontrar: productos){
-            Producto productoEncontrado = productoServicio.obtenerProductoPorId(productoEncontrar.getIdPoroducto());
+            productoServicio.guardarProducto(producto1);
+
+            Producto productoEncontrado = productoServicio.obtenerProductoPorId(producto1.getIdPoroducto());
 
             if(productoEncontrado != null){
                 Assertions.assertNotNull(productoEncontrado);
                 Assertions.assertNotEquals(0, (long) productoEncontrado.getIdPoroducto());
                 Assertions.assertFalse(productoEncontrado.getIdPoroducto() <= 0);
-                System.out.println("Producto "+productoEncontrado.getIdPoroducto()+" encontrado a partir de la busqueda del producto "+productoEncontrar.getIdPoroducto());
-                Assertions.assertEquals(productoEncontrar.getIdPoroducto(), productoEncontrado.getIdPoroducto());
-                Assertions.assertEquals(productoEncontrar.getAprobado(), productoEncontrado.getAprobado());
-                Assertions.assertEquals(productoEncontrar.getTipoProducto(), productoEncontrado.getTipoProducto());
-                Assertions.assertEquals(productoEncontrar.getCategoria(), productoEncontrado.getCategoria());
-                Assertions.assertEquals(productoEncontrar.getEstado(), productoEncontrado.getEstado());
-                Assertions.assertEquals(productoEncontrar.getTalla(), productoEncontrado.getTalla());
-                Assertions.assertEquals(productoEncontrar.getDescripcion(), productoEncontrado.getDescripcion());
-                Assertions.assertEquals(productoEncontrar.getMarca(), productoEncontrado.getMarca());
-                Assertions.assertEquals(productoEncontrar.getPrecio(), productoEncontrado.getPrecio());
+                System.out.println("Producto "+productoEncontrado.getIdPoroducto()+" encontrado a partir de la busqueda del producto "+producto1.getIdPoroducto());
+                Assertions.assertEquals(producto1.getIdPoroducto(), productoEncontrado.getIdPoroducto());
+                Assertions.assertEquals(producto1.getAprobado(), productoEncontrado.getAprobado());
+                Assertions.assertEquals(producto1.getTipoProducto(), productoEncontrado.getTipoProducto());
+                Assertions.assertEquals(producto1.getCategoria(), productoEncontrado.getCategoria());
+                Assertions.assertEquals(producto1.getEstado(), productoEncontrado.getEstado());
+                Assertions.assertEquals(producto1.getTalla(), productoEncontrado.getTalla());
+                Assertions.assertEquals(producto1.getDescripcion(), productoEncontrado.getDescripcion());
+                Assertions.assertEquals(producto1.getMarca(), productoEncontrado.getMarca());
+                Assertions.assertEquals(producto1.getPrecio(), productoEncontrado.getPrecio());
 
             }
 
-            productoServicio.eliminarProducto(productoEncontrado.getIdPoroducto());
-        }
+            productoServicio.eliminarProducto(producto1.getIdPoroducto());
 
     }
+
+
 
 
 
