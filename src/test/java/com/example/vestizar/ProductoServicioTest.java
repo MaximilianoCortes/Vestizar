@@ -14,6 +14,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
@@ -112,10 +113,14 @@ public class ProductoServicioTest {
 
     }
 
-    @Disabled
-    @DisplayName("Obtener productos aprobados")
+    @DisplayName("Obtener lista de productos aprobados")
     @Test
     public void obtenerProductoPorAprobado(){
+        List<Producto> listaProductosAprobados = productoServicio.obtenerProductoPorAprobado(1);
+        Assertions.assertNotNull(listaProductosAprobados);
+        Assertions.assertNotEquals(0,listaProductosAprobados.size());
+        Assertions.assertTrue(listaProductosAprobados.stream().allMatch(p -> Objects.equals(p.getAprobado(), 1)));
+        Assertions.assertFalse(listaProductosAprobados.stream().anyMatch(p -> Objects.equals(p.getAprobado(), 0)));
 
     }
 
