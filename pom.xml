@@ -15,7 +15,7 @@
     <description>Vestizar</description>
     <properties>
         <java.version>17</java.version>
-        <start-class>com.example.vestizar.aplicacion.VestizarApplication</start-class>
+        <start-class>com.example.vestizar.VestizarApplication</start-class>
     </properties>
     <dependencies>
         <dependency>
@@ -92,6 +92,14 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-test-autoconfigure</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
         </dependency>
 
 
