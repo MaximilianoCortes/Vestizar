@@ -124,6 +124,49 @@ public class ProductoServicioTest {
 
     }
 
+    @DisplayName("Obtener lista de productos por tipos de producto")
+    @Test
+    public void obtenerProductoPorTipoProducto(){
+        List<Producto> listaProductosPolera = productoServicio.obteneProductoPorTipoProducto(0,"Polera");
+        List<Producto> listaProductosPantalon = productoServicio.obteneProductoPorTipoProducto(0,"Pantalon");
+        Assertions.assertNotNull(listaProductosPolera);
+        Assertions.assertNotNull(listaProductosPantalon);
+        Assertions.assertNotEquals(0,listaProductosPolera.size());
+        Assertions.assertNotEquals(0,listaProductosPantalon.size());
+        Assertions.assertTrue(listaProductosPolera.stream().anyMatch(p -> Objects.equals(p.getTipoProducto(), "Polera")));
+        Assertions.assertTrue(listaProductosPantalon.stream().anyMatch(p -> Objects.equals(p.getTipoProducto(), "Pantalon")));
+        Assertions.assertFalse(listaProductosPolera.stream().anyMatch(p -> Objects.equals(p.getTipoProducto(), null)));
+        Assertions.assertFalse(listaProductosPantalon.stream().anyMatch(p -> Objects.equals(p.getTipoProducto(), null)));
+
+
+    }
+
+
+    @DisplayName("Obtener lista de productos por categoria y tipos de producto")
+    @Test
+    public void obtenerProductoPorCategoriaYTipoProducto(){
+        List<Producto> listaProductosPoleraHombre = productoServicio.obteneProductoPorCategoriaYTipoProducto(0,"Hombre","Polera");
+        List<Producto> listaProductosPantalonMujer = productoServicio.obteneProductoPorCategoriaYTipoProducto(0,"Mujer","Pantalon");
+        List<Producto> listaProductosPoleronNinos = productoServicio.obteneProductoPorCategoriaYTipoProducto(1,"Niños","Poleron");
+        Assertions.assertNotNull(listaProductosPoleraHombre);
+        Assertions.assertNotNull(listaProductosPantalonMujer);
+        Assertions.assertNotNull(listaProductosPoleronNinos);
+        Assertions.assertNotEquals(0,listaProductosPoleraHombre.size());
+        Assertions.assertNotEquals(0,listaProductosPantalonMujer.size());
+        Assertions.assertNotEquals(0,listaProductosPoleronNinos.size());
+        Assertions.assertTrue(listaProductosPoleraHombre.stream().anyMatch(p -> Objects.equals(p.getTipoProducto(), "Polera")));
+        Assertions.assertTrue(listaProductosPoleraHombre.stream().anyMatch(p -> Objects.equals(p.getCategoria(), "Hombre")));
+        Assertions.assertTrue(listaProductosPantalonMujer.stream().anyMatch(p -> Objects.equals(p.getTipoProducto(), "Pantalon")));
+        Assertions.assertTrue(listaProductosPantalonMujer.stream().anyMatch(p -> Objects.equals(p.getCategoria(), "Mujer")));
+        Assertions.assertTrue(listaProductosPoleronNinos.stream().anyMatch(p -> Objects.equals(p.getTipoProducto(), "Poleron")));
+        Assertions.assertTrue(listaProductosPoleronNinos.stream().anyMatch(p -> Objects.equals(p.getCategoria(), "Niños")));
+        Assertions.assertFalse(listaProductosPoleraHombre.stream().anyMatch(p -> Objects.equals(p.getTipoProducto(), null)));
+        Assertions.assertFalse(listaProductosPantalonMujer.stream().anyMatch(p -> Objects.equals(p.getTipoProducto(), null)));
+        Assertions.assertFalse(listaProductosPoleronNinos.stream().anyMatch(p -> Objects.equals(p.getTipoProducto(), null)));
+
+
+    }
+
 
 
 
