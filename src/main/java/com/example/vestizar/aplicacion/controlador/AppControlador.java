@@ -4,6 +4,8 @@ import com.example.vestizar.aplicacion.Dto.UserDto;
 import com.example.vestizar.aplicacion.Enums.tipoCiudad;
 import com.example.vestizar.aplicacion.entidad.Usuario;
 import com.example.vestizar.aplicacion.servicio.UsuarioServicio;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -63,6 +65,14 @@ public class AppControlador {
 
         userService.crearNuevoUsuario(userDto);
         return "redirect:/";
+    }
+    @GetMapping("/iniciadoSesion")
+    public String iniciadoSesion(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String usuario = authentication.getName();
+        Usuario sesion = userService.findUserByEmail(usuario);
+        System.out.println("este es el correo que inicio sesion: "+sesion.toString());
+        return "iniciadoSesion";
     }
 
 

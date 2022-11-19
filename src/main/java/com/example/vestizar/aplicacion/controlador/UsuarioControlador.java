@@ -47,10 +47,7 @@ public class UsuarioControlador {
         return "redirect:/";
 
     }*/
-    @GetMapping("/login")
-    public String login(){
-        return "login";
-    }
+
 
 
 

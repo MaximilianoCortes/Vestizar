@@ -64,6 +64,22 @@ public class Usuario {
         this.ciudad = ciudad;
     }
 
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "idUsuario=" + idUsuario +
+                ", nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", email='" + email + '\'' +
+                ", contrasena='" + contrasena + '\'' +
+                ", celular='" + celular + '\'' +
+                ", roles=" + roles +
+                ", fotoPerfil='" + fotoPerfil + '\'' +
+                ", nombreUsuario='" + nombreUsuario + '\'' +
+                ", ciudad=" + ciudad +
+                '}';
+    }
+
     public tipoCiudad  getCiudad() {
         return ciudad;
     }
