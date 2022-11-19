@@ -52,6 +52,17 @@ public class Producto {
     public Producto(){
     }
 
+    public Producto(int aprobado, String tipoProducto, String categoria, String estado, String talla, String descripcion, String marca, double precio) {
+        this.aprobado = aprobado;
+        this.tipoProducto = tipoProducto;
+        this.categoria = categoria;
+        this.estado = estado;
+        this.talla = talla;
+        this.descripcion = descripcion;
+        this.marca = marca;
+        this.precio = precio;
+    }
+
     public Long getIdPoroducto() {
         return idPoroducto;
     }

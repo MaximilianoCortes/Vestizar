@@ -67,7 +67,7 @@ public class ProductoAdminControlador {
         Producto productoExsistente=servicio.obtenerProductoPorId(id);
         productoExsistente.setIdPoroducto(id);
         productoExsistente.setAprobado(1);
-        servicio.aprobar(productoExsistente);
+        servicio.guardarProducto(productoExsistente);
         return "redirect:/inicioAdmin";
     }
 

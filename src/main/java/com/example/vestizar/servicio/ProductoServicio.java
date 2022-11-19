@@ -85,7 +85,7 @@ public class ProductoServicio {
      *
      * @param producto se entrega el producto que se quiere aprobar.
      */
-    public void aprobar(Producto producto){
+    public void guardarProducto(Producto producto){
         repositorio.save(producto);
     }
 
