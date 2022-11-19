@@ -77,14 +77,14 @@ public class UserDto {
     public UserDto() {
     }
 
-    public UserDto(Long id, String nombre, String apellido, String celular, tipoCiudad ciudad, String correo, String contraseña, String usuario) {
+    public UserDto(Long id, String nombre, String apellido, String celular, tipoCiudad ciudad, String correo, String contrasena, String usuario) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.celular = celular;
         this.ciudad = ciudad;
         this.email = correo;
-        this.contrasena = contraseña;
+        this.contrasena = contrasena;
         this.nombreUsuario = usuario;
     }
 

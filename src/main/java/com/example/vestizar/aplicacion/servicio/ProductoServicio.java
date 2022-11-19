@@ -34,7 +34,7 @@ public class ProductoServicio {
      * @param marca          Es la marca del producto.
      * @param precio         Es el precio del producto.
      */
-    public void crearNuevoProducto(MultipartFile file, String tipoProducto,String categoria,String estado,String talla,String descripcion, String marca,double precio){
+    public void crearNuevoProducto(MultipartFile file, String tipoProducto,String categoria,String estado,String talla,String descripcion, String marca,double precio, Long idVendedor){
 
         Producto p=new Producto();
 
@@ -54,7 +54,7 @@ public class ProductoServicio {
             }
         }
 
-
+        p.setAprobado(0);
         p.setTipoProducto(tipoProducto);
         p.setCategoria(categoria);
 
@@ -63,9 +63,10 @@ public class ProductoServicio {
         p.setDescripcion(descripcion);
         p.setMarca(marca);
         p.setPrecio(precio);
+        p.setVendedor(idVendedor);
+
 
         repositorio.save(p);
-
     }
 
 

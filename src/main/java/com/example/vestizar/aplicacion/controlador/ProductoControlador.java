@@ -23,22 +23,7 @@ public class ProductoControlador {
     @Autowired
     ProductoServicio servicio;
 
-    /**
-     *Es la preparacion de algunos datos predefinidos para la creación
-     * de producots y ventana principal una vez iniciado la sesión.
-     *
-     * @param model se utiliza para poder trabajar objetos desde los html, en este caso trabja Enums, estos
-     *              preparan algunos datos predefinidos para la creación de productos.
-     * @return La ventana prinicipal ya iniciada la sesión.
-     */
-    @GetMapping("/iniciado")
-    public String iniciadoSesion(Model model) {
-        model.addAttribute("tipoProducto", tipoProducto.values());
-        model.addAttribute("talla", tipoTalla.values());
-        model.addAttribute("estado", tipoEstado.values());
-        model.addAttribute("categoria", tipoCategoria.values());
-        return "iniciadoSesion";
-    }
+
 
     /**
      * Permite crear y guardar un producto una vez obtenido todos los datos que se solicitan para poder crearlo.
@@ -61,11 +46,12 @@ public class ProductoControlador {
                                   @RequestParam("talla") String talla,
                                   @RequestParam("descripcion") String descripcion,
                                   @RequestParam("marca") String marca,
-                                  @RequestParam("precio") double precio) {
+                                  @RequestParam("precio") double precio,
+                                  @RequestParam("idVendedor") Long idVendedor) {
 
-        servicio.crearNuevoProducto(file, tipoDeProducto, categoria,estado, talla, descripcion,marca, precio);
+        servicio.crearNuevoProducto(file, tipoDeProducto, categoria,estado, talla, descripcion,marca, precio,idVendedor);
 
-        return "redirect:/iniciado";
+        return "redirect:/iniciadoSesion";
     }
 
 

@@ -44,30 +44,12 @@ public class Producto {
     private String marca;
 
     @Column(name = "precio",nullable = false)
-    private double precio ;
+    private double precio;
 
-    @ManyToOne(targetEntity = Usuario.class,fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JoinColumn(name = "FK_vendedor")
-    private Usuario vendedor;
+    @Column(name = "idVendedor")
+    private Long idVendedor;
 
     public Producto(){
-    }
-
-    public Producto(Long idPoroducto, int aprobado, String tipoProducto,String categoria, String imagen1, String imagen2, String imagen3, String imagen4, String estado, String talla, String descripcion, String marca, double precio, Usuario vendedor) {
-        this.idPoroducto = idPoroducto;
-        this.aprobado = aprobado;
-        this.tipoProducto = tipoProducto;
-        this.categoria=categoria;
-        this.imagen1 = imagen1;
-        this.imagen2 = imagen2;
-        this.imagen3 = imagen3;
-        this.imagen4 = imagen4;
-        this.estado = estado;
-        this.talla = talla;
-        this.descripcion = descripcion;
-        this.marca = marca;
-        this.precio = precio;
-        this.vendedor = vendedor;
     }
 
     public Long getIdPoroducto() {
@@ -175,11 +157,11 @@ public class Producto {
         this.precio = precio;
     }
 
-    public Usuario getVendedor() {
-        return vendedor;
+    public Long getVendedor() {
+        return idVendedor;
     }
 
-    public void setVendedor(Usuario vendedor) {
-        this.vendedor = vendedor;
+    public void setVendedor(Long vendedor) {
+        this.idVendedor = vendedor;
     }
 }

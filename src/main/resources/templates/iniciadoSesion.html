@@ -30,7 +30,7 @@
                 <a class="bottonMenu bottonDrop" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                  
               <img id="imagenUsuarioIniciado" th:src="@{img/usuariov2.png}">
-              <p id="nombreUsuarioIniciado">usuario01</p>
+              <p id="nombreUsuarioIniciado" th:text="${sesion.nombreUsuario}"></p>
                 </a>
 
                 <ul class="dropdown-menu dropdown-menu-dark informaDrop" style="text-align: center; background-color: #1b1919; border-radius: 6%; " aria-labelledby="dropdownMenuLink">
@@ -96,6 +96,7 @@
 
                                 <input  class="informacioncrearpubli" type="text" name="marca" id="marca" placeholder="Marca"><br>
                                 <input  class="informacioncrearpubli" type="text" name="precio" id="precio" placeholder="Precio"><br>
+                                <input  type="hidden" name="idVendedor" id="idVendedor" th:value="${sesion.getId()}">
                                 <textarea  class="descripion" name="descripcion" id="descripcion" placeholder="Breve descripción o detalles del artículo"></textarea><br>
 
                             </div>

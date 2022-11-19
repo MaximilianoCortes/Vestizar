@@ -1,7 +1,7 @@
 package com.example.vestizar.aplicacion.controlador;
 
 import com.example.vestizar.aplicacion.Dto.UserDto;
-import com.example.vestizar.aplicacion.Enums.tipoCiudad;
+import com.example.vestizar.aplicacion.Enums.*;
 import com.example.vestizar.aplicacion.entidad.Usuario;
 import com.example.vestizar.aplicacion.servicio.UsuarioServicio;
 import org.springframework.security.core.Authentication;
@@ -67,15 +67,20 @@ public class AppControlador {
         return "redirect:/";
     }
     @GetMapping("/iniciadoSesion")
-    public String iniciadoSesion(){
+    public String iniciadoSesion(Model modelo){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String usuario = authentication.getName();
         Usuario sesion = userService.findUserByEmail(usuario);
         System.out.println("este es el correo que inicio sesion: "+sesion.toString());
+        modelo.addAttribute("sesion",sesion);
+
+        modelo.addAttribute("tipoProducto", tipoProducto.values());
+        modelo.addAttribute("talla", tipoTalla.values());
+        modelo.addAttribute("estado", tipoEstado.values());
+        modelo.addAttribute("categoria", tipoCategoria.values());
+
         return "iniciadoSesion";
+
     }
-
-
-
 }
 
