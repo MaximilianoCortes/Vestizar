@@ -66,6 +66,8 @@ public class AppControlador {
         userService.crearNuevoUsuario(userDto);
         return "redirect:/";
     }
+
+    //a partir de aca todo es con sesion iniciada
     @GetMapping("/iniciadoSesion")
     public String iniciadoSesion(Model modelo){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
