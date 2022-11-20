@@ -39,6 +39,12 @@ div a{
     text-align: center;
 }
 
+.post{
+    display: inline-block;
+
+}
+
+
 #barra{
     width: 1000px;
     height: 43px;
@@ -84,7 +90,7 @@ div a{
 .cat{
     display: inline-block;
     color: black;
-    margin: 20px 95px;
+    margin: 20px 150px;
     position: relative;
     top: 20px;
     bottom: 20px;
@@ -98,39 +104,40 @@ div a{
     width: 60px;
     height: 60px;
     left: 850px;
-    top: -20px;
+    top: 20px;
 }
 
 #nombreUsuarioVendedor{
     position: relative;
     font-size: 22px;
-    top: -80px;
+    top: -40px;
     left: 930px;
 }
 
 #ubiUsuarioVendedor{
     position: relative;
     color: gray;
-    top: -105px;
+    top: -65px;
     left: 930px;
 }
 
-.imagenArticuloVendedor{
+.imagenBusqueda{
     width: 250px;
     height: 300px;
     position: relative;
-    top: 110px;
-    left: -5px;
-    margin: 40px 5px;
+    top: -85px;
+    margin: 40px -90px;
+    left: 190px;
     border-radius: 10px;
 }
 
-.precioArticuloVendedor{
+.precioBusqueda{
     display: inline-block;
     text-align: left;
     position: relative;
-    top: 285px;
-    right: 265px;
+    width: 250px;
+    top: 90px;
+    left: 25px;
 }
 
 ::placeholder{

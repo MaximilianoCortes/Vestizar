@@ -44,38 +44,43 @@
                     </div>
                     <p id="tituloBienvenido2">Ingresa tus datos para continuar</p>
                     <div class="modal-body">
-                      <form>
-                         <input class="datosInicioSesión" type="text" name="usuario" placeholder="Ingresa tu usuario"/>
-                         <br><br>
-                         <input class="datosInicioSesión"  type="password" name="contraseña" placeholder="Ingresa tu contraseña"> <br><br><br><br><br>
-                      </form>
-                    </div>
-                    <div >  
-                        <div>
+                        <form th:action="@{/login}" method="post" class="form login">
+                            <div class="modal-body">
 
-                            <p id="registroContrasena">¿Olvidaste tu contraseña?
-                                <a href="RecuperarContrasena.html">
-                                    <button type="button" style="color: green; border: none; background-color: #dadada">Recuperala</button>
+                                <input class="datosInicioSesión" type="text" id="username" name="username" placeholder="Ingresa tu correo"/>
+                                <br><br>
+                                <input class="datosInicioSesión"  type="password" id="password" name="password" placeholder="Ingresa tu contraseña"> <br><br><br><br><br>
+
+                            </div>
+
+                            <div >
+                                <div>
+
+                                    <p id="registroContrasena">¿Olvidaste tu contraseña?
+                                        <a >
+                                            <button type="button" style="color: green; border: none; background-color: #dadada">Recuperala</button>
+                                        </a>
+
+                                    </p>
+
+                                    <p id="tituloRegistro">¿No tienes una cuenta?
+                                        <a id="linkRegistro" th:href="@{/crearUsuario}" >Reg&iacute;strate</a>
+                                    </p>
+
+
+
+                                </div>
+                                <a href="iniciadoSesion.html">
+                                    <button type="submit" id="botonInicioSesion" >Iniciar sesi&oacute;n</button>
                                 </a>
 
-                            </p>
+                            </div>
 
-
-                            <p id="tituloRegistro">¿No tienes una cuenta? 
-                                <a id="linkRegistro" href="registro.html" >Reg&iacute;strate</a>
-                            </p>
-
-
-
-                        </div>
-                        <a href="articuloIniciado.html">
-                            <button type="button" id="botonInicioSesion" >Iniciar sesi&oacute;n</button>
-                        </a>
+                        </form>
                     </div>
                   </div>
                 </div>
-              </div>
-
+            </div>
 
         <div id="categorias">
             <a class="cat" th:href="@{/busqueda/categoria/hombre}" >Hombre</a>
@@ -105,12 +110,12 @@
                     <p class="informacionProducto"> Precio</p>
                 </div>
 
-                <div th:object="${producto}">
-                    <img id="imagenUsuario" src="/img/usuario.png">
-                    <a href="perfilVendedor.html">
-                        <p id="nombreUsuario">usuario3842</p>
+                <div>
+                    <img id="imagenUsuario" th:src="@{/img/usuario.png}">
+                    <a th:href="@{/perfilVendedor/{id}(id=${producto.getVendedor()})}">
+                        <p id="nombreUsuario" th:text="${sesion.nombreUsuario}"></p>
                     </a>
-                    <p id="ubicacionUsuario">Temuco</p>
+                    <p id="ubicacionUsuario" th:text="${sesion.ciudad}"></p>
                 </div>
 
                 <div th:object="${producto}">

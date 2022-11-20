@@ -16,7 +16,7 @@
     <body>
     <header>
         <div>
-            <a th:href="@{/}"><h3 id="logo">VESTIZAR</h3>  </a>
+            <a th:href="@{/inicioAdmin}"><h3 id="logo">VESTIZAR</h3>  </a>
 
            </div>
    
@@ -49,9 +49,9 @@
                 </div>
 
                 <div >
-                    <img id="imagenUsuario" src="../static/img/usuario.png" >
-                    <p id="nombreUsuario">usuario444</p>
-                    <p id="ubicacionUsuario">Temuco</p>
+                    <img id="imagenUsuario"  th:src="@{/img/usuario.png}" >
+                    <p id="nombreUsuario" th:text="${sesion.nombreUsuario}"></p>
+                    <p id="ubicacionUsuario" th:text="${sesion.ciudad}"></p>
                 </div>
 
                 <div>

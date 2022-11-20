@@ -16,14 +16,14 @@
    <header>
 
     <div>
-      <a th:href="@{/}"><h3 id="logo">VESTIZAR</h3>  </a>
+        <a th:href="@{/}"><h3 id="logo">VESTIZAR</h3>  </a>
      </div>
     
             <div>
                 <form>
                     <input id="barra" class="ms-5"  type="text" placeholder="Busca art&iacute;culos, marcas o estilos!" name="busqueda">
                 </form>
-                <img id="lupabarra" th:src="@{img/lupa.png}">
+                <img id="lupabarra" th:src="@{/img/lupa.png}">
             </div>
 
             <div>
@@ -42,31 +42,42 @@
                   </div>
                   <p id="tituloBienvenido2">Ingresa tus datos para continuar</p>
                   <div class="modal-body">
-                    <form>
-                       <input class="datosInicioSesión" type="text" name="usuario" placeholder="Ingresa tu usuario"/>
-                       <br><br>
-                       <input class="datosInicioSesión"  type="password" name="contraseña" placeholder="Ingresa tu contraseña"> <br><br><br><br><br>
-                    </form>
-                  </div>
-                  <div >  
-                      <div>
+                      <form th:action="@{/login}" method="post" class="form login">
+                          <div class="modal-body">
 
-                          <p id="registroContrasena">¿Olvidaste tu contraseña?
-                              <a href="RecuperarContrasena.html">
-                                  <button type="button" style="color: green; border: none; background-color: #dadada">Recuperala</button>
+                              <input class="datosInicioSesión" type="text" id="username" name="username" placeholder="Ingresa tu correo"/>
+                              <br><br>
+                              <input class="datosInicioSesión"  type="password" id="password" name="password" placeholder="Ingresa tu contraseña"> <br><br><br><br><br>
+
+                          </div>
+
+                          <div >
+                              <div>
+
+                                  <p id="registroContrasena">¿Olvidaste tu contraseña?
+                                      <a >
+                                          <button type="button" style="color: green; border: none; background-color: #dadada">Recuperala</button>
+                                      </a>
+
+                                  </p>
+
+                                  <p id="tituloRegistro">¿No tienes una cuenta?
+                                      <a id="linkRegistro" th:href="@{/crearUsuario}" >Reg&iacute;strate</a>
+                                  </p>
+
+
+
+                              </div>
+                              <a href="iniciadoSesion.html">
+                                  <button type="submit" id="botonInicioSesion" >Iniciar sesi&oacute;n</button>
                               </a>
-                          </p>
-                          <p id="tituloRegistro">¿No tienes una cuenta? 
-                              <a id="linkRegistro" href="registro.html" >Reg&iacute;strate</a>
-                          </p>
-                      </div>
-                      <a href="busquedaIniciada.html">
-                          <button type="button" id="botonInicioSesion" >Iniciar sesi&oacute;n</button>
-                      </a>
+
+                          </div>
+
+                      </form>
                   </div>
                 </div>
               </div>
-            </div>
 
 
 
@@ -78,16 +89,18 @@
            <a class="cat" id="cato" th:href="@{/busqueda}" >Ofertas</a>
        </div>
 
-        </header>
+   </header>
 
         
 
         <section>
+
           <article th:each="productos:${producto}"  class="post">
             <a th:href="@{/verProducto/{id}(id=${productos.idPoroducto})}">
                 <img class="imagenBusqueda" th:src="@{'/imgPagina/'+ ${productos.imagen1}}">
             </a>
             <p class="precioBusqueda"th:text="${productos.precio}"></p>
+
           </article>
 
         </section>

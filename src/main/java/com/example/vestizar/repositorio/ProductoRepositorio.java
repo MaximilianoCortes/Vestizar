@@ -39,4 +39,8 @@ public interface ProductoRepositorio extends JpaRepository<Producto,Long> {
     List<Producto> findAllByAprobadoAndCategoriaAndTipoProducto(int aprobado,String categoria, String tipoProducto);
 
 
+    List<Producto> findByAprobadoAndIdVendedor(int aprobado, Long idVendedor);
+
+
+
 }

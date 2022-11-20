@@ -89,7 +89,7 @@ article a{
 .cat{
     display: inline-block;
     color: black;
-    margin: 20px 95px;
+    margin: 20px 150px;
     position: relative;
     top: 20px;
     bottom: 20px;
@@ -179,7 +179,7 @@ article a{
     background-color: #373737;
     margin: unset;
     left: 200px;
-    top: -401px;
+    top: -300px;
     width: 1000px;
     height: 781px;
 }

@@ -89,7 +89,7 @@ article a{
 .cat{
     display: inline-block;
     color: black;
-    margin: 20px 95px;
+    margin: 20px 150px;
     position: relative;
     top: 20px;
     bottom: 20px;
@@ -145,21 +145,21 @@ article a{
     display: inline-block;
 }
 
-.imagenArticuloVendedor{
+.imagenBusqueda{
     width: 250px;
     height: 300px;
-    border-radius: 10px;
     position: relative;
     top: 20px;
     margin: 40px -90px;
+    border-radius: 10px;
 }
 
-.precioArticuloVendedor{
+.precioBusqueda{
     display: inline-block;
     text-align: left;
     position: relative;
     width: 250px;
-    top: 195px;
+    top: 200px;
     left: 80px;
 }
 
@@ -289,6 +289,10 @@ article a{
     border-bottom-right-radius:20px;
 }
 
+.post{
+    display: inline-block;
+
+}
 
 .bottonDrop{
     position: relative;

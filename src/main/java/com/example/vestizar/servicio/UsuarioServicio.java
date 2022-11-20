@@ -86,6 +86,14 @@ public class UsuarioServicio {
 
 
 
+    public Usuario obtenerUsuarioPorId(Long id){
+        return repositorio.findById(id).get();
+
+    }
+
+
+
+
 
 
 }

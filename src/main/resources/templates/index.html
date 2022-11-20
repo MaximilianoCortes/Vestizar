@@ -15,25 +15,7 @@
     </head>
 
     <body>
-    <script type="text/javascript">
-        function validate() {
-            if (document.f.usuario.value == "Ingresa tu usuario" && document.f.password.value == "Ingresa tu contraseña") {
-                alert("Username and password are required");
-                document.f.usuario.focus();
-                return false;
-            }
-            if (document.f.usuario.value == "Ingresa tu usuario") {
-                alert("Username is required");
-                document.f.usuario.focus();
-                return false;
-            }
-            if (document.f.contraseña.value == "Ingresa tu contraseña") {
-                alert("Password is required");
-                document.f.contraseña.focus();
-                return false;
-            }
-        }
-    </script>
+
     <header>
             <div>
             <a th:href="@{/}"><h3 id="logo">VESTIZAR</h3>  </a>
@@ -71,6 +53,7 @@
                          <input class="datosInicioSesión"  type="password" id="password" name="password" placeholder="Ingresa tu contraseña"> <br><br><br><br><br>
 
                     </div>
+
                     <div >
                         <div>
 

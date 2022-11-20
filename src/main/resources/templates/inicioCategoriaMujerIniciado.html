@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Vestizar</title>
+  <link th:href="@{/css/styleBusqueda.css}" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+</head>
+<body>
+<header>
+
+  <div>
+    <a th:href="@{/iniciadoSesion}"><h3 id="logo">VESTIZAR</h3>  </a>
+  </div>
+
+  <div>
+    <form>
+      <input id="barra" class="ms-5"  type="text" placeholder="Busca art&iacute;culos, marcas o estilos!" name="busqueda">
+    </form>
+    <img id="lupabarra" th:src="@{img/lupa.png}">
+  </div>
+
+  <div class="dropdown">
+    <a class="bottonMenu bottonDrop" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+
+      <img id="imagenUsuarioIniciado" th:src="@{/img/usuariov2.png}">
+      <p id="nombreUsuarioIniciado" th:text="${sesion.nombreUsuario}"></p>
+    </a>
+
+    <ul class="dropdown-menu dropdown-menu-dark informaDrop" style="text-align: center; background-color: #1b1919; border-radius: 6%; " aria-labelledby="dropdownMenuLink">
+      <li><p class="informaDrop0">Bienvenido, Usuario</p></li>
+      <li><a class="dropdown-item informaDrop1" th:href="@{/iniciadoSesion/verMiPerfil}">Ver mi perfil</a></li>
+      <li><a class="dropdown-item informaDrop1" type="Button" data-bs-toggle="modal" data-bs-target="#exampleModal">Crear publicación</a></li>
+      <li><a class="dropdown-item informaDrop1" th:href="@{/iniciadoSesion/misPublicaciones/{id}(id=${sesion.id})}">Ver mis publicaciones</a></li>
+      <li><a class="dropdown-item informaDrop1" th:href="@{/inicioChat}">Chats</a></li>
+      <li><a class="dropdown-item informaDrop1" th:href="@{/inicioAdmin}">Administrador</a></li>
+      <li><a class="dropdown-item informaDrop2" th:href="@{/}">Cerrar Sesion</a></li>
+    </ul>
+  </div>
+
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class=" modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content" style="height: 1000px;" >
+        <div class="modal-header" style="background-color: black;">
+          <h5 class="modal-title tituloModal" id="exampleModalLabel">Crear publicación</h5>
+          <button  type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body cuerpomodal">
+
+          <form  action="/guardarProducto" method="post" enctype="multipart/form-data">
+
+            <div  style=" width: 400px;">
+              <img src=".." class="imagenModalCrearPublicacion" height="300px" width="300px" style="border: 2px solid #373737 ; position: relative; left: 50px; top: 40px ; border-top-left-radius:5% ; border-top-right-radius:5% ;" >
+              <br><br>
+              <button class="botonesCrearpubli botonant botona" type="button">Anterior</button>
+              <button class="botonesCrearpubli botonsgt botona" type="button">Siguiente</button><br><br>
+              <input class="botonesCrearpubli botonagre botonb" name="file" type="file" id="imagen" placeholder="Subir Imagen"><br>
+              <button class="botonesCrearpubli botonquit botonb" type="button">Quitar imagen</button>
+
+            </div>
+
+
+
+            <div style="width: 600px;">
+
+              <div >
+                <select class="form-select tipoProducto1" name="tipoProducto" style="border-radius: 0%; background-color: white; height: 55px; border: none;"><br><br>
+                  <option value="" selected> Seleccione tipo de producto</option>
+                  <option th:each="tiposProducto:${tipoProducto}" th:value="${tiposProducto}" th:text="${tiposProducto.nombre}" ></option>
+                </select>
+
+                <select class="form-select tipoProducto1" name="categoria" style="border-radius: 0%; background-color: white; height: 55px; border: none;"><br><br>
+                  <option value="" selected> Seleccione la categoria del producto</option>
+                  <option th:each="categorias:${categoria}" th:value="${categorias}" th:text="${categorias.nombre}" ></option>
+                </select>
+
+
+                <select  name="talla" class="form-select tipoProducto2 "  style="border-radius: 0%; background-color: white; height: 55px; border: none;"><br><br>
+                  <option value="" selected>Selecciona la talla</option>
+                  <option th:each="tallaProducto:${talla}" th:value="${tallaProducto}" th:text="${tallaProducto.nombre}" ></option>
+
+                </select>
+
+                <select  name="estado" class="form-select tipoProducto2 "  style="border-radius: 0%; background-color: white; height: 55px; border: none;"><br><br>
+                  <option value="" selected>Selecciona el estado</option>
+                  <option th:each="estados:${estado}" th:value="${estados}" th:text="${estados.nombre}" ></option>
+
+                </select>
+
+                <input  class="informacioncrearpubli" type="text" name="marca" id="marca" placeholder="Marca"><br>
+                <input  class="informacioncrearpubli" type="text" name="precio" id="precio" placeholder="Precio"><br>
+                <input  type="hidden" name="idVendedor" id="idVendedor" th:value="${sesion.getId()}">
+                <textarea  class="descripion" name="descripcion" id="descripcion" placeholder="Breve descripción o detalles del artículo"></textarea><br>
+
+              </div>
+              <button class="crearPubli btn btn-primary" type="submit">Publicar</button>
+            </div>
+
+          </form>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <div id="categorias">
+    <a class="cat" th:href="@{/iniciadoSesion/busqueda/categoria/hombre}" >Hombre</a>
+    <a class="cat" th:href="@{/iniciadoSesion/busqueda/categoria/mujer}" >Mujer</a>
+    <a class="cat" th:href="@{/iniciadoSesion/busqueda/categoria/nino}" >Ni&ntilde;os</a>
+    <a class="cat" th:href="@{/iniciadoSesion/busqueda}" >General</a>
+    <a class="cat" id="cato" th:href="@{/iniciadoSesion/busqueda}" >Ofertas</a>
+  </div>
+</header>
+
+
+
+<section>
+  <article class="post">
+    <a th:href="@{/iniciadoSesion/busqueda/categoria/mujer/porTipo/polera}">
+      <img th:src="@{/img/polera.png}" class="imagenBusquedaCategoria" />
+    </a>
+    <p class="precioBusquedaCategoria">Poleras</p>
+  </article>
+
+  <article class="post">
+    <a th:href="@{/iniciadoSesion/busqueda/categoria/mujer/porTipo/poleron}">
+      <img th:src="@{/img/poleron.png}" class="imagenBusquedaCategoria" />
+    </a>
+    <p class="precioBusquedaCategoria">Polerones</p>
+  </article>
+  <article class="post">
+    <a th:href="@{/iniciadoSesion/busqueda/categoria/mujer/porTipo/camisa}">
+      <img th:src="@{/img/camisa.png}" class="imagenBusquedaCategoria" />
+    </a>
+    <p class="precioBusquedaCategoria">Camisas</p>
+  </article>
+  <article class="post">
+    <a th:href="@{/iniciadoSesion/busqueda/categoria/mujer/porTipo/pantalon}">
+      <img th:src="@{/img/pantalon.png}" class="imagenBusquedaCategoria" />
+    </a>
+    <p class="precioBusquedaCategoria">Pantalones</p>
+  </article>
+  <article class="post">
+    <a th:href="@{/iniciadoSesion/busqueda/categoria/mujer/porTipo/zapato}">
+      <img th:src="@{/img/zapatos.png}" class="imagenBusquedaCategoria" />
+    </a>
+    <p class="precioBusquedaCategoria">Zapatos</p>
+  </article>
+  <article class="post">
+    <a th:href="@{/iniciadoSesion/busqueda/categoria/mujer/porTipo/chaqueta}">
+      <img th:src="@{/img/chaqueta.png}" class="imagenBusquedaCategoria" />
+    </a>
+    <p class="precioBusquedaCategoria">Chaqueta</p>
+  </article>
+
+  <article class="post">
+    <a th:href="@{/iniciadoSesion/busqueda/categoria/mujer/porTipo/blusa}">
+      <img th:src="@{/img/blusa.png  }" class="imagenBusquedaCategoria" />
+    </a>
+    <p class="precioBusquedaCategoria">Blusa</p>
+  </article>
+  <article class="post">
+    <a th:href="@{/iniciadoSesion/busqueda/categoria/mujer/porTipo/falda}">
+      <img th:src="@{/img/falda.png  }" class="imagenBusquedaCategoria" />
+    </a>
+    <p class="precioBusquedaCategoria">Falda</p>
+  </article>
+
+</section>
+
+<footer>  </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+</body>
+</html>
