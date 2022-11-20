@@ -2,6 +2,7 @@ package com.example.vestizar.controlador;
 
 import com.example.vestizar.entidad.Producto;
 import com.example.vestizar.servicio.ProductoServicio;
+import com.example.vestizar.servicio.UsuarioServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +18,9 @@ import java.util.List;
 public class ProductoControlador {
 
     @Autowired
-    ProductoServicio servicio;
+    ProductoServicio servicioProducto;
+    @Autowired
+    UsuarioServicio servicioUsuario;
 
 
 
@@ -45,7 +48,7 @@ public class ProductoControlador {
                                   @RequestParam("precio") double precio,
                                   @RequestParam("idVendedor") Long idVendedor) {
 
-        servicio.crearNuevoProducto(file, tipoDeProducto, categoria,estado, talla, descripcion,marca, precio,idVendedor);
+        servicioProducto.crearNuevoProducto(file, tipoDeProducto, categoria,estado, talla, descripcion,marca, precio,idVendedor);
 
         return "redirect:/iniciadoSesion";
     }
@@ -61,7 +64,7 @@ public class ProductoControlador {
     @GetMapping("/busqueda")
     public String busqueda(Model model) {
 
-        List<Producto> productos = servicio.obtenerProductoPorAprobado(1);
+        List<Producto> productos = servicioProducto.obtenerProductoPorAprobado(1);
         model.addAttribute("producto", productos);
         return "busqueda";
     }
@@ -79,7 +82,8 @@ public class ProductoControlador {
      */
     @GetMapping("/verProducto/{id}")
     public String mostrarProducto(@PathVariable Long id, Model modelo) {
-        modelo.addAttribute("producto", servicio.obtenerProductoPorId(id));
+        modelo.addAttribute("producto", servicioProducto.obtenerProductoPorId(id));
+        modelo.addAttribute("sesion", servicioUsuario.obtenerUsuarioPorId(servicioProducto.obtenerIdVendedorProducto(id)));
         return "articulo";
 
     }
@@ -94,7 +98,7 @@ public class ProductoControlador {
      */
     @GetMapping("/busqueda/porTipo/polera")
     public String busquedaPoleras(Model model){
-        List<Producto> productos= servicio.obteneProductoPorTipoProducto(1,"Polera");
+        List<Producto> productos= servicioProducto.obteneProductoPorTipoProducto(1,"Polera");
         model.addAttribute("producto",productos);
         return "busqueda";
     }
@@ -108,7 +112,7 @@ public class ProductoControlador {
      */
     @GetMapping("/busqueda/porTipo/camisa")
     public String busquedaCamisas(Model model){
-        List<Producto> productos= servicio.obteneProductoPorTipoProducto(1,"Camisa");
+        List<Producto> productos= servicioProducto.obteneProductoPorTipoProducto(1,"Camisa");
         model.addAttribute("producto",productos);
         return "busqueda";
     }
@@ -122,10 +126,21 @@ public class ProductoControlador {
      */
     @GetMapping("/busqueda/porTipo/pantalon")
     public String busquedaPantalones(Model model){
-        List<Producto> productos= servicio.obteneProductoPorTipoProducto(1,"Pantalon");
+        List<Producto> productos= servicioProducto.obteneProductoPorTipoProducto(1,"Pantalon");
         model.addAttribute("producto",productos);
         return "busqueda";
     }
+
+    @GetMapping("/perfilVendedor/{id}")
+    public String perfilVendedor(@PathVariable Long id, Model modelo){
+        List<Producto> productos=servicioProducto.obtenerProductoPorVendedor(1,id);
+        modelo.addAttribute("sesion",servicioUsuario.obtenerUsuarioPorId(id));
+        modelo.addAttribute("producto",productos);
+
+        return "perfilVendedor";
+    }
+
+
 
     /**
      * Filtra los tipos de publicaciones a solo las que sean del tipo poleron.
@@ -136,7 +151,7 @@ public class ProductoControlador {
      */
     @GetMapping("/busqueda/porTipo/poleron")
     public String busquedaPolerones(Model model){
-        List<Producto> productos= servicio.obteneProductoPorTipoProducto(1,"Poleron");
+        List<Producto> productos= servicioProducto.obteneProductoPorTipoProducto(1,"Poleron");
         model.addAttribute("producto",productos);
         return "busqueda";
     }
@@ -183,7 +198,7 @@ public class ProductoControlador {
      */
     @GetMapping("/busqueda/categoria/hombre/porTipo/polera")
     public String busquedaPorCategoriaHYTipoPolera(Model model){
-        List<Producto> productos= servicio.obteneProductoPorCategoriaYTipoProducto(1,"Hombre","Polera");
+        List<Producto> productos= servicioProducto.obteneProductoPorCategoriaYTipoProducto(1,"Hombre","Polera");
         model.addAttribute("producto",productos);
         return "busqueda";
     }
@@ -197,7 +212,7 @@ public class ProductoControlador {
      */
     @GetMapping("/busqueda/categoria/hombre/porTipo/poleron")
     public String busquedaPorCategoriaHYTipoPoleron(Model model){
-        List<Producto> productos= servicio.obteneProductoPorCategoriaYTipoProducto(1,"Hombre","Poleron");
+        List<Producto> productos= servicioProducto.obteneProductoPorCategoriaYTipoProducto(1,"Hombre","Poleron");
         model.addAttribute("producto",productos);
         return "busqueda";
     }
@@ -211,7 +226,7 @@ public class ProductoControlador {
      */
     @GetMapping("/busqueda/categoria/hombre/porTipo/camisa")
     public String busquedaPorCategoriaHYTipoCamisa(Model model){
-        List<Producto> productos= servicio.obteneProductoPorCategoriaYTipoProducto(1,"Hombre","Camisa");
+        List<Producto> productos= servicioProducto.obteneProductoPorCategoriaYTipoProducto(1,"Hombre","Camisa");
         model.addAttribute("producto",productos);
         return "busqueda";
     }
@@ -225,7 +240,7 @@ public class ProductoControlador {
      */
     @GetMapping("/busqueda/categoria/hombre/porTipo/pantalon")
     public String busquedaPorCategoriaHYTipoPantalon(Model model){
-        List<Producto> productos= servicio.obteneProductoPorCategoriaYTipoProducto(1,"Hombre","Pantalon");
+        List<Producto> productos= servicioProducto.obteneProductoPorCategoriaYTipoProducto(1,"Hombre","Pantalon");
         model.addAttribute("producto",productos);
         return "busqueda";
     }
@@ -239,7 +254,7 @@ public class ProductoControlador {
      */
     @GetMapping("/busqueda/categoria/hombre/porTipo/zapato")
     public String busquedaPorCategoriaHYTipoZapato(Model model){
-        List<Producto> productos= servicio.obteneProductoPorCategoriaYTipoProducto(1,"Hombre","Zapato");
+        List<Producto> productos= servicioProducto.obteneProductoPorCategoriaYTipoProducto(1,"Hombre","Zapato");
         model.addAttribute("producto",productos);
         return "busqueda";
     }
@@ -253,7 +268,7 @@ public class ProductoControlador {
      */
     @GetMapping("/busqueda/categoria/hombre/porTipo/chaqueta")
     public String busquedaPorCategoriaHYTipoChaqueta(Model model){
-        List<Producto> productos= servicio.obteneProductoPorCategoriaYTipoProducto(1,"Hombre","Chaqueta");
+        List<Producto> productos= servicioProducto.obteneProductoPorCategoriaYTipoProducto(1,"Hombre","Chaqueta");
         model.addAttribute("producto",productos);
         return "busqueda";
     }
@@ -268,7 +283,7 @@ public class ProductoControlador {
      */
     @GetMapping("/busqueda/categoria/mujer/porTipo/polera")
     public String busquedaPorCategoriaMYTipoPolera(Model model){
-        List<Producto> productos= servicio.obteneProductoPorCategoriaYTipoProducto(1,"Mujer","Polera");
+        List<Producto> productos= servicioProducto.obteneProductoPorCategoriaYTipoProducto(1,"Mujer","Polera");
         model.addAttribute("producto",productos);
         return "busqueda";
     }
@@ -282,7 +297,7 @@ public class ProductoControlador {
      */
     @GetMapping("/busqueda/categoria/mujer/porTipo/poleron")
     public String busquedaPorCategoriaMYTipoPoleron(Model model){
-        List<Producto> productos= servicio.obteneProductoPorCategoriaYTipoProducto(1,"Mujer","Poleron");
+        List<Producto> productos= servicioProducto.obteneProductoPorCategoriaYTipoProducto(1,"Mujer","Poleron");
         model.addAttribute("producto",productos);
         return "busqueda";
     }
@@ -296,7 +311,7 @@ public class ProductoControlador {
      */
     @GetMapping("/busqueda/categoria/mujer/porTipo/camisa")
     public String busquedaPorCategoriaMYTipoCamisa(Model model){
-        List<Producto> productos= servicio.obteneProductoPorCategoriaYTipoProducto(1,"Mujer","Camisa");
+        List<Producto> productos= servicioProducto.obteneProductoPorCategoriaYTipoProducto(1,"Mujer","Camisa");
         model.addAttribute("producto",productos);
         return "busqueda";
     }
@@ -310,7 +325,7 @@ public class ProductoControlador {
      */
     @GetMapping("/busqueda/categoria/mujer/porTipo/pantalon")
     public String busquedaPorCategoriaMYTipoPantalon(Model model){
-        List<Producto> productos= servicio.obteneProductoPorCategoriaYTipoProducto(1,"Mujer","Pantalon");
+        List<Producto> productos= servicioProducto.obteneProductoPorCategoriaYTipoProducto(1,"Mujer","Pantalon");
         model.addAttribute("producto",productos);
         return "busqueda";
     }
@@ -324,7 +339,7 @@ public class ProductoControlador {
      */
     @GetMapping("/busqueda/categoria/mujer/porTipo/zapato")
     public String busquedaPorCategoriaMYTipoZapato(Model model){
-        List<Producto> productos= servicio.obteneProductoPorCategoriaYTipoProducto(1,"Mujer","Zapato");
+        List<Producto> productos= servicioProducto.obteneProductoPorCategoriaYTipoProducto(1,"Mujer","Zapato");
         model.addAttribute("producto",productos);
         return "busqueda";
     }
@@ -338,7 +353,7 @@ public class ProductoControlador {
      */
     @GetMapping("/busqueda/categoria/mujer/porTipo/chaqueta")
     public String busquedaPorCategoriaMYTipoChaqueta(Model model){
-        List<Producto> productos= servicio.obteneProductoPorCategoriaYTipoProducto(1,"Mujer","Chaqueta");
+        List<Producto> productos= servicioProducto.obteneProductoPorCategoriaYTipoProducto(1,"Mujer","Chaqueta");
         model.addAttribute("producto",productos);
         return "busqueda";
     }
@@ -352,7 +367,7 @@ public class ProductoControlador {
      */
     @GetMapping("/busqueda/categoria/mujer/porTipo/blusa")
     public String busquedaPorCategoriaMYTipoBlusa(Model model){
-        List<Producto> productos= servicio.obteneProductoPorCategoriaYTipoProducto(1,"Mujer","Blusa");
+        List<Producto> productos= servicioProducto.obteneProductoPorCategoriaYTipoProducto(1,"Mujer","Blusa");
         model.addAttribute("producto",productos);
         return "busqueda";
     }
@@ -366,7 +381,7 @@ public class ProductoControlador {
      */
     @GetMapping("/busqueda/categoria/mujer/porTipo/falda")
     public String busquedaPorCategoriaMYTipoFalda(Model model){
-        List<Producto> productos= servicio.obteneProductoPorCategoriaYTipoProducto(1,"Mujer","Falda");
+        List<Producto> productos= servicioProducto.obteneProductoPorCategoriaYTipoProducto(1,"Mujer","Falda");
         model.addAttribute("producto",productos);
         return "busqueda";
     }
@@ -380,7 +395,7 @@ public class ProductoControlador {
      */
     @GetMapping("/busqueda/categoria/nino/porTipo/polera")
     public String busquedaPorCategoriaNYTipoPolera(Model model){
-        List<Producto> productos= servicio.obteneProductoPorCategoriaYTipoProducto(1,"Niño","Polera");
+        List<Producto> productos= servicioProducto.obteneProductoPorCategoriaYTipoProducto(1,"Niño","Polera");
         model.addAttribute("producto",productos);
         return "busqueda";
     }
@@ -394,7 +409,7 @@ public class ProductoControlador {
      */
     @GetMapping("/busqueda/categoria/nino/porTipo/poleron")
     public String busquedaPorCategoriaNYTipoPoleron(Model model){
-        List<Producto> productos= servicio.obteneProductoPorCategoriaYTipoProducto(1,"Niño","Poleron");
+        List<Producto> productos= servicioProducto.obteneProductoPorCategoriaYTipoProducto(1,"Niño","Poleron");
         model.addAttribute("producto",productos);
         return "busqueda";
     }
@@ -408,7 +423,7 @@ public class ProductoControlador {
      */
     @GetMapping("/busqueda/categoria/nino/porTipo/camisa")
     public String busquedaPorCategoriaNYTipoCamisa(Model model){
-        List<Producto> productos= servicio.obteneProductoPorCategoriaYTipoProducto(1,"Niño","Camisa");
+        List<Producto> productos= servicioProducto.obteneProductoPorCategoriaYTipoProducto(1,"Niño","Camisa");
         model.addAttribute("producto",productos);
         return "busqueda";
     }
@@ -422,7 +437,7 @@ public class ProductoControlador {
      */
     @GetMapping("/busqueda/categoria/nino/porTipo/pantalon")
     public String busquedaPorCategoriaNYTipoPantalon(Model model){
-        List<Producto> productos= servicio.obteneProductoPorCategoriaYTipoProducto(1,"Niño","Pantalon");
+        List<Producto> productos= servicioProducto.obteneProductoPorCategoriaYTipoProducto(1,"Niño","Pantalon");
         model.addAttribute("producto",productos);
         return "busqueda";
     }
@@ -436,7 +451,7 @@ public class ProductoControlador {
      */
     @GetMapping("/busqueda/categoria/nino/porTipo/zapato")
     public String busquedaPorCategoriaNYTipoZapato(Model model){
-        List<Producto> productos= servicio.obteneProductoPorCategoriaYTipoProducto(1,"Niño","Zapato");
+        List<Producto> productos= servicioProducto.obteneProductoPorCategoriaYTipoProducto(1,"Niño","Zapato");
         model.addAttribute("producto",productos);
         return "busqueda";
     }
@@ -450,7 +465,7 @@ public class ProductoControlador {
      */
     @GetMapping("/busqueda/categoria/nino/porTipo/chaqueta")
     public String busquedaPorCategoriaNYTipoChaqueta(Model model){
-        List<Producto> productos= servicio.obteneProductoPorCategoriaYTipoProducto(1,"Niño","Chaqueta");
+        List<Producto> productos= servicioProducto.obteneProductoPorCategoriaYTipoProducto(1,"Niño","Chaqueta");
         model.addAttribute("producto",productos);
         return "busqueda";
     }

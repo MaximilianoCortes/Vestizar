@@ -439,5 +439,55 @@ padding: 1px 15px;
     text-align: left;
 }
 
+.tituloDatos{
+    color: black;
+    font-size: 30px;
+    position: relative;
+    left: 270px;
+    bottom: -5px;
+    margin-top: 50px;
 
+
+}
+
+
+.informacionContacto{
+
+    position: relative;
+    left: 399px;
+    bottom: 225px;
+
+
+}
+
+.imagenContacto{
+    position: relative;
+    left: 360px;
+    bottom: 50px;
+
+
+}
+
+.nombreContacto{
+    position: relative;
+    left: 357px;
+    bottom: 53px;
+}
+
+
+.ubiContacto{
+    position: relative;
+    left: 347px;
+    bottom: 77px;
+}
+
+.informacionContactoTexto{
+    position: relative;
+    top: -72px;
+    left: 297px;
+}
+
+.tipoModal{
+    height: 500px;
+}
 

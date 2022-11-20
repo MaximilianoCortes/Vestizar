@@ -114,7 +114,6 @@ public class AppControlador {
 
     }
 
-
     @GetMapping("iniciadoSesion/verProducto/{id}")
     public String mostrarProductoIniciadoSesion(@PathVariable Long id, Model modelo) {
 
@@ -131,11 +130,46 @@ public class AppControlador {
 
 
         modelo.addAttribute("producto", servicioProducto.obtenerProductoPorId(id));
-        modelo.addAttribute("sesionIniciada",userService.obtenerUsuarioPorId(servicioProducto.obtenerIdVendedorProducto(id)));
+        modelo.addAttribute("sesionVendedor",userService.obtenerUsuarioPorId(servicioProducto.obtenerIdVendedorProducto(id)));
 
         return "articuloIniciado";
 
     }
+
+
+
+
+    @GetMapping("iniciadoSesion/verMisProductos/{id}")
+    public String mostrarMisProductoIniciadoSesion(@PathVariable Long id, Model modelo) {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String usuario = authentication.getName();
+        Usuario sesion = userService.findUserByEmail(usuario);
+        System.out.println("este es el correo que inicio sesion: "+sesion.toString());
+        modelo.addAttribute("sesion",sesion);
+
+        modelo.addAttribute("tipoProducto", tipoProducto.values());
+        modelo.addAttribute("talla", tipoTalla.values());
+        modelo.addAttribute("estado", tipoEstado.values());
+        modelo.addAttribute("categoria", tipoCategoria.values());
+
+
+        modelo.addAttribute("producto", servicioProducto.obtenerProductoPorId(id));
+        modelo.addAttribute("sesionIniciada",userService.obtenerUsuarioPorId(servicioProducto.obtenerIdVendedorProducto(id)));
+
+        return "MisArticulos";
+
+    }
+
+
+    @GetMapping("/eliminarProducto/{id}")
+    public String eliminarProducto(@PathVariable Long id, Model modelo){
+        servicioProducto.eliminarProducto(id);
+        return "";
+
+
+    }
+
 
     @GetMapping("/iniciadoSesion/perfilVendedor/{id}")
     public String busquedaPublicacionesUsuario(@PathVariable Long id,Model modelo){

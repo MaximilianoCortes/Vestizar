@@ -6,18 +6,20 @@
     <title>Vestizar</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link th:href="@{/css/styleMisPublicaciones.css}" rel="stylesheet"/>
+    <link th:href="@{/css/styleArticulo.css}" rel="stylesheet"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+   
+</head>
+<body>
 
-    </head>
-
-    <body>
     <header>
+
         <div>
             <a th:href="@{/iniciadoSesion}"><h3 id="logo">VESTIZAR</h3>  </a>
            </div>
+    
             <div>
                 <form>
                     <input id="barra" class="ms-5"  type="text" placeholder="Busca art&iacute;culos, marcas o estilos!" name="busqueda">
@@ -34,9 +36,9 @@
 
             <ul class="dropdown-menu dropdown-menu-dark informaDrop" style="text-align: center; background-color: #1b1919; border-radius: 6%; " aria-labelledby="dropdownMenuLink">
                 <li><p class="informaDrop0">Bienvenido, Usuario</p></li>
-                <li><a class="dropdown-item informaDrop1" href="verMiPerfil.html">Ver mi perfil</a></li>
+                <li><a class="dropdown-item informaDrop1" th:href="@{/iniciadoSesion/verMiPerfil}">Ver mi perfil</a></li>
                 <li><a class="dropdown-item informaDrop1" type="Button" data-bs-toggle="modal" data-bs-target="#exampleModal">Crear publicación</a></li>
-                <li><a class="dropdown-item informaDrop1" href="misPublicaciones.html">Ver mis publicaciones</a></li>
+                <li><a class="dropdown-item informaDrop1" th:href="@{/iniciadoSesion/misPublicaciones/{id}(id=${sesion.id})}">Ver mis publicaciones</a></li>
                 <li><a class="dropdown-item informaDrop1" th:href="@{/inicioChat}">Chats</a></li>
                 <li><a class="dropdown-item informaDrop1" th:href="@{/inicioAdmin}">Administrador</a></li>
                 <li><a class="dropdown-item informaDrop2" th:href="@{/}">Cerrar Sesion</a></li>
@@ -104,8 +106,6 @@
 
                         </form>
                     </div>
-
-
                 </div>
             </div>
         </div>
@@ -118,27 +118,52 @@
             <a class="cat" th:href="@{/iniciadoSesion/busqueda}" >General</a>
             <a class="cat" id="cato" th:href="@{/iniciadoSesion/busqueda}" >Ofertas</a>
         </div>
-            
+
         </header>
-            
-        <div>
-            <p id="nombreUsuarioVendedor">Mis publicaciones</p>
-        </div>
-
-    <section>
-        <article th:each="productos:${producto}"  class="post">
-            <a th:href="@{/iniciadoSesion/verMisProductos/{id}(id=${productos.idPoroducto})}">
-                <img class="imagenBusqueda" th:src="@{'/imgPagina/'+ ${productos.imagen1}}">
-            </a>
-            <p class="precioBusqueda"th:text="${productos.precio}"></p>
-
-        </article>
-
-    </section>
 
 
+                <div class="informacion" >
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+                    <div class="imagenboton">
+                        <img class="imagenArticulo" th:src="@{'/imgPagina/'+${producto.imagen1}}"/>
+                        <button class="botonArticulo" id="ant">Anterior</button>
+                        <button class="botonArticulo" id="sgte">Siguiente</button>
+                    </div>
 
-    </body>
+                    <div >
+                        <p class="informacionProducto"> Tipo de Producto</p>
+                        <p class="informacionProducto"> Talla</p>
+                        <p class="informacionProducto"> Marca</p>
+                        <p class="informacionProducto"> Estado</p>
+                        <p class="informacionProducto"> Precio</p>
+                    </div>
+
+                    <div th:object="${producto}">
+                        <img id="imagenUsuario" th:src="@{/img/usuario.png}">
+                        <a th:href="@{/iniciadoSesion/perfilVendedor/{id}(id=${producto.getVendedor()})}">
+                            <p id="nombreUsuario" th:text="${sesionIniciada.nombreUsuario}"></p>
+                        </a>
+                        <p id="ubicacionUsuario" th:text="${sesionIniciada.ciudad}"></p>
+                    </div>
+
+                    <div th:object="${producto}">
+                        <p class="informacionProducto2" th:text="${producto.tipoProducto}" ></p>
+                        <p class="informacionProducto2" th:text="${producto.talla}"></p>
+                        <p class="informacionProducto2" th:text="${producto.marca}"></p>
+                        <p class="informacionProducto2" th:text="${producto.estado}"></p>
+                        <p class="informacionProducto2" th:text="${producto.precio}"></p>
+                        <p id="desc" th:text="${producto.descripcion}"></p>
+                        <a id="botonContacto" th:href="@{/eliminarProducto/{id}(id=${producto.idPoroducto})}" >Eliminar Publicación</a>
+                    </div>
+
+
+                </div>
+        
+        </section>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+</body>
+
 </html>

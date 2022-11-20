@@ -141,9 +141,9 @@
                     <div th:object="${producto}">
                         <img id="imagenUsuario" th:src="@{/img/usuario.png}">
                         <a th:href="@{/iniciadoSesion/perfilVendedor/{id}(id=${producto.getVendedor()})}">
-                            <p id="nombreUsuario" th:text="${sesionIniciada.nombreUsuario}"></p>
+                            <p id="nombreUsuario" th:text="${sesionVendedor.nombreUsuario}"></p>
                         </a>
-                        <p id="ubicacionUsuario" th:text="${sesionIniciada.ciudad}"></p>
+                        <p id="ubicacionUsuario" th:text="${sesionVendedor.ciudad}"></p>
                     </div>
 
                     <div th:object="${producto}">
@@ -153,11 +153,56 @@
                         <p class="informacionProducto2" th:text="${producto.estado}"></p>
                         <p class="informacionProducto2" th:text="${producto.precio}"></p>
                         <p id="desc" th:text="${producto.descripcion}"></p>
-                        <button type="button" id="botonContacto" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@Inicio">Contactar vendedor</button>
+                        <button type="button" id="botonContacto" data-bs-toggle="modal" data-bs-target="#exampleModalContacto" data-bs-whatever="@Inicio">Contactar vendedor</button>
                     </div>
+                </div>
+
+
+    <div class="modal fade  tipoModal" id="exampleModalContacto" tabindex="-1" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content" style="background-color: #dadada ;">
+                <div>
+                    <p class="modal-title tituloDatos" style="display: block;" id="exampleModalLabelContacto">
+                        Datos del Vendedor</p>
+                    <button type="button" class="btn-close equis " data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+
+                    <div>
+
+                        <img class="imagenContacto " th:src="@{/img/usuario.png}" >
+                        <p class="nombreContacto " th:text="${sesionVendedor.nombreUsuario}" ></p>
+                        <p class="ubiContacto " th:text="${sesionVendedor.ciudad.nombre}"></p>
+
+                    </div>
+
+                    <p class="informacionContactoTexto">Nombre:</p>
+                    <p class="informacionContactoTexto">Celular:</p>
+                    <p class="informacionContactoTexto">Correo:</p>
+
+
+                    <p class="informacionContacto" th:text="${sesionVendedor.nombre}">
+                    <p class="informacionContacto" th:text="${sesionVendedor.celular}">
+                    <p class="informacionContacto" th:text="${sesionVendedor.email}">
+
+
+
+
+
+
+
+
 
 
                 </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
         
         </section>
 

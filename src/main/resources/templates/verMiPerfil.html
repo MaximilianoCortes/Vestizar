@@ -126,7 +126,7 @@
             <section class="perfil">
                 <img id="imagenPerfil"  th:src="@{/img/foto.png}">
                 <p id="nombreUsuario" th:text="${sesion.nombreUsuario}"></p>
-                <p id="ubiUsuario" th:text="${sesion.ciudad}"></p>
+                <p id="ubiUsuario" th:text="${sesion.ciudad.nombre}"></p>
                 <p class="info" id="nombreApellido" th:text="${sesion.nombre} +' '+ ${sesion.apellido}" ></p>
                 <p class="info" id="correo" th:text="${sesion.email}"></p>
                 <p class="info" id="celular" th:text="${sesion.celular}"></p>
