@@ -1,7 +1,9 @@
 package com.example.vestizar.controlador;
 
 import com.example.vestizar.entidad.Producto;
+import com.example.vestizar.entidad.Usuario;
 import com.example.vestizar.servicio.ProductoServicio;
+import com.example.vestizar.servicio.UsuarioServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +20,9 @@ import java.util.List;
 public class ProductoAdminControlador {
 
     @Autowired
-    ProductoServicio servicio;
+    ProductoServicio servicioProducto;
+    @Autowired
+    UsuarioServicio servicioUsuario;
 
 
     /**
@@ -31,7 +35,7 @@ public class ProductoAdminControlador {
     @GetMapping("/inicioAdmin")
     public String busquedaAdmin(Model model) {
 
-        List<Producto> productos = servicio.obtenerProductoPorAprobado(0);
+        List<Producto> productos = servicioProducto.obtenerProductoPorAprobado(0);
         model.addAttribute("producto", productos);
         return "inicioAdmin";
     }
@@ -49,7 +53,8 @@ public class ProductoAdminControlador {
      */
     @GetMapping("/verProductoAdmin/{id}")
     public String mostrarProductoAdmin(@PathVariable Long id, Model modelo) {
-        modelo.addAttribute("producto", servicio.obtenerProductoPorId(id));
+        modelo.addAttribute("producto", servicioProducto.obtenerProductoPorId(id));
+        modelo.addAttribute("sesion", servicioUsuario.obtenerUsuarioPorId(servicioProducto.obtenerIdVendedorProducto(id)));
         return "revisionAdmin";
     }
 
@@ -64,10 +69,10 @@ public class ProductoAdminControlador {
      */
     @GetMapping("/aprobar/{id}")
     public String aprobar(@PathVariable Long id, @ModelAttribute Producto producto) {
-        Producto productoExsistente=servicio.obtenerProductoPorId(id);
+        Producto productoExsistente=servicioProducto.obtenerProductoPorId(id);
         productoExsistente.setIdPoroducto(id);
         productoExsistente.setAprobado(1);
-        servicio.guardarProducto(productoExsistente);
+        servicioProducto.guardarProducto(productoExsistente);
         return "redirect:/inicioAdmin";
     }
 
@@ -79,7 +84,7 @@ public class ProductoAdminControlador {
      */
     @GetMapping("/rechazar/{id}")
     public String rechazarProducto(@PathVariable Long id){
-    servicio.eliminarProducto(id);
+        servicioProducto.eliminarProducto(id);
         return "redirect:/inicioAdmin";
 
 
