@@ -47,14 +47,14 @@ public class AppControlador {
 
     @GetMapping("/crearUsuario")
     public String showRegistrationForm(Model model){
-        // create model object to store form data
+        // crea modelo de los datos de usuario
         UserDto user = new UserDto();
         model.addAttribute("usuario", user);
         model.addAttribute("ciudad", tipoCiudad.values());
         return "registro";
     }
 
-    // handler method to handle user registration form submit request
+    // metodo que se ejecuta con una request de submit
     @PostMapping("/guardarUsuario")
     public String registration(@Valid @ModelAttribute("user") UserDto userDto,
                                BindingResult result,
