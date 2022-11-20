@@ -52,7 +52,8 @@ public class Producto {
     public Producto(){
     }
 
-    public Producto(int aprobado, String tipoProducto, String categoria, String estado, String talla, String descripcion, String marca, double precio) {
+    public Producto(int aprobado, String tipoProducto, String categoria, String estado, String talla, String descripcion, String marca, double precio, Long idVendedor) {
+        this.idVendedor = idVendedor;
         this.aprobado = aprobado;
         this.tipoProducto = tipoProducto;
         this.categoria = categoria;
