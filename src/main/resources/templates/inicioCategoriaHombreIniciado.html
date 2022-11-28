@@ -113,9 +113,9 @@
 
 
   <div id="categorias">
-    <a class="cat" th:href="@{/iniciadoSesion/busqueda/categoria/hombre}" >Hombre</a>
-    <a class="cat" th:href="@{/iniciadoSesion/busqueda/categoria/mujer}" >Mujer</a>
-    <a class="cat" th:href="@{/iniciadoSesion/busqueda/categoria/nino}" >Ni&ntilde;os</a>
+    <a class="cat" th:href="@{/iniciadoSesion/busqueda/categoria/{sexo}(sexo=hombre)}" >Hombre</a>
+    <a class="cat" th:href="@{/iniciadoSesion/busqueda/categoria/{sexo}(sexo=mujer)}" >Mujer</a>
+    <a class="cat" th:href="@{/iniciadoSesion/busqueda/categoria/{sexo}(sexo=nino)}" >Ni&ntilde;os</a>
     <a class="cat" th:href="@{/iniciadoSesion/busqueda}" >General</a>
     <a class="cat" id="cato" th:href="@{/iniciadoSesion/busqueda}" >Ofertas</a>
   </div>
@@ -125,38 +125,38 @@
 
 <section>
   <article class="post">
-    <a th:href="@{/iniciadoSesion/busqueda/categoria/hombre/porTipo/polera}">
+    <a th:href="@{/iniciadoSesion/busqueda/categoria/{sexo}/porTipo/{tipo}(tipo = polera,sexo=hombre)}">
       <img th:src="@{/img/polera.png}" class="imagenBusquedaCategoria" />
     </a>
     <p class="precioBusquedaCategoria">Poleras</p>
   </article>
 
   <article class="post">
-    <a th:href="@{/iniciadoSesion/busqueda/categoria/hombre/porTipo/poleron}">
+    <a th:href="@{/iniciadoSesion/busqueda/categoria/{sexo}/porTipo/{tipo}(tipo = poleron, sexo=hombre)}">
       <img th:src="@{/img/poleron.png}" class="imagenBusquedaCategoria" />
     </a>
     <p class="precioBusquedaCategoria">Polerones</p>
   </article>
   <article class="post">
-    <a th:href="@{/iniciadoSesion/busqueda/categoria/hombre/porTipo/camisa}">
+    <a th:href="@{/iniciadoSesion/busqueda/categoria/{sexo}/porTipo/{tipo}(tipo = camisa,sexo=hombre)}">
       <img th:src="@{/img/camisa.png}" class="imagenBusquedaCategoria" />
     </a>
     <p class="precioBusquedaCategoria">Camisas</p>
   </article>
   <article class="post">
-    <a th:href="@{/iniciadoSesion/busqueda/categoria/hombre/porTipo/pantalon}">
+    <a th:href="@{/iniciadoSesion/busqueda/categoria/{sexo}/porTipo/{tipo}(tipo = pantalon,sexo=hombre)}">
       <img th:src="@{/img/pantalon.png}" class="imagenBusquedaCategoria" />
     </a>
     <p class="precioBusquedaCategoria">Pantalones</p>
   </article>
   <article class="post">
-    <a th:href="@{/iniciadoSesion/busqueda/categoria/hombre/porTipo/zapato}">
+    <a th:href="@{/iniciadoSesion/busqueda/categoria/{sexo}/porTipo/{tipo}(tipo = zapato,sexo=hombre)}">
       <img th:src="@{/img/zapatos.png}" class="imagenBusquedaCategoria" />
     </a>
     <p class="precioBusquedaCategoria">Calzado</p>
   </article>
   <article class="post">
-    <a th:href="@{/iniciadoSesion/busqueda/categoria/hombre/porTipo/chaqueta}">
+    <a th:href="@{/iniciadoSesion/busqueda/categoria/{sexo}/porTipo/{tipo}(tipo = chaqueta,sexo=hombre)}">
       <img th:src="@{/img/chaqueta.png}" class="imagenBusquedaCategoria" />
     </a>
     <p class="precioBusquedaCategoria">Chaqueta</p>

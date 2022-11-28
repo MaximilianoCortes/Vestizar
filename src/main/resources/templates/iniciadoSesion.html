@@ -113,9 +113,9 @@
 
 
         <div id="categorias">
-            <a class="cat" th:href="@{/iniciadoSesion/busqueda/categoria/hombre}" >Hombre</a>
-            <a class="cat" th:href="@{/iniciadoSesion/busqueda/categoria/mujer}" >Mujer</a>
-            <a class="cat" th:href="@{/iniciadoSesion/busqueda/categoria/nino}" >Ni&ntilde;os</a>
+            <a class="cat" th:href="@{/iniciadoSesion/busqueda/categoria/{sexo}(sexo=hombre)}" >Hombre</a>
+            <a class="cat" th:href="@{/iniciadoSesion/busqueda/categoria/{sexo}(sexo=mujer)}" >Mujer</a>
+            <a class="cat" th:href="@{/iniciadoSesion/busqueda/categoria/{sexo}(sexo=nino)}" >Ni&ntilde;os</a>
             <a class="cat" th:href="@{/iniciadoSesion/busqueda}" >General</a>
             <a class="cat" id="cato" th:href="@{/iniciadoSesion/busqueda}" >Ofertas</a>
         </div>
@@ -132,14 +132,14 @@
 
     <section>
         <article class="post">
-            <a th:href="@{/iniciadoSesion/busqueda/porTipo/polera}">
+            <a th:href="@{/iniciadoSesion/busqueda/porTipo/{tipo}(tipo=polera)}">
                 <img th:src="@{/img/polera.png}" class="imagenPag" />
             </a>
             <p class="populares">Poleras</p>
         </article>
 
         <article class="post">
-            <a th:href="@{/iniciadoSesion/busqueda/porTipo/pantalon}">
+            <a th:href="@{/iniciadoSesion/busqueda/porTipo/{tipo}(tipo=pantalon)}">
                 <img  th:src="@{/img/pantalon.png}" class="imagenPag" />
             </a>
 
@@ -147,7 +147,7 @@
         </article>
 
         <article class="post">
-            <a th:href="@{/iniciadoSesion/busqueda/porTipo/poleron}">
+            <a th:href="@{/iniciadoSesion/busqueda/porTipo/{tipo}(tipo=poleron)}">
                 <img th:src="@{/img/poleron.png}" class="imagenPag" />
 
             </a>
@@ -155,7 +155,7 @@
         </article>
 
         <article class="post">
-            <a th:href="@{/iniciadoSesion/busqueda/porTipo/camisa}">
+            <a th:href="@{/iniciadoSesion/busqueda/porTipo/{tipo}(tipo=camisa)}">
                 <img th:src="@{/img/camisa.png}" class="imagenPag" />
 
             </a>

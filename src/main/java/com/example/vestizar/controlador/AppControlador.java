@@ -20,17 +20,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import javax.validation.Valid;
 import java.util.List;
 
-/**
- * clase Controlador de la App.
- */
+
 @Controller
 public class AppControlador {
 
-    /**
-     * Ventana inicial por defecto de la pagina.
-     *
-     * @return la ventana index del html
-     */
 
     private UsuarioServicio userService;
 
@@ -40,13 +33,15 @@ public class AppControlador {
     public AppControlador(UsuarioServicio userService) {
         this.userService = userService;
     }
+
     @GetMapping("/")
-    public String inicio(){
+    public String inicio() {
         return "index";
     }
 
+
     @GetMapping("/crearUsuario")
-    public String showRegistrationForm(Model model){
+    public String showRegistrationForm(Model model) {
         // crea modelo de los datos de usuario
         UserDto user = new UserDto();
         model.addAttribute("usuario", user);
@@ -58,15 +53,15 @@ public class AppControlador {
     @PostMapping("/guardarUsuario")
     public String registration(@Valid @ModelAttribute("user") UserDto userDto,
                                BindingResult result,
-                               Model model){
+                               Model model) {
         Usuario existingUser = userService.findUserByEmail(userDto.getEmail());
 
-        if(existingUser != null && existingUser.getEmail() != null && !existingUser.getEmail().isEmpty()){
+        if (existingUser != null && existingUser.getEmail() != null && !existingUser.getEmail().isEmpty()) {
             result.rejectValue("email", null,
                     "Ya hay una cuenta con ese correo");
         }
 
-        if(result.hasErrors()){
+        if (result.hasErrors()) {
             model.addAttribute("user", userDto);
             return "/registro";
         }
@@ -74,18 +69,11 @@ public class AppControlador {
         userService.crearNuevoUsuario(userDto);
         return "redirect:/";
     }
-    @GetMapping("/iniciadoSesion")
-    public String iniciadoSesion(Model modelo){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String usuario = authentication.getName();
-        Usuario sesion = userService.findUserByEmail(usuario);
-        System.out.println("este es el correo que inicio sesion: "+sesion.toString());
-        modelo.addAttribute("sesion",sesion);
 
-        modelo.addAttribute("tipoProducto", tipoProducto.values());
-        modelo.addAttribute("talla", tipoTalla.values());
-        modelo.addAttribute("estado", tipoEstado.values());
-        modelo.addAttribute("categoria", tipoCategoria.values());
+    @GetMapping("/iniciadoSesion")
+    public String iniciadoSesion(Model modelo) {
+        Usuario sesion = obtenerSesion();
+        agregarAtributos(modelo, sesion);
 
         return "iniciadoSesion";
     }
@@ -95,19 +83,12 @@ public class AppControlador {
 
     @GetMapping("/iniciadoSesion/busqueda")
     public String iniciadoSesionBusqueda(Model modelo) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String usuario = authentication.getName();
-        Usuario sesion = userService.findUserByEmail(usuario);
-        System.out.println("este es el correo que inicio sesion: " + sesion.toString());
-        modelo.addAttribute("sesion", sesion);
+        Usuario sesion = obtenerSesion();
+        agregarAtributos(modelo, sesion);
 
         List<Producto> productos = servicioProducto.obtenerProductoPorAprobado(1);
         modelo.addAttribute("producto", productos);
 
-        modelo.addAttribute("tipoProducto", tipoProducto.values());
-        modelo.addAttribute("talla", tipoTalla.values());
-        modelo.addAttribute("estado", tipoEstado.values());
-        modelo.addAttribute("categoria", tipoCategoria.values());
 
         return "busquedaIniciada";
 
@@ -117,774 +98,113 @@ public class AppControlador {
     @GetMapping("iniciadoSesion/verProducto/{id}")
     public String mostrarProductoIniciadoSesion(@PathVariable Long id, Model modelo) {
 
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String usuario = authentication.getName();
-        Usuario sesion = userService.findUserByEmail(usuario);
-        System.out.println("este es el correo que inicio sesion: "+sesion.toString());
-        modelo.addAttribute("sesion",sesion);
-
-        modelo.addAttribute("tipoProducto", tipoProducto.values());
-        modelo.addAttribute("talla", tipoTalla.values());
-        modelo.addAttribute("estado", tipoEstado.values());
-        modelo.addAttribute("categoria", tipoCategoria.values());
+        Usuario sesion = obtenerSesion();
+        agregarAtributos(modelo, sesion);
 
 
         modelo.addAttribute("producto", servicioProducto.obtenerProductoPorId(id));
-        modelo.addAttribute("sesionVendedor",userService.obtenerUsuarioPorId(servicioProducto.obtenerIdVendedorProducto(id)));
+        modelo.addAttribute("sesionVendedor", userService.obtenerUsuarioPorId(servicioProducto.obtenerIdVendedorProducto(id)));
 
         return "articuloIniciado";
 
     }
 
 
-
-
     @GetMapping("iniciadoSesion/verMisProductos/{id}")
     public String mostrarMisProductoIniciadoSesion(@PathVariable Long id, Model modelo) {
-
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String usuario = authentication.getName();
-        Usuario sesion = userService.findUserByEmail(usuario);
-        System.out.println("este es el correo que inicio sesion: "+sesion.toString());
-        modelo.addAttribute("sesion",sesion);
-
-        modelo.addAttribute("tipoProducto", tipoProducto.values());
-        modelo.addAttribute("talla", tipoTalla.values());
-        modelo.addAttribute("estado", tipoEstado.values());
-        modelo.addAttribute("categoria", tipoCategoria.values());
-
-
+        Usuario sesion = obtenerSesion();
+        agregarAtributos(modelo, sesion);
         modelo.addAttribute("producto", servicioProducto.obtenerProductoPorId(id));
-        modelo.addAttribute("sesionIniciada",userService.obtenerUsuarioPorId(servicioProducto.obtenerIdVendedorProducto(id)));
-
+        modelo.addAttribute("sesionIniciada", userService.obtenerUsuarioPorId(servicioProducto.obtenerIdVendedorProducto(id)));
         return "MisArticulos";
-
     }
-
 
     @GetMapping("/eliminarProducto/{id}")
-    public String eliminarProducto(@PathVariable Long id, Model modelo){
+    public String eliminarProducto(@PathVariable Long id, Model modelo) {
         servicioProducto.eliminarProducto(id);
         return "";
-
-
     }
 
-
     @GetMapping("/iniciadoSesion/perfilVendedor/{id}")
-    public String busquedaPublicacionesUsuario(@PathVariable Long id,Model modelo){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String usuario = authentication.getName();
-        Usuario sesion = userService.findUserByEmail(usuario);
-        System.out.println("este es el correo que inicio sesion: "+sesion.toString());
-        modelo.addAttribute("sesionIniciada",sesion);
+    public String busquedaPublicacionesUsuario(@PathVariable Long id, Model modelo) {
+        Usuario sesion = obtenerSesion();
+        agregarAtributos(modelo, sesion);
 
-        modelo.addAttribute("tipoProducto", tipoProducto.values());
-        modelo.addAttribute("talla", tipoTalla.values());
-        modelo.addAttribute("estado", tipoEstado.values());
-        modelo.addAttribute("categoria", tipoCategoria.values());
-
-        List<Producto> productos=servicioProducto.obtenerProductoPorVendedor(1,id);
-        modelo.addAttribute("sesion",userService.obtenerUsuarioPorId(id));
-        modelo.addAttribute("producto",productos);
+        List<Producto> productos = servicioProducto.obtenerProductoPorVendedor(1, id);
+        modelo.addAttribute("sesion", userService.obtenerUsuarioPorId(id));
+        modelo.addAttribute("producto", productos);
         return "perfilVendedorIniciado";
 
     }
 
     @GetMapping("/iniciadoSesion/verMiPerfil")
-    public String verMiPerfil(Model modelo){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String usuario = authentication.getName();
-        Usuario sesion = userService.findUserByEmail(usuario);
-        System.out.println("este es el correo que inicio sesion: "+sesion.toString());
-        modelo.addAttribute("sesion",sesion);
-
-        modelo.addAttribute("tipoProducto", tipoProducto.values());
-        modelo.addAttribute("talla", tipoTalla.values());
-        modelo.addAttribute("estado", tipoEstado.values());
-        modelo.addAttribute("categoria", tipoCategoria.values());
-
-        modelo.addAttribute("sesion",sesion);
+    public String verMiPerfil(Model modelo) {
+        Usuario sesion = obtenerSesion();
+        agregarAtributos(modelo, sesion);
 
 
         return "verMiPerfil";
     }
 
     @GetMapping("/iniciadoSesion/misPublicaciones/{id}")
-    public String misPublicaciones(@PathVariable Long id,Model modelo){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String usuario = authentication.getName();
-        Usuario sesion = userService.findUserByEmail(usuario);
-        System.out.println("este es el correo que inicio sesion: "+sesion.toString());
-        modelo.addAttribute("sesionIniciada",sesion);
+    public String misPublicaciones(@PathVariable Long id, Model modelo) {
+        Usuario sesion = obtenerSesion();
+        agregarAtributos(modelo, sesion);
 
-        modelo.addAttribute("tipoProducto", tipoProducto.values());
-        modelo.addAttribute("talla", tipoTalla.values());
-        modelo.addAttribute("estado", tipoEstado.values());
-        modelo.addAttribute("categoria", tipoCategoria.values());
-
-        List<Producto> productos=servicioProducto.obtenerProductoPorVendedor(1,id);
-        modelo.addAttribute("sesion",userService.obtenerUsuarioPorId(id));
-        modelo.addAttribute("producto",productos);
+        List<Producto> productos = servicioProducto.obtenerProductoPorVendedor(1, id);
+        modelo.addAttribute("sesion", userService.obtenerUsuarioPorId(id));
+        modelo.addAttribute("producto", productos);
 
         return "misPublicaciones";
 
     }
 
 
-
-    @GetMapping("/iniciadoSesion/busqueda/porTipo/polera")
-    public String busquedaPoleras(Model modelo){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String usuario = authentication.getName();
-        Usuario sesion = userService.findUserByEmail(usuario);
+    @GetMapping("/iniciadoSesion/busqueda/porTipo/{tipo}")
+    public String busquedaTipo(@PathVariable("tipo") String tipo, Model modelo) {
+        Usuario sesion = obtenerSesion();
         System.out.println("este es el correo que inicio sesion: " + sesion.toString());
-        modelo.addAttribute("sesion", sesion);
-
-        modelo.addAttribute("tipoProducto", tipoProducto.values());
-        modelo.addAttribute("talla", tipoTalla.values());
-        modelo.addAttribute("estado", tipoEstado.values());
-        modelo.addAttribute("categoria", tipoCategoria.values());
-        List<Producto> productos= servicioProducto.obteneProductoPorTipoProducto(1,"Polera");
-        modelo.addAttribute("producto",productos);
-
-        return "busquedaIniciada";
-    }
-
-    /**
-     * Filtra los tipos de publicaciones a solo las que sean del tipo camisas.
-     *
-     * @param modelo Se utiliza para poder trabajar objetos dentro de los html, en este caso se utilizan para poder mostrar
-     *              productos y sus atributos
-     * @return El html busqueda en donde se mostraran todos los productos que sean del tipo camisa
-     */
-    @GetMapping("/iniciadoSesion/busqueda/porTipo/camisa")
-    public String busquedaCamisas(Model modelo){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String usuario = authentication.getName();
-        Usuario sesion = userService.findUserByEmail(usuario);
-        System.out.println("este es el correo que inicio sesion: " + sesion.toString());
-        modelo.addAttribute("sesion", sesion);
-
-        modelo.addAttribute("tipoProducto", tipoProducto.values());
-        modelo.addAttribute("talla", tipoTalla.values());
-        modelo.addAttribute("estado", tipoEstado.values());
-        modelo.addAttribute("categoria", tipoCategoria.values());
-
-        List<Producto> productos= servicioProducto.obteneProductoPorTipoProducto(1,"Camisa");
-        modelo.addAttribute("producto",productos);
+        modelo = agregarAtributos(modelo, sesion);
+        List<Producto> productos = servicioProducto.obteneProductoPorTipoProducto(1, tipo);
+        modelo.addAttribute("producto", productos);
         return "busquedaIniciada";
     }
 
 
+    @GetMapping("/iniciadoSesion/busqueda/categoria/{sexo}")
+    public String busquedaPorCategoríaSexo(@PathVariable("sexo") String sexo, Model modelo) {
+        Usuario sesion = obtenerSesion();
+        agregarAtributos(modelo, sesion);
 
 
+        return "inicioCategoria"+sexo+"Iniciado";
+    }
 
 
-
-
-
-
-    /**
-     * Filtra los tipos de publicaciones a solo las que sean del tipo pantalones.
-     *
-     * @param modelo Se utiliza para poder trabajar objetos dentro de los html, en este caso se utilizan para poder mostrar
-     *              productos y sus atributos
-     * @return El html busqueda en donde se mostraran todos los productos que sean del tipo pantalon
-     */
-    @GetMapping("/iniciadoSesion/busqueda/porTipo/pantalon")
-    public String busquedaPantalones(Model modelo){
-
+    public Usuario obtenerSesion() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String usuario = authentication.getName();
-        Usuario sesion = userService.findUserByEmail(usuario);
-        System.out.println("este es el correo que inicio sesion: " + sesion.toString());
-        modelo.addAttribute("sesion", sesion);
+        return userService.findUserByEmail(usuario);
+    }
 
+    public Model agregarAtributos(Model modelo, Usuario sesion) {
+        modelo.addAttribute("sesion", sesion);
         modelo.addAttribute("tipoProducto", tipoProducto.values());
         modelo.addAttribute("talla", tipoTalla.values());
         modelo.addAttribute("estado", tipoEstado.values());
         modelo.addAttribute("categoria", tipoCategoria.values());
+        return modelo;
+    }
 
-        List<Producto> productos= servicioProducto.obteneProductoPorTipoProducto(1,"Pantalon");
-        modelo.addAttribute("producto",productos);
+    @GetMapping("/iniciadoSesion/busqueda/categoria/{sexo}/porTipo/{tipo}")
+    public String busquedaPorCategoriaH(@PathVariable("tipo") String tipo, @PathVariable("sexo") String sexo, Model modelo) {
+        Usuario sesion = obtenerSesion();
+        System.out.println("este es el correo que inicio sesion: " + sesion.toString());
+        modelo = agregarAtributos(modelo, sesion);
+        List<Producto> productos = servicioProducto.obteneProductoPorCategoriaYTipoProducto(1, sexo, tipo);
+        modelo.addAttribute("producto", productos);
         return "busquedaIniciada";
     }
-
-    /**
-     * Filtra los tipos de publicaciones a solo las que sean del tipo poleron.
-     *
-     * @param modelo Se utiliza para poder trabajar objetos dentro de los html, en este caso se utilizan para poder mostrar
-     *              productos y sus atributos.
-     * @return El html busqueda en donde se mostraran todos los productos que sean del tipo poleron.
-     */
-    @GetMapping("/iniciadoSesion/busqueda/porTipo/poleron")
-    public String busquedaPolerones(Model modelo){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String usuario = authentication.getName();
-        Usuario sesion = userService.findUserByEmail(usuario);
-        System.out.println("este es el correo que inicio sesion: " + sesion.toString());
-        modelo.addAttribute("sesion", sesion);
-
-        modelo.addAttribute("tipoProducto", tipoProducto.values());
-        modelo.addAttribute("talla", tipoTalla.values());
-        modelo.addAttribute("estado", tipoEstado.values());
-        modelo.addAttribute("categoria", tipoCategoria.values());
-        List<Producto> productos= servicioProducto.obteneProductoPorTipoProducto(1,"Poleron");
-        modelo.addAttribute("producto",productos);
-        return "busquedaIniciada";
-    }
-
-
-
-    /**
-     * Muestra tipos de productos los cuales van a estar filtrados y se mostraran solo los que estén en la categoría hombre.
-     *
-     * @return El html en donde se mostraran los tipos de productos disponibles en la categoría hombre
-     */
-    @GetMapping("/iniciadoSesion/busqueda/categoria/hombre")
-    public String busquedaPorCategoríaHombre(Model modelo) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String usuario = authentication.getName();
-        Usuario sesion = userService.findUserByEmail(usuario);
-        System.out.println("este es el correo que inicio sesion: " + sesion.toString());
-        modelo.addAttribute("sesion", sesion);
-
-        modelo.addAttribute("tipoProducto", tipoProducto.values());
-        modelo.addAttribute("talla", tipoTalla.values());
-        modelo.addAttribute("estado", tipoEstado.values());
-        modelo.addAttribute("categoria", tipoCategoria.values());
-
-        return "inicioCategoriaHombreIniciado";
-    }
-
-    /**
-     * Muestra tipos de productos los cuales van a estar filtrados y se mostraran solo los que estén en la categoría mujer.
-     *
-     * @return El html en donde se mostraran los tipos de productos disponibles en la categoría mujer.
-     */
-    @GetMapping("/iniciadoSesion/busqueda/categoria/mujer")
-    public String busquedaPorCategoríaMujer(Model modelo) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String usuario = authentication.getName();
-        Usuario sesion = userService.findUserByEmail(usuario);
-        System.out.println("este es el correo que inicio sesion: " + sesion.toString());
-        modelo.addAttribute("sesion", sesion);
-
-        modelo.addAttribute("tipoProducto", tipoProducto.values());
-        modelo.addAttribute("talla", tipoTalla.values());
-        modelo.addAttribute("estado", tipoEstado.values());
-        modelo.addAttribute("categoria", tipoCategoria.values());
-        return "inicioCategoriaMujerIniciado";
-    }
-
-    /**
-     * Muestra tipos de productos los cuales van a estar filtrados y se mostraran solo los que estén en la categoría niño.
-     *
-     * @return El html en donde se mostraran los tipos de productos disponibles en la categoría niño.
-     */
-    @GetMapping("/iniciadoSesion/busqueda/categoria/nino")
-    public String busquedaPorCategoríaNino(Model modelo) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String usuario = authentication.getName();
-        Usuario sesion = userService.findUserByEmail(usuario);
-        System.out.println("este es el correo que inicio sesion: " + sesion.toString());
-        modelo.addAttribute("sesion", sesion);
-
-        modelo.addAttribute("tipoProducto", tipoProducto.values());
-        modelo.addAttribute("talla", tipoTalla.values());
-        modelo.addAttribute("estado", tipoEstado.values());
-        modelo.addAttribute("categoria", tipoCategoria.values());
-        return "inicioCategoriaNinoIniciado";
-    }
-
-
-    /**
-     * Flitra todas las publicaciones y muestra únicamente los que sean de la categoría hombre y del tipo polera
-     *
-     * @param modelo Se utiliza para poder trabajar objetos dentro de los html, en este caso se utilizan para poder mostrar
-     *              productos y sus atributos.
-     * @return El html en donde se mostraran los tipos de productos disponibles en la categoría hombre y del tipo polera.
-     */
-    @GetMapping("/iniciadoSesion/busqueda/categoria/hombre/porTipo/polera")
-    public String busquedaPorCategoriaHYTipoPolera(Model modelo){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String usuario = authentication.getName();
-        Usuario sesion = userService.findUserByEmail(usuario);
-        System.out.println("este es el correo que inicio sesion: " + sesion.toString());
-        modelo.addAttribute("sesion", sesion);
-
-        modelo.addAttribute("tipoProducto", tipoProducto.values());
-        modelo.addAttribute("talla", tipoTalla.values());
-        modelo.addAttribute("estado", tipoEstado.values());
-        modelo.addAttribute("categoria", tipoCategoria.values());
-        List<Producto> productos= servicioProducto.obteneProductoPorCategoriaYTipoProducto(1,"Hombre","Polera");
-        modelo.addAttribute("producto",productos);
-        return "busquedaIniciada";
-    }
-
-    /**
-     * Flitra todas las publicaciones y muestra únicamente los que sean de la categoría hombre y del tipo poleron
-     *
-     * @param modelo Se utiliza para poder trabajar objetos dentro de los html, en este caso se utilizan para poder mostrar
-     *              productos y sus atributos.
-     * @return El html en donde se mostraran los tipos de productos disponibles en la categoría hombre y del tipo poleron.
-     */
-    @GetMapping("/iniciadoSesion/busqueda/categoria/hombre/porTipo/poleron")
-    public String busquedaPorCategoriaHYTipoPoleron(Model modelo){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String usuario = authentication.getName();
-        Usuario sesion = userService.findUserByEmail(usuario);
-        System.out.println("este es el correo que inicio sesion: " + sesion.toString());
-        modelo.addAttribute("sesion", sesion);
-
-        modelo.addAttribute("tipoProducto", tipoProducto.values());
-        modelo.addAttribute("talla", tipoTalla.values());
-        modelo.addAttribute("estado", tipoEstado.values());
-        modelo.addAttribute("categoria", tipoCategoria.values());
-        List<Producto> productos= servicioProducto.obteneProductoPorCategoriaYTipoProducto(1,"Hombre","Poleron");
-        modelo.addAttribute("producto",productos);
-        return "busquedaIniciada";
-    }
-
-    /**
-     * Flitra todas las publicaciones y muestra únicamente los que sean de la categoría hombre y del tipo camisa
-     *
-     * @param modelo Se utiliza para poder trabajar objetos dentro de los html, en este caso se utilizan para poder mostrar
-     *              productos y sus atributos.
-     * @return El html en donde se mostraran los tipos de productos disponibles en la categoría hombre y del tipo camisa.
-     */
-    @GetMapping("/iniciadoSesion/busqueda/categoria/hombre/porTipo/camisa")
-    public String busquedaPorCategoriaHYTipoCamisa(Model modelo){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String usuario = authentication.getName();
-        Usuario sesion = userService.findUserByEmail(usuario);
-        System.out.println("este es el correo que inicio sesion: " + sesion.toString());
-        modelo.addAttribute("sesion", sesion);
-
-        modelo.addAttribute("tipoProducto", tipoProducto.values());
-        modelo.addAttribute("talla", tipoTalla.values());
-        modelo.addAttribute("estado", tipoEstado.values());
-        modelo.addAttribute("categoria", tipoCategoria.values());
-        List<Producto> productos= servicioProducto.obteneProductoPorCategoriaYTipoProducto(1,"Hombre","Camisa");
-        modelo.addAttribute("producto",productos);
-        return "busquedaIniciada";
-    }
-
-    /**
-     * Flitra todas las publicaciones y muestra únicamente los que sean de la categoría hombre y del tipo pantalón
-     *
-     * @param modelo Se utiliza para poder trabajar objetos dentro de los html, en este caso se utilizan para poder mostrar
-     *              productos y sus atributos.
-     * @return El html en donde se mostraran los tipos de productos disponibles en la categoría hombre y del tipo pantalón.
-     */
-    @GetMapping("/iniciadoSesion/busqueda/categoria/hombre/porTipo/pantalon")
-    public String busquedaPorCategoriaHYTipoPantalon(Model modelo){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String usuario = authentication.getName();
-        Usuario sesion = userService.findUserByEmail(usuario);
-        System.out.println("este es el correo que inicio sesion: " + sesion.toString());
-        modelo.addAttribute("sesion", sesion);
-
-        modelo.addAttribute("tipoProducto", tipoProducto.values());
-        modelo.addAttribute("talla", tipoTalla.values());
-        modelo.addAttribute("estado", tipoEstado.values());
-        modelo.addAttribute("categoria", tipoCategoria.values());
-        List<Producto> productos= servicioProducto.obteneProductoPorCategoriaYTipoProducto(1,"Hombre","Pantalon");
-        modelo.addAttribute("producto",productos);
-        return "busquedaIniciada";
-    }
-
-    /**
-     * Flitra todas las publicaciones y muestra únicamente los que sean de la categoría hombre y del tipo zapato
-     *
-     * @param modelo Se utiliza para poder trabajar objetos dentro de los html, en este caso se utilizan para poder mostrar
-     *              productos y sus atributos.
-     * @return El html en donde se mostraran los tipos de productos disponibles en la categoría hombre y del tipo zapato.
-     */
-    @GetMapping("/iniciadoSesion/busqueda/categoria/hombre/porTipo/zapato")
-    public String busquedaPorCategoriaHYTipoZapato(Model modelo){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String usuario = authentication.getName();
-        Usuario sesion = userService.findUserByEmail(usuario);
-        System.out.println("este es el correo que inicio sesion: " + sesion.toString());
-        modelo.addAttribute("sesion", sesion);
-
-        modelo.addAttribute("tipoProducto", tipoProducto.values());
-        modelo.addAttribute("talla", tipoTalla.values());
-        modelo.addAttribute("estado", tipoEstado.values());
-        modelo.addAttribute("categoria", tipoCategoria.values());
-        List<Producto> productos= servicioProducto.obteneProductoPorCategoriaYTipoProducto(1,"Hombre","Zapato");
-        modelo.addAttribute("producto",productos);
-        return "busquedaIniciada";
-    }
-
-    /**
-     * Flitra todas las publicaciones y muestra únicamente los que sean de la categoría hombre y del tipo chaqueta
-     *
-     * @param modelo Se utiliza para poder trabajar objetos dentro de los html, en este caso se utilizan para poder mostrar
-     *              productos y sus atributos.
-     * @return El html en donde se mostraran los tipos de productos disponibles en la categoría hombre y del tipo chaqueta.
-     */
-    @GetMapping("/iniciadoSesion/busqueda/categoria/hombre/porTipo/chaqueta")
-    public String busquedaPorCategoriaHYTipoChaqueta(Model modelo){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String usuario = authentication.getName();
-        Usuario sesion = userService.findUserByEmail(usuario);
-        System.out.println("este es el correo que inicio sesion: " + sesion.toString());
-        modelo.addAttribute("sesion", sesion);
-
-        modelo.addAttribute("tipoProducto", tipoProducto.values());
-        modelo.addAttribute("talla", tipoTalla.values());
-        modelo.addAttribute("estado", tipoEstado.values());
-        modelo.addAttribute("categoria", tipoCategoria.values());
-        List<Producto> productos= servicioProducto.obteneProductoPorCategoriaYTipoProducto(1,"Hombre","Chaqueta");
-        modelo.addAttribute("producto",productos);
-        return "busquedaIniciada";
-    }
-
-
-    /**
-     * Flitra todas las publicaciones y muestra únicamente los que sean de la categoría mujer y del tipo polera
-     *
-     * @param modelo Se utiliza para poder trabajar objetos dentro de los html, en este caso se utilizan para poder mostrar
-     *              productos y sus atributos.
-     * @return El html en donde se mostraran los tipos de productos disponibles en la categoría mujer y del tipo polera.
-     */
-    @GetMapping("/iniciadoSesion/busqueda/categoria/mujer/porTipo/polera")
-    public String busquedaPorCategoriaMYTipoPolera(Model modelo){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String usuario = authentication.getName();
-        Usuario sesion = userService.findUserByEmail(usuario);
-        System.out.println("este es el correo que inicio sesion: " + sesion.toString());
-        modelo.addAttribute("sesion", sesion);
-
-        modelo.addAttribute("tipoProducto", tipoProducto.values());
-        modelo.addAttribute("talla", tipoTalla.values());
-        modelo.addAttribute("estado", tipoEstado.values());
-        modelo.addAttribute("categoria", tipoCategoria.values());
-        List<Producto> productos= servicioProducto.obteneProductoPorCategoriaYTipoProducto(1,"Mujer","Polera");
-        modelo.addAttribute("producto",productos);
-        return "busquedaIniciada";
-    }
-
-    /**
-     * Flitra todas las publicaciones y muestra únicamente los que sean de la categoría mujer y del tipo poleron
-     *
-     * @param modelo Se utiliza para poder trabajar objetos dentro de los html, en este caso se utilizan para poder mostrar
-     *              productos y sus atributos.
-     * @return El html en donde se mostraran los tipos de productos disponibles en la categoría mujer y del tipo poleron.
-     */
-    @GetMapping("/iniciadoSesion/busqueda/categoria/mujer/porTipo/poleron")
-    public String busquedaPorCategoriaMYTipoPoleron(Model modelo){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String usuario = authentication.getName();
-        Usuario sesion = userService.findUserByEmail(usuario);
-        System.out.println("este es el correo que inicio sesion: " + sesion.toString());
-        modelo.addAttribute("sesion", sesion);
-
-        modelo.addAttribute("tipoProducto", tipoProducto.values());
-        modelo.addAttribute("talla", tipoTalla.values());
-        modelo.addAttribute("estado", tipoEstado.values());
-        modelo.addAttribute("categoria", tipoCategoria.values());
-        List<Producto> productos= servicioProducto.obteneProductoPorCategoriaYTipoProducto(1,"Mujer","Poleron");
-        modelo.addAttribute("producto",productos);
-        return "busquedaIniciada";
-    }
-
-    /**
-     * Flitra todas las publicaciones y muestra únicamente los que sean de la categoría mujer y del tipo camisa
-     *
-     * @param modelo Se utiliza para poder trabajar objetos dentro de los html, en este caso se utilizan para poder mostrar
-     *              productos y sus atributos.
-     * @return El html en donde se mostraran los tipos de productos disponibles en la categoría mujer y del tipo camisa.
-     */
-    @GetMapping("/iniciadoSesion/busqueda/categoria/mujer/porTipo/camisa")
-    public String busquedaPorCategoriaMYTipoCamisa(Model modelo){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String usuario = authentication.getName();
-        Usuario sesion = userService.findUserByEmail(usuario);
-        System.out.println("este es el correo que inicio sesion: " + sesion.toString());
-        modelo.addAttribute("sesion", sesion);
-
-        modelo.addAttribute("tipoProducto", tipoProducto.values());
-        modelo.addAttribute("talla", tipoTalla.values());
-        modelo.addAttribute("estado", tipoEstado.values());
-        modelo.addAttribute("categoria", tipoCategoria.values());
-        List<Producto> productos= servicioProducto.obteneProductoPorCategoriaYTipoProducto(1,"Mujer","Camisa");
-        modelo.addAttribute("producto",productos);
-        return "busquedaIniciada";
-    }
-
-    /**
-     * Flitra todas las publicaciones y muestra únicamente los que sean de la categoría mujer y del tipo pantalón
-     *
-     * @param modelo Se utiliza para poder trabajar objetos dentro de los html, en este caso se utilizan para poder mostrar
-     *              productos y sus atributos.
-     * @return El html en donde se mostraran los tipos de productos disponibles en la categoría mujer y del tipo pantalón.
-     */
-    @GetMapping("/iniciadoSesion/busqueda/categoria/mujer/porTipo/pantalon")
-    public String busquedaPorCategoriaMYTipoPantalon(Model modelo){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String usuario = authentication.getName();
-        Usuario sesion = userService.findUserByEmail(usuario);
-        System.out.println("este es el correo que inicio sesion: " + sesion.toString());
-        modelo.addAttribute("sesion", sesion);
-
-        modelo.addAttribute("tipoProducto", tipoProducto.values());
-        modelo.addAttribute("talla", tipoTalla.values());
-        modelo.addAttribute("estado", tipoEstado.values());
-        modelo.addAttribute("categoria", tipoCategoria.values());
-        List<Producto> productos= servicioProducto.obteneProductoPorCategoriaYTipoProducto(1,"Mujer","Pantalon");
-        modelo.addAttribute("producto",productos);
-        return "busquedaIniciada";
-    }
-
-    /**
-     * Flitra todas las publicaciones y muestra únicamente los que sean de la categoría mujer y del tipo zapato
-     *
-     * @param modelo Se utiliza para poder trabajar objetos dentro de los html, en este caso se utilizan para poder mostrar
-     *              productos y sus atributos.
-     * @return El html en donde se mostraran los tipos de productos disponibles en la categoría mujer y del tipo zapato.
-     */
-    @GetMapping("/iniciadoSesion/busqueda/categoria/mujer/porTipo/zapato")
-    public String busquedaPorCategoriaMYTipoZapato(Model modelo){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String usuario = authentication.getName();
-        Usuario sesion = userService.findUserByEmail(usuario);
-        System.out.println("este es el correo que inicio sesion: " + sesion.toString());
-        modelo.addAttribute("sesion", sesion);
-
-        modelo.addAttribute("tipoProducto", tipoProducto.values());
-        modelo.addAttribute("talla", tipoTalla.values());
-        modelo.addAttribute("estado", tipoEstado.values());
-        modelo.addAttribute("categoria", tipoCategoria.values());
-        List<Producto> productos= servicioProducto.obteneProductoPorCategoriaYTipoProducto(1,"Mujer","Zapato");
-        modelo.addAttribute("producto",productos);
-        return "busquedaIniciada";
-    }
-
-    /**
-     * Flitra todas las publicaciones y muestra únicamente los que sean de la categoría mujer y del tipo chaqueta
-     *
-     * @param modelo Se utiliza para poder trabajar objetos dentro de los html, en este caso se utilizan para poder mostrar
-     *              productos y sus atributos.
-     * @return El html en donde se mostraran los tipos de productos disponibles en la categoría mujer y del tipo chaqueta.
-     */
-    @GetMapping("/iniciadoSesion/busqueda/categoria/mujer/porTipo/chaqueta")
-    public String busquedaPorCategoriaMYTipoChaqueta(Model modelo){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String usuario = authentication.getName();
-        Usuario sesion = userService.findUserByEmail(usuario);
-        System.out.println("este es el correo que inicio sesion: " + sesion.toString());
-        modelo.addAttribute("sesion", sesion);
-
-        modelo.addAttribute("tipoProducto", tipoProducto.values());
-        modelo.addAttribute("talla", tipoTalla.values());
-        modelo.addAttribute("estado", tipoEstado.values());
-        modelo.addAttribute("categoria", tipoCategoria.values());
-        List<Producto> productos= servicioProducto.obteneProductoPorCategoriaYTipoProducto(1,"Mujer","Chaqueta");
-        modelo.addAttribute("producto",productos);
-        return "busquedaIniciada";
-    }
-
-    /**
-     * Flitra todas las publicaciones y muestra únicamente los que sean de la categoría mujer y del tipo blusa.
-     *
-     * @param modelo Se utiliza para poder trabajar objetos dentro de los html, en este caso se utilizan para poder mostrar
-     *              productos y sus atributos.
-     * @return El html en donde se mostraran los tipos de productos disponibles en la categoría mujer y del tipo blusa.
-     */
-    @GetMapping("/iniciadoSesion/busqueda/categoria/mujer/porTipo/blusa")
-    public String busquedaPorCategoriaMYTipoBlusa(Model modelo){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String usuario = authentication.getName();
-        Usuario sesion = userService.findUserByEmail(usuario);
-        System.out.println("este es el correo que inicio sesion: " + sesion.toString());
-        modelo.addAttribute("sesion", sesion);
-
-        modelo.addAttribute("tipoProducto", tipoProducto.values());
-        modelo.addAttribute("talla", tipoTalla.values());
-        modelo.addAttribute("estado", tipoEstado.values());
-        modelo.addAttribute("categoria", tipoCategoria.values());
-        List<Producto> productos= servicioProducto.obteneProductoPorCategoriaYTipoProducto(1,"Mujer","Blusa");
-        modelo.addAttribute("producto",productos);
-        return "busquedaIniciada";
-    }
-
-    /**
-     * Flitra todas las publicaciones y muestra únicamente los que sean de la categoría mujer y del tipo falda.
-     *
-     * @param modelo Se utiliza para poder trabajar objetos dentro de los html, en este caso se utilizan para poder mostrar
-     *              productos y sus atributos.
-     * @return El html en donde se mostraran los tipos de productos disponibles en la categoría mujer y del tipo falda.
-     */
-    @GetMapping("/iniciadoSesion/busqueda/categoria/mujer/porTipo/falda")
-    public String busquedaPorCategoriaMYTipoFalda(Model modelo){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String usuario = authentication.getName();
-        Usuario sesion = userService.findUserByEmail(usuario);
-        System.out.println("este es el correo que inicio sesion: " + sesion.toString());
-        modelo.addAttribute("sesion", sesion);
-
-        modelo.addAttribute("tipoProducto", tipoProducto.values());
-        modelo.addAttribute("talla", tipoTalla.values());
-        modelo.addAttribute("estado", tipoEstado.values());
-        modelo.addAttribute("categoria", tipoCategoria.values());
-        List<Producto> productos= servicioProducto.obteneProductoPorCategoriaYTipoProducto(1,"Mujer","Falda");
-        modelo.addAttribute("producto",productos);
-        return "busquedaIniciada";
-    }
-
-    /**
-     * Flitra todas las publicaciones y muestra únicamente los que sean de la categoría niño y del tipo polera.
-     *
-     * @param modelo Se utiliza para poder trabajar objetos dentro de los html, en este caso se utilizan para poder mostrar
-     *              productos y sus atributos.
-     * @return El html en donde se mostraran los tipos de productos disponibles en la categoría niño y del tipo polera.
-     */
-    @GetMapping("/iniciadoSesion/busqueda/categoria/nino/porTipo/polera")
-    public String busquedaPorCategoriaNYTipoPolera(Model modelo){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String usuario = authentication.getName();
-        Usuario sesion = userService.findUserByEmail(usuario);
-        System.out.println("este es el correo que inicio sesion: " + sesion.toString());
-        modelo.addAttribute("sesion", sesion);
-
-        modelo.addAttribute("tipoProducto", tipoProducto.values());
-        modelo.addAttribute("talla", tipoTalla.values());
-        modelo.addAttribute("estado", tipoEstado.values());
-        modelo.addAttribute("categoria", tipoCategoria.values());
-        List<Producto> productos= servicioProducto.obteneProductoPorCategoriaYTipoProducto(1,"Niño","Polera");
-        modelo.addAttribute("producto",productos);
-        return "busquedaIniciada";
-    }
-
-    /**
-     * Flitra todas las publicaciones y muestra únicamente los que sean de la categoría niño y del tipo poleron.
-     *
-     * @param modelo Se utiliza para poder trabajar objetos dentro de los html, en este caso se utilizan para poder mostrar
-     *              productos y sus atributos.
-     * @return El html en donde se mostraran los tipos de productos disponibles en la categoría niño y del tipo poleron.
-     */
-    @GetMapping("/iniciadoSesion/busqueda/categoria/nino/porTipo/poleron")
-    public String busquedaPorCategoriaNYTipoPoleron(Model modelo){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String usuario = authentication.getName();
-        Usuario sesion = userService.findUserByEmail(usuario);
-        System.out.println("este es el correo que inicio sesion: " + sesion.toString());
-        modelo.addAttribute("sesion", sesion);
-
-        modelo.addAttribute("tipoProducto", tipoProducto.values());
-        modelo.addAttribute("talla", tipoTalla.values());
-        modelo.addAttribute("estado", tipoEstado.values());
-        modelo.addAttribute("categoria", tipoCategoria.values());
-        List<Producto> productos= servicioProducto.obteneProductoPorCategoriaYTipoProducto(1,"Niño","Poleron");
-        modelo.addAttribute("producto",productos);
-        return "busquedaIniciada";
-    }
-
-    /**
-     * Flitra todas las publicaciones y muestra únicamente los que sean de la categoría niño y del tipo camisa.
-     *
-     * @param modelo Se utiliza para poder trabajar objetos dentro de los html, en este caso se utilizan para poder mostrar
-     *              productos y sus atributos.
-     * @return El html en donde se mostraran los tipos de productos disponibles en la categoría niño y del tipo camisa.
-     */
-    @GetMapping("/iniciadoSesion/busqueda/categoria/nino/porTipo/camisa")
-    public String busquedaPorCategoriaNYTipoCamisa(Model modelo){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String usuario = authentication.getName();
-        Usuario sesion = userService.findUserByEmail(usuario);
-        System.out.println("este es el correo que inicio sesion: " + sesion.toString());
-        modelo.addAttribute("sesion", sesion);
-
-        modelo.addAttribute("tipoProducto", tipoProducto.values());
-        modelo.addAttribute("talla", tipoTalla.values());
-        modelo.addAttribute("estado", tipoEstado.values());
-        modelo.addAttribute("categoria", tipoCategoria.values());
-        List<Producto> productos= servicioProducto.obteneProductoPorCategoriaYTipoProducto(1,"Niño","Camisa");
-        modelo.addAttribute("producto",productos);
-        return "busquedaIniciada";
-    }
-
-    /**
-     * Flitra todas las publicaciones y muestra únicamente los que sean de la categoría niño y del tipo pantalon.
-     *
-     * @param modelo Se utiliza para poder trabajar objetos dentro de los html, en este caso se utilizan para poder mostrar
-     *              productos y sus atributos.
-     * @return El html en donde se mostraran los tipos de productos disponibles en la categoría niño y del tipo pantalon.
-     */
-    @GetMapping("/iniciadoSesion/busqueda/categoria/nino/porTipo/pantalon")
-    public String busquedaPorCategoriaNYTipoPantalon(Model modelo){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String usuario = authentication.getName();
-        Usuario sesion = userService.findUserByEmail(usuario);
-        System.out.println("este es el correo que inicio sesion: " + sesion.toString());
-        modelo.addAttribute("sesion", sesion);
-
-        modelo.addAttribute("tipoProducto", tipoProducto.values());
-        modelo.addAttribute("talla", tipoTalla.values());
-        modelo.addAttribute("estado", tipoEstado.values());
-        modelo.addAttribute("categoria", tipoCategoria.values());
-        List<Producto> productos= servicioProducto.obteneProductoPorCategoriaYTipoProducto(1,"Niño","Pantalon");
-        modelo.addAttribute("producto",productos);
-        return "busquedaIniciada";
-    }
-
-    /**
-     * Flitra todas las publicaciones y muestra únicamente los que sean de la categoría niño y del tipo zapato.
-     *
-     * @param modelo Se utiliza para poder trabajar objetos dentro de los html, en este caso se utilizan para poder mostrar
-     *              productos y sus atributos.
-     * @return El html en donde se mostraran los tipos de productos disponibles en la categoría niño y del tipo zapato.
-     */
-    @GetMapping("/iniciadoSesion/busqueda/categoria/nino/porTipo/zapato")
-    public String busquedaPorCategoriaNYTipoZapato(Model modelo){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String usuario = authentication.getName();
-        Usuario sesion = userService.findUserByEmail(usuario);
-        System.out.println("este es el correo que inicio sesion: " + sesion.toString());
-        modelo.addAttribute("sesion", sesion);
-
-        modelo.addAttribute("tipoProducto", tipoProducto.values());
-        modelo.addAttribute("talla", tipoTalla.values());
-        modelo.addAttribute("estado", tipoEstado.values());
-        modelo.addAttribute("categoria", tipoCategoria.values());
-        List<Producto> productos= servicioProducto.obteneProductoPorCategoriaYTipoProducto(1,"Niño","Zapato");
-        modelo.addAttribute("producto",productos);
-        return "busquedaIniciada";
-    }
-
-    /**
-     * Flitra todas las publicaciones y muestra únicamente los que sean de la categoría niño y del tipo chaqueta.
-     *
-     * @param modelo Se utiliza para poder trabajar objetos dentro de los html, en este caso se utilizan para poder mostrar
-     *              productos y sus atributos.
-     * @return El html en donde se mostraran los tipos de productos disponibles en la categoría niño y del tipo chaqueta.
-     */
-    @GetMapping("/iniciadoSesion/busqueda/categoria/nino/porTipo/chaqueta")
-    public String busquedaPorCategoriaNYTipoChaqueta(Model modelo){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String usuario = authentication.getName();
-        Usuario sesion = userService.findUserByEmail(usuario);
-        System.out.println("este es el correo que inicio sesion: " + sesion.toString());
-        modelo.addAttribute("sesion", sesion);
-
-        modelo.addAttribute("tipoProducto", tipoProducto.values());
-        modelo.addAttribute("talla", tipoTalla.values());
-        modelo.addAttribute("estado", tipoEstado.values());
-        modelo.addAttribute("categoria", tipoCategoria.values());
-        List<Producto> productos= servicioProducto.obteneProductoPorCategoriaYTipoProducto(1,"Niño","Chaqueta");
-        modelo.addAttribute("producto",productos);
-        return "busquedaIniciada";
-    }
-
-
-
-
-
-
 
 
 }
