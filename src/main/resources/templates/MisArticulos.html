@@ -153,7 +153,7 @@
                         <p class="informacionProducto2" th:text="${producto.estado}"></p>
                         <p class="informacionProducto2" th:text="${producto.precio}"></p>
                         <p id="desc" th:text="${producto.descripcion}"></p>
-                        <a id="botonContacto" th:href="@{/eliminarProducto/{id}(id=${producto.idPoroducto})}" >Eliminar Publicación</a>
+                        <a id="botonContacto" th:href="@{/eliminarProducto/{idSesion}/{id}(idSesion=${sesion.id},id=${producto.idPoroducto})}" class="btn btn-dark">Eliminar Publicación</a>
                     </div>
 
 

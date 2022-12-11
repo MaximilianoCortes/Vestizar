@@ -95,7 +95,7 @@ public class AppControlador {
 
     }
 
-    @GetMapping("iniciadoSesion/verProducto/{id}")
+    @GetMapping("/iniciadoSesion/verProducto/{id}")
     public String mostrarProductoIniciadoSesion(@PathVariable Long id, Model modelo) {
 
         Usuario sesion = obtenerSesion();
@@ -110,7 +110,7 @@ public class AppControlador {
     }
 
 
-    @GetMapping("iniciadoSesion/verMisProductos/{id}")
+    @GetMapping("/iniciadoSesion/verMisProductos/{id}")
     public String mostrarMisProductoIniciadoSesion(@PathVariable Long id, Model modelo) {
         Usuario sesion = obtenerSesion();
         agregarAtributos(modelo, sesion);
@@ -119,10 +119,10 @@ public class AppControlador {
         return "MisArticulos";
     }
 
-    @GetMapping("/eliminarProducto/{id}")
-    public String eliminarProducto(@PathVariable Long id, Model modelo) {
+    @GetMapping("/eliminarProducto/{idSesion}/{id}")
+    public String eliminarProducto(@PathVariable("id") Long id,@PathVariable("idSesion") Long idSesion) {
         servicioProducto.eliminarProducto(id);
-        return "";
+        return "redirect:/iniciadoSesion/misPublicaciones/"+idSesion;
     }
 
     @GetMapping("/iniciadoSesion/perfilVendedor/{id}")

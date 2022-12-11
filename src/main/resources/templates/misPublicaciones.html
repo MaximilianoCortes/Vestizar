@@ -34,9 +34,9 @@
 
             <ul class="dropdown-menu dropdown-menu-dark informaDrop" style="text-align: center; background-color: #1b1919; border-radius: 6%; " aria-labelledby="dropdownMenuLink">
                 <li><p class="informaDrop0">Bienvenido, Usuario</p></li>
-                <li><a class="dropdown-item informaDrop1" href="verMiPerfil.html">Ver mi perfil</a></li>
+                <li><a class="dropdown-item informaDrop1" th:href="@{/iniciadoSesion/verMiPerfil}">Ver mi perfil</a></li>
                 <li><a class="dropdown-item informaDrop1" type="Button" data-bs-toggle="modal" data-bs-target="#exampleModal">Crear publicación</a></li>
-                <li><a class="dropdown-item informaDrop1" href="misPublicaciones.html">Ver mis publicaciones</a></li>
+                <li><a class="dropdown-item informaDrop1" th:href="@{/iniciadoSesion/misPublicaciones/{id}(id=${sesion.id})}">Ver mis publicaciones</a></li>
 
                 <li><a class="dropdown-item informaDrop1" th:href="@{/inicioAdmin}">Administrador</a></li>
                 <li><a class="dropdown-item informaDrop2" th:href="@{/}">Cerrar Sesion</a></li>
@@ -118,7 +118,6 @@
             <a class="cat" th:href="@{/iniciadoSesion/busqueda}" >General</a>
             <a class="cat" id="cato" th:href="@{/iniciadoSesion/busqueda}" >Ofertas</a>
         </div>
-            
         </header>
             
         <div>

@@ -88,49 +88,6 @@ public class ProductoControlador {
 
     }
 
-
-    /**
-     * Filtra los tipos de publicaciones a solo las que sean del tipo poleras
-     *
-     * @param model Se utiliza para poder trabajar objetos dentro de los html, en este caso se utilizan para poder mostrar
-     *              productos y sus atributos
-     * @return El html busqueda en donde se mostraran todos los productos que sean del tipo polera
-     */
-    @GetMapping("/busqueda/porTipo/polera")
-    public String busquedaPoleras(Model model){
-        List<Producto> productos= servicioProducto.obteneProductoPorTipoProducto(1,"Polera");
-        model.addAttribute("producto",productos);
-        return "busqueda";
-    }
-
-    /**
-     * Filtra los tipos de publicaciones a solo las que sean del tipo camisas.
-     *
-     * @param model Se utiliza para poder trabajar objetos dentro de los html, en este caso se utilizan para poder mostrar
-     *              productos y sus atributos
-     * @return El html busqueda en donde se mostraran todos los productos que sean del tipo camisa
-     */
-    @GetMapping("/busqueda/porTipo/camisa")
-    public String busquedaCamisas(Model model){
-        List<Producto> productos= servicioProducto.obteneProductoPorTipoProducto(1,"Camisa");
-        model.addAttribute("producto",productos);
-        return "busqueda";
-    }
-
-    /**
-     * Filtra los tipos de publicaciones a solo las que sean del tipo pantalones.
-     *
-     * @param model Se utiliza para poder trabajar objetos dentro de los html, en este caso se utilizan para poder mostrar
-     *              productos y sus atributos
-     * @return El html busqueda en donde se mostraran todos los productos que sean del tipo pantalon
-     */
-    @GetMapping("/busqueda/porTipo/pantalon")
-    public String busquedaPantalones(Model model){
-        List<Producto> productos= servicioProducto.obteneProductoPorTipoProducto(1,"Pantalon");
-        model.addAttribute("producto",productos);
-        return "busqueda";
-    }
-
     @GetMapping("/perfilVendedor/{id}")
     public String perfilVendedor(@PathVariable Long id, Model modelo){
         List<Producto> productos=servicioProducto.obtenerProductoPorVendedor(1,id);
@@ -141,335 +98,33 @@ public class ProductoControlador {
     }
 
 
-
     /**
-     * Filtra los tipos de publicaciones a solo las que sean del tipo poleron.
+     * Filtra los tipos de publicaciones a solo las que sean del tipo poleras
      *
      * @param model Se utiliza para poder trabajar objetos dentro de los html, en este caso se utilizan para poder mostrar
-     *              productos y sus atributos.
-     * @return El html busqueda en donde se mostraran todos los productos que sean del tipo poleron.
+     *              productos y sus atributos
+     * @return El html busqueda en donde se mostraran todos los productos que sean del tipo polera
      */
-    @GetMapping("/busqueda/porTipo/poleron")
-    public String busquedaPolerones(Model model){
-        List<Producto> productos= servicioProducto.obteneProductoPorTipoProducto(1,"Poleron");
+    @GetMapping("/busqueda/porTipo/{tipo}")
+    public String busquedaPoleras(@PathVariable("tipo") String tipo, Model model){
+        List<Producto> productos= servicioProducto.obteneProductoPorTipoProducto(1,tipo);
         model.addAttribute("producto",productos);
         return "busqueda";
     }
 
-
-
-    /**
-     * Muestra tipos de productos los cuales van a estar filtrados y se mostraran solo los que estén en la categoría hombre.
-     *
-     * @return El html en donde se mostraran los tipos de productos disponibles en la categoría hombre
-     */
-    @GetMapping("/busqueda/categoria/hombre")
-    public String busquedaPorCategoríaHombre() {
-        return "inicioCategoriaHombre";
+    @GetMapping("/busqueda/categoria/{tipoCategoria}")
+    public String busquedaPorCategoríaHombre(@PathVariable("tipoCategoria") String tipoCategoria) {
+        return "inicioCategoria"+tipoCategoria;
     }
 
-    /**
-     * Muestra tipos de productos los cuales van a estar filtrados y se mostraran solo los que estén en la categoría mujer.
-     *
-     * @return El html en donde se mostraran los tipos de productos disponibles en la categoría mujer.
-     */
-    @GetMapping("/busqueda/categoria/mujer")
-    public String busquedaPorCategoríaMujer() {
-        return "inicioCategoriaMujer";
-    }
-
-    /**
-     * Muestra tipos de productos los cuales van a estar filtrados y se mostraran solo los que estén en la categoría niño.
-     *
-     * @return El html en donde se mostraran los tipos de productos disponibles en la categoría niño.
-     */
-    @GetMapping("/busqueda/categoria/nino")
-    public String busquedaPorCategoríaNino() {
-        return "inicioCategoriaNino";
-    }
-
-
-    /**
-     * Flitra todas las publicaciones y muestra únicamente los que sean de la categoría hombre y del tipo polera
-     *
-     * @param model Se utiliza para poder trabajar objetos dentro de los html, en este caso se utilizan para poder mostrar
-     *              productos y sus atributos.
-     * @return El html en donde se mostraran los tipos de productos disponibles en la categoría hombre y del tipo polera.
-     */
-    @GetMapping("/busqueda/categoria/hombre/porTipo/polera")
-    public String busquedaPorCategoriaHYTipoPolera(Model model){
-        List<Producto> productos= servicioProducto.obteneProductoPorCategoriaYTipoProducto(1,"Hombre","Polera");
+    @GetMapping("/busqueda/categoria/{genero}/porTipo/{tipoProducto}")
+    public String busquedaPorCategoriaHYTipoPolera(@PathVariable("genero") String genero,
+                                                   @PathVariable("tipoProducto") String tipoProducto,
+                                                   Model model){
+        List<Producto> productos= servicioProducto.obteneProductoPorCategoriaYTipoProducto(1,genero,tipoProducto);
         model.addAttribute("producto",productos);
         return "busqueda";
     }
-
-    /**
-     * Flitra todas las publicaciones y muestra únicamente los que sean de la categoría hombre y del tipo poleron
-     *
-     * @param model Se utiliza para poder trabajar objetos dentro de los html, en este caso se utilizan para poder mostrar
-     *              productos y sus atributos.
-     * @return El html en donde se mostraran los tipos de productos disponibles en la categoría hombre y del tipo poleron.
-     */
-    @GetMapping("/busqueda/categoria/hombre/porTipo/poleron")
-    public String busquedaPorCategoriaHYTipoPoleron(Model model){
-        List<Producto> productos= servicioProducto.obteneProductoPorCategoriaYTipoProducto(1,"Hombre","Poleron");
-        model.addAttribute("producto",productos);
-        return "busqueda";
-    }
-
-    /**
-     * Flitra todas las publicaciones y muestra únicamente los que sean de la categoría hombre y del tipo camisa
-     *
-     * @param model Se utiliza para poder trabajar objetos dentro de los html, en este caso se utilizan para poder mostrar
-     *              productos y sus atributos.
-     * @return El html en donde se mostraran los tipos de productos disponibles en la categoría hombre y del tipo camisa.
-     */
-    @GetMapping("/busqueda/categoria/hombre/porTipo/camisa")
-    public String busquedaPorCategoriaHYTipoCamisa(Model model){
-        List<Producto> productos= servicioProducto.obteneProductoPorCategoriaYTipoProducto(1,"Hombre","Camisa");
-        model.addAttribute("producto",productos);
-        return "busqueda";
-    }
-
-    /**
-     * Flitra todas las publicaciones y muestra únicamente los que sean de la categoría hombre y del tipo pantalón
-     *
-     * @param model Se utiliza para poder trabajar objetos dentro de los html, en este caso se utilizan para poder mostrar
-     *              productos y sus atributos.
-     * @return El html en donde se mostraran los tipos de productos disponibles en la categoría hombre y del tipo pantalón.
-     */
-    @GetMapping("/busqueda/categoria/hombre/porTipo/pantalon")
-    public String busquedaPorCategoriaHYTipoPantalon(Model model){
-        List<Producto> productos= servicioProducto.obteneProductoPorCategoriaYTipoProducto(1,"Hombre","Pantalon");
-        model.addAttribute("producto",productos);
-        return "busqueda";
-    }
-
-    /**
-     * Flitra todas las publicaciones y muestra únicamente los que sean de la categoría hombre y del tipo zapato
-     *
-     * @param model Se utiliza para poder trabajar objetos dentro de los html, en este caso se utilizan para poder mostrar
-     *              productos y sus atributos.
-     * @return El html en donde se mostraran los tipos de productos disponibles en la categoría hombre y del tipo zapato.
-     */
-    @GetMapping("/busqueda/categoria/hombre/porTipo/zapato")
-    public String busquedaPorCategoriaHYTipoZapato(Model model){
-        List<Producto> productos= servicioProducto.obteneProductoPorCategoriaYTipoProducto(1,"Hombre","Zapato");
-        model.addAttribute("producto",productos);
-        return "busqueda";
-    }
-
-    /**
-     * Flitra todas las publicaciones y muestra únicamente los que sean de la categoría hombre y del tipo chaqueta
-     *
-     * @param model Se utiliza para poder trabajar objetos dentro de los html, en este caso se utilizan para poder mostrar
-     *              productos y sus atributos.
-     * @return El html en donde se mostraran los tipos de productos disponibles en la categoría hombre y del tipo chaqueta.
-     */
-    @GetMapping("/busqueda/categoria/hombre/porTipo/chaqueta")
-    public String busquedaPorCategoriaHYTipoChaqueta(Model model){
-        List<Producto> productos= servicioProducto.obteneProductoPorCategoriaYTipoProducto(1,"Hombre","Chaqueta");
-        model.addAttribute("producto",productos);
-        return "busqueda";
-    }
-
-
-    /**
-     * Flitra todas las publicaciones y muestra únicamente los que sean de la categoría mujer y del tipo polera
-     *
-     * @param model Se utiliza para poder trabajar objetos dentro de los html, en este caso se utilizan para poder mostrar
-     *              productos y sus atributos.
-     * @return El html en donde se mostraran los tipos de productos disponibles en la categoría mujer y del tipo polera.
-     */
-    @GetMapping("/busqueda/categoria/mujer/porTipo/polera")
-    public String busquedaPorCategoriaMYTipoPolera(Model model){
-        List<Producto> productos= servicioProducto.obteneProductoPorCategoriaYTipoProducto(1,"Mujer","Polera");
-        model.addAttribute("producto",productos);
-        return "busqueda";
-    }
-
-    /**
-     * Flitra todas las publicaciones y muestra únicamente los que sean de la categoría mujer y del tipo poleron
-     *
-     * @param model Se utiliza para poder trabajar objetos dentro de los html, en este caso se utilizan para poder mostrar
-     *              productos y sus atributos.
-     * @return El html en donde se mostraran los tipos de productos disponibles en la categoría mujer y del tipo poleron.
-     */
-    @GetMapping("/busqueda/categoria/mujer/porTipo/poleron")
-    public String busquedaPorCategoriaMYTipoPoleron(Model model){
-        List<Producto> productos= servicioProducto.obteneProductoPorCategoriaYTipoProducto(1,"Mujer","Poleron");
-        model.addAttribute("producto",productos);
-        return "busqueda";
-    }
-
-    /**
-     * Flitra todas las publicaciones y muestra únicamente los que sean de la categoría mujer y del tipo camisa
-     *
-     * @param model Se utiliza para poder trabajar objetos dentro de los html, en este caso se utilizan para poder mostrar
-     *              productos y sus atributos.
-     * @return El html en donde se mostraran los tipos de productos disponibles en la categoría mujer y del tipo camisa.
-     */
-    @GetMapping("/busqueda/categoria/mujer/porTipo/camisa")
-    public String busquedaPorCategoriaMYTipoCamisa(Model model){
-        List<Producto> productos= servicioProducto.obteneProductoPorCategoriaYTipoProducto(1,"Mujer","Camisa");
-        model.addAttribute("producto",productos);
-        return "busqueda";
-    }
-
-    /**
-     * Flitra todas las publicaciones y muestra únicamente los que sean de la categoría mujer y del tipo pantalón
-     *
-     * @param model Se utiliza para poder trabajar objetos dentro de los html, en este caso se utilizan para poder mostrar
-     *              productos y sus atributos.
-     * @return El html en donde se mostraran los tipos de productos disponibles en la categoría mujer y del tipo pantalón.
-     */
-    @GetMapping("/busqueda/categoria/mujer/porTipo/pantalon")
-    public String busquedaPorCategoriaMYTipoPantalon(Model model){
-        List<Producto> productos= servicioProducto.obteneProductoPorCategoriaYTipoProducto(1,"Mujer","Pantalon");
-        model.addAttribute("producto",productos);
-        return "busqueda";
-    }
-
-    /**
-     * Flitra todas las publicaciones y muestra únicamente los que sean de la categoría mujer y del tipo zapato
-     *
-     * @param model Se utiliza para poder trabajar objetos dentro de los html, en este caso se utilizan para poder mostrar
-     *              productos y sus atributos.
-     * @return El html en donde se mostraran los tipos de productos disponibles en la categoría mujer y del tipo zapato.
-     */
-    @GetMapping("/busqueda/categoria/mujer/porTipo/zapato")
-    public String busquedaPorCategoriaMYTipoZapato(Model model){
-        List<Producto> productos= servicioProducto.obteneProductoPorCategoriaYTipoProducto(1,"Mujer","Zapato");
-        model.addAttribute("producto",productos);
-        return "busqueda";
-    }
-
-    /**
-     * Flitra todas las publicaciones y muestra únicamente los que sean de la categoría mujer y del tipo chaqueta
-     *
-     * @param model Se utiliza para poder trabajar objetos dentro de los html, en este caso se utilizan para poder mostrar
-     *              productos y sus atributos.
-     * @return El html en donde se mostraran los tipos de productos disponibles en la categoría mujer y del tipo chaqueta.
-     */
-    @GetMapping("/busqueda/categoria/mujer/porTipo/chaqueta")
-    public String busquedaPorCategoriaMYTipoChaqueta(Model model){
-        List<Producto> productos= servicioProducto.obteneProductoPorCategoriaYTipoProducto(1,"Mujer","Chaqueta");
-        model.addAttribute("producto",productos);
-        return "busqueda";
-    }
-
-    /**
-     * Flitra todas las publicaciones y muestra únicamente los que sean de la categoría mujer y del tipo blusa.
-     *
-     * @param model Se utiliza para poder trabajar objetos dentro de los html, en este caso se utilizan para poder mostrar
-     *              productos y sus atributos.
-     * @return El html en donde se mostraran los tipos de productos disponibles en la categoría mujer y del tipo blusa.
-     */
-    @GetMapping("/busqueda/categoria/mujer/porTipo/blusa")
-    public String busquedaPorCategoriaMYTipoBlusa(Model model){
-        List<Producto> productos= servicioProducto.obteneProductoPorCategoriaYTipoProducto(1,"Mujer","Blusa");
-        model.addAttribute("producto",productos);
-        return "busqueda";
-    }
-
-    /**
-     * Flitra todas las publicaciones y muestra únicamente los que sean de la categoría mujer y del tipo falda.
-     *
-     * @param model Se utiliza para poder trabajar objetos dentro de los html, en este caso se utilizan para poder mostrar
-     *              productos y sus atributos.
-     * @return El html en donde se mostraran los tipos de productos disponibles en la categoría mujer y del tipo falda.
-     */
-    @GetMapping("/busqueda/categoria/mujer/porTipo/falda")
-    public String busquedaPorCategoriaMYTipoFalda(Model model){
-        List<Producto> productos= servicioProducto.obteneProductoPorCategoriaYTipoProducto(1,"Mujer","Falda");
-        model.addAttribute("producto",productos);
-        return "busqueda";
-    }
-
-    /**
-     * Flitra todas las publicaciones y muestra únicamente los que sean de la categoría niño y del tipo polera.
-     *
-     * @param model Se utiliza para poder trabajar objetos dentro de los html, en este caso se utilizan para poder mostrar
-     *              productos y sus atributos.
-     * @return El html en donde se mostraran los tipos de productos disponibles en la categoría niño y del tipo polera.
-     */
-    @GetMapping("/busqueda/categoria/nino/porTipo/polera")
-    public String busquedaPorCategoriaNYTipoPolera(Model model){
-        List<Producto> productos= servicioProducto.obteneProductoPorCategoriaYTipoProducto(1,"Niño","Polera");
-        model.addAttribute("producto",productos);
-        return "busqueda";
-    }
-
-    /**
-     * Flitra todas las publicaciones y muestra únicamente los que sean de la categoría niño y del tipo poleron.
-     *
-     * @param model Se utiliza para poder trabajar objetos dentro de los html, en este caso se utilizan para poder mostrar
-     *              productos y sus atributos.
-     * @return El html en donde se mostraran los tipos de productos disponibles en la categoría niño y del tipo poleron.
-     */
-    @GetMapping("/busqueda/categoria/nino/porTipo/poleron")
-    public String busquedaPorCategoriaNYTipoPoleron(Model model){
-        List<Producto> productos= servicioProducto.obteneProductoPorCategoriaYTipoProducto(1,"Niño","Poleron");
-        model.addAttribute("producto",productos);
-        return "busqueda";
-    }
-
-    /**
-     * Flitra todas las publicaciones y muestra únicamente los que sean de la categoría niño y del tipo camisa.
-     *
-     * @param model Se utiliza para poder trabajar objetos dentro de los html, en este caso se utilizan para poder mostrar
-     *              productos y sus atributos.
-     * @return El html en donde se mostraran los tipos de productos disponibles en la categoría niño y del tipo camisa.
-     */
-    @GetMapping("/busqueda/categoria/nino/porTipo/camisa")
-    public String busquedaPorCategoriaNYTipoCamisa(Model model){
-        List<Producto> productos= servicioProducto.obteneProductoPorCategoriaYTipoProducto(1,"Niño","Camisa");
-        model.addAttribute("producto",productos);
-        return "busqueda";
-    }
-
-    /**
-     * Flitra todas las publicaciones y muestra únicamente los que sean de la categoría niño y del tipo pantalon.
-     *
-     * @param model Se utiliza para poder trabajar objetos dentro de los html, en este caso se utilizan para poder mostrar
-     *              productos y sus atributos.
-     * @return El html en donde se mostraran los tipos de productos disponibles en la categoría niño y del tipo pantalon.
-     */
-    @GetMapping("/busqueda/categoria/nino/porTipo/pantalon")
-    public String busquedaPorCategoriaNYTipoPantalon(Model model){
-        List<Producto> productos= servicioProducto.obteneProductoPorCategoriaYTipoProducto(1,"Niño","Pantalon");
-        model.addAttribute("producto",productos);
-        return "busqueda";
-    }
-
-    /**
-     * Flitra todas las publicaciones y muestra únicamente los que sean de la categoría niño y del tipo zapato.
-     *
-     * @param model Se utiliza para poder trabajar objetos dentro de los html, en este caso se utilizan para poder mostrar
-     *              productos y sus atributos.
-     * @return El html en donde se mostraran los tipos de productos disponibles en la categoría niño y del tipo zapato.
-     */
-    @GetMapping("/busqueda/categoria/nino/porTipo/zapato")
-    public String busquedaPorCategoriaNYTipoZapato(Model model){
-        List<Producto> productos= servicioProducto.obteneProductoPorCategoriaYTipoProducto(1,"Niño","Zapato");
-        model.addAttribute("producto",productos);
-        return "busqueda";
-    }
-
-    /**
-     * Flitra todas las publicaciones y muestra únicamente los que sean de la categoría niño y del tipo chaqueta.
-     *
-     * @param model Se utiliza para poder trabajar objetos dentro de los html, en este caso se utilizan para poder mostrar
-     *              productos y sus atributos.
-     * @return El html en donde se mostraran los tipos de productos disponibles en la categoría niño y del tipo chaqueta.
-     */
-    @GetMapping("/busqueda/categoria/nino/porTipo/chaqueta")
-    public String busquedaPorCategoriaNYTipoChaqueta(Model model){
-        List<Producto> productos= servicioProducto.obteneProductoPorCategoriaYTipoProducto(1,"Niño","Chaqueta");
-        model.addAttribute("producto",productos);
-        return "busqueda";
-    }
-
 
 
 }

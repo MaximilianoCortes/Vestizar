@@ -81,11 +81,11 @@
     </div>
 
     <div id="categorias">
-        <a class="cat" th:href="@{/busqueda/categoria/hombre}" >Hombre</a>
-        <a class="cat" th:href="@{/busqueda/categoria/mujer}" >Mujer</a>
-        <a class="cat" th:href="@{/busqueda/categoria/nino}" >Ni&ntilde;os</a>
-        <a class="cat" th:href="@{/busquedaIniciada}" >General</a>
-        <a class="cat" id="cato" th:href="@{/busquedaIniciada}" >Ofertas</a>
+        <a class="cat" th:href="@{/busqueda/categoria/{tipoCategoria}(tipoCategoria=hombre)}" >Hombre</a>
+        <a class="cat" th:href="@{/busqueda/categoria/{tipoCategoria}(tipoCategoria=mujer)}" >Mujer</a>
+        <a class="cat" th:href="@{/busqueda/categoria/{tipoCategoria}(tipoCategoria=nino)}" >Ni&ntilde;os</a>
+        <a class="cat" th:href="@{/busqueda}" >General</a>
+        <a class="cat" id="cato" th:href="@{/busqueda}">Ofertas</a>
     </div>
 
 <div>
